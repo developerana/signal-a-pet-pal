@@ -1,3 +1,4 @@
+import { BrandCat } from "@/components/BrandCat";
 import { cn } from "@/lib/utils";
 
 /** Official SinalizaPet cat mark, inline SVG (transparent background, inherits color). */
