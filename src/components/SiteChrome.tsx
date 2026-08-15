@@ -43,7 +43,7 @@ export function SiteHeader() {
 export function Marquee({ items }: { items: string[] }) {
   const row = [...items, ...items];
   return (
-    <div className="overflow-hidden border-b-2 border-ink bg-status-missing text-primary-foreground">
+    <div className="overflow-hidden border-b-2 border-ink bg-status-sighted text-primary-foreground">
       <div className="marquee-track flex w-max gap-8 py-2">
         {row.map((t, i) => (
           <span key={`${t}-${i}`} className="eyebrow whitespace-nowrap">
