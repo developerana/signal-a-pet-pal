@@ -14,6 +14,7 @@ import {
   House,
   Siren,
   ListChecks,
+  Menu,
 } from "lucide-react";
 import { BRAND } from "@/lib/brand";
 import { cn } from "@/lib/utils";
@@ -117,7 +118,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" aria-label="Menu" className="lg:hidden">
-                  <span className="i">☰</span>
+                  <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-72">
