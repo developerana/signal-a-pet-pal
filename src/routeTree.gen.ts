@@ -24,6 +24,10 @@ import { Route as NovaOcorrenciaRouteImport } from './routes/nova-ocorrencia'
 import { Route as NovoAvistamentoRouteImport } from './routes/novo-avistamento'
 import { Route as PerfilRouteImport } from './routes/perfil'
 import { Route as SobreRouteImport } from './routes/sobre'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminDenunciasRouteImport } from './routes/admin.denuncias'
+import { Route as AdminOcorrenciasRouteImport } from './routes/admin.ocorrencias'
+import { Route as AdminUsuariosRouteImport } from './routes/admin.usuarios'
 import { Route as OcorrenciaIdRouteImport } from './routes/ocorrencia.$id'
 
 const IndexRoute = IndexRouteImport.update({
@@ -101,6 +105,26 @@ const SobreRoute = SobreRouteImport.update({
   path: '/sobre',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminDenunciasRoute = AdminDenunciasRouteImport.update({
+  id: '/admin/denuncias',
+  path: '/admin/denuncias',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminOcorrenciasRoute = AdminOcorrenciasRouteImport.update({
+  id: '/admin/ocorrencias',
+  path: '/admin/ocorrencias',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminUsuariosRoute = AdminUsuariosRouteImport.update({
+  id: '/admin/usuarios',
+  path: '/admin/usuarios',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OcorrenciaIdRoute = OcorrenciaIdRouteImport.update({
   id: '/ocorrencia/$id',
   path: '/ocorrencia/$id',
@@ -123,7 +147,11 @@ export interface FileRoutesByFullPath {
   '/novo-avistamento': typeof NovoAvistamentoRoute
   '/perfil': typeof PerfilRoute
   '/sobre': typeof SobreRoute
+  '/admin/denuncias': typeof AdminDenunciasRoute
+  '/admin/ocorrencias': typeof AdminOcorrenciasRoute
+  '/admin/usuarios': typeof AdminUsuariosRoute
   '/ocorrencia/$id': typeof OcorrenciaIdRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -141,7 +169,11 @@ export interface FileRoutesByTo {
   '/novo-avistamento': typeof NovoAvistamentoRoute
   '/perfil': typeof PerfilRoute
   '/sobre': typeof SobreRoute
+  '/admin/denuncias': typeof AdminDenunciasRoute
+  '/admin/ocorrencias': typeof AdminOcorrenciasRoute
+  '/admin/usuarios': typeof AdminUsuariosRoute
   '/ocorrencia/$id': typeof OcorrenciaIdRoute
+  '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -160,7 +192,11 @@ export interface FileRoutesById {
   '/novo-avistamento': typeof NovoAvistamentoRoute
   '/perfil': typeof PerfilRoute
   '/sobre': typeof SobreRoute
+  '/admin/denuncias': typeof AdminDenunciasRoute
+  '/admin/ocorrencias': typeof AdminOcorrenciasRoute
+  '/admin/usuarios': typeof AdminUsuariosRoute
   '/ocorrencia/$id': typeof OcorrenciaIdRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -180,7 +216,11 @@ export interface FileRouteTypes {
     | '/novo-avistamento'
     | '/perfil'
     | '/sobre'
+    | '/admin/denuncias'
+    | '/admin/ocorrencias'
+    | '/admin/usuarios'
     | '/ocorrencia/$id'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -198,7 +238,11 @@ export interface FileRouteTypes {
     | '/novo-avistamento'
     | '/perfil'
     | '/sobre'
+    | '/admin/denuncias'
+    | '/admin/ocorrencias'
+    | '/admin/usuarios'
     | '/ocorrencia/$id'
+    | '/admin'
   id:
     | '__root__'
     | '/'
@@ -216,7 +260,11 @@ export interface FileRouteTypes {
     | '/novo-avistamento'
     | '/perfil'
     | '/sobre'
+    | '/admin/denuncias'
+    | '/admin/ocorrencias'
+    | '/admin/usuarios'
     | '/ocorrencia/$id'
+    | '/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -235,7 +283,11 @@ export interface RootRouteChildren {
   NovoAvistamentoRoute: typeof NovoAvistamentoRoute
   PerfilRoute: typeof PerfilRoute
   SobreRoute: typeof SobreRoute
+  AdminDenunciasRoute: typeof AdminDenunciasRoute
+  AdminOcorrenciasRoute: typeof AdminOcorrenciasRoute
+  AdminUsuariosRoute: typeof AdminUsuariosRoute
   OcorrenciaIdRoute: typeof OcorrenciaIdRoute
+  AdminIndexRoute: typeof AdminIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -345,6 +397,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SobreRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/denuncias': {
+      id: '/admin/denuncias'
+      path: '/admin/denuncias'
+      fullPath: '/admin/denuncias'
+      preLoaderRoute: typeof AdminDenunciasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/ocorrencias': {
+      id: '/admin/ocorrencias'
+      path: '/admin/ocorrencias'
+      fullPath: '/admin/ocorrencias'
+      preLoaderRoute: typeof AdminOcorrenciasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/usuarios': {
+      id: '/admin/usuarios'
+      path: '/admin/usuarios'
+      fullPath: '/admin/usuarios'
+      preLoaderRoute: typeof AdminUsuariosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ocorrencia/$id': {
       id: '/ocorrencia/$id'
       path: '/ocorrencia/$id'
@@ -371,7 +451,11 @@ const rootRouteChildren: RootRouteChildren = {
   NovoAvistamentoRoute: NovoAvistamentoRoute,
   PerfilRoute: PerfilRoute,
   SobreRoute: SobreRoute,
+  AdminDenunciasRoute: AdminDenunciasRoute,
+  AdminOcorrenciasRoute: AdminOcorrenciasRoute,
+  AdminUsuariosRoute: AdminUsuariosRoute,
   OcorrenciaIdRoute: OcorrenciaIdRoute,
+  AdminIndexRoute: AdminIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
