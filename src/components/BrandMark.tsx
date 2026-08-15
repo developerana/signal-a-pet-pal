@@ -1,3 +1,4 @@
+import { BrandCat } from "@/components/BrandCat";
 import { cn } from "@/lib/utils";
 
 /** Official SinalizaPet cat mark, inline SVG (transparent background, inherits color). */
@@ -20,7 +21,7 @@ export function BrandMark({ className }: { className?: string }) {
 export function BrandWordmark({ className }: { className?: string }) {
   return (
     <span className={cn("inline-flex items-center gap-2 text-ink", className)}>
-      <BrandMark className="h-7 w-auto" />
+      <BrandCat className="h-9 w-auto" />
       <span className="font-display text-xl font-black uppercase tracking-tight leading-none">
         SinalizaPet
       </span>
