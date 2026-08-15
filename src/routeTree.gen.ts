@@ -11,7 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BuscarRouteImport } from './routes/buscar'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as MapaRouteImport } from './routes/mapa'
+import { Route as OcorrenciaIdRouteImport } from './routes/ocorrencia.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -23,40 +25,58 @@ const BuscarRoute = BuscarRouteImport.update({
   path: '/buscar',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MapaRoute = MapaRouteImport.update({
   id: '/mapa',
   path: '/mapa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OcorrenciaIdRoute = OcorrenciaIdRouteImport.update({
+  id: '/ocorrencia/$id',
+  path: '/ocorrencia/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/buscar': typeof BuscarRoute
+  '/dashboard': typeof DashboardRoute
   '/mapa': typeof MapaRoute
+  '/ocorrencia/$id': typeof OcorrenciaIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/buscar': typeof BuscarRoute
+  '/dashboard': typeof DashboardRoute
   '/mapa': typeof MapaRoute
+  '/ocorrencia/$id': typeof OcorrenciaIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/buscar': typeof BuscarRoute
+  '/dashboard': typeof DashboardRoute
   '/mapa': typeof MapaRoute
+  '/ocorrencia/$id': typeof OcorrenciaIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/buscar' | '/mapa'
+  fullPaths: '/' | '/buscar' | '/dashboard' | '/mapa' | '/ocorrencia/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/buscar' | '/mapa'
-  id: '__root__' | '/' | '/buscar' | '/mapa'
+  to: '/' | '/buscar' | '/dashboard' | '/mapa' | '/ocorrencia/$id'
+  id: '__root__' | '/' | '/buscar' | '/dashboard' | '/mapa' | '/ocorrencia/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BuscarRoute: typeof BuscarRoute
+  DashboardRoute: typeof DashboardRoute
   MapaRoute: typeof MapaRoute
+  OcorrenciaIdRoute: typeof OcorrenciaIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -75,11 +95,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BuscarRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/mapa': {
       id: '/mapa'
       path: '/mapa'
       fullPath: '/mapa'
       preLoaderRoute: typeof MapaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ocorrencia/$id': {
+      id: '/ocorrencia/$id'
+      path: '/ocorrencia/$id'
+      fullPath: '/ocorrencia/$id'
+      preLoaderRoute: typeof OcorrenciaIdRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -88,7 +122,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BuscarRoute: BuscarRoute,
+  DashboardRoute: DashboardRoute,
   MapaRoute: MapaRoute,
+  OcorrenciaIdRoute: OcorrenciaIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
