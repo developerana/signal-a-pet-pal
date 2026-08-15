@@ -47,27 +47,29 @@ function Landing() {
       <section className="border-b-2 border-ink bg-accent/50">
         <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
           <div className="absolute inset-0 sand-grid opacity-50" aria-hidden />
-          <div className="relative">
+          <div className="relative max-w-2xl">
             <span className="overline inline-flex items-center gap-2 border-2 border-ink bg-paper px-3 py-1.5">
               <span className="h-2 w-2 bg-status-missing" /> Mural comunitário de busca
             </span>
-            <h1 className="mt-5 text-[3.25rem] font-black uppercase leading-[0.88] sm:text-7xl">
+            <h1 className="mt-4 text-[2.75rem] font-black uppercase leading-[0.9] sm:text-6xl">
               Um animal
               <br />
               perdido
               <br />
               <span className="bg-ink px-2 text-primary-foreground">volta pra casa</span>
             </h1>
-            <p className="mt-6 max-w-xl text-base text-foreground/80 sm:text-lg">
+            <p className="mt-5 max-w-lg text-base text-foreground/80">
               O SinalizaPet transforma informação solta em pista útil: cada avistamento entra na linha
               do tempo da ocorrência e avisa o tutor na hora.
             </p>
 
-            <div className="mt-8 grid gap-3 sm:grid-cols-3">
+            <div className="mt-7 border-2 border-ink bg-paper p-4 shadow-soft">
+              <p className="overline border-b-2 border-ink pb-2">O que você precisa fazer?</p>
+              <div className="mt-4 grid gap-3 sm:grid-cols-3">
               <Button
                 asChild
                 size="lg"
-                className="h-auto min-h-14 justify-start gap-2 whitespace-normal border-2 border-ink bg-status-missing py-3 text-left leading-tight text-primary-foreground shadow-soft hover:bg-status-missing/90"
+                className="h-auto min-h-16 flex-col items-start justify-center gap-1.5 whitespace-normal border-2 border-ink bg-status-missing px-3 py-3 text-left leading-tight text-primary-foreground hover:bg-status-missing/90"
               >
                 <Link to="/nova-ocorrencia">
                   <Siren className="h-5 w-5 shrink-0" /> Meu pet desapareceu
@@ -77,7 +79,7 @@ function Landing() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="h-auto min-h-14 justify-start gap-2 whitespace-normal border-2 border-ink bg-status-sighted py-3 text-left leading-tight text-primary shadow-soft hover:bg-status-sighted/80"
+                className="h-auto min-h-16 flex-col items-start justify-center gap-1.5 whitespace-normal border-2 border-ink bg-status-sighted px-3 py-3 text-left leading-tight text-primary hover:bg-status-sighted/80"
               >
                 <Link to="/novo-avistamento" search={{ ocorrencia: undefined }}>
                   <Eye className="h-5 w-5 shrink-0" /> Eu vi um animal
@@ -87,21 +89,22 @@ function Landing() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="h-auto min-h-14 justify-start gap-2 whitespace-normal border-2 border-ink bg-status-found py-3 text-left leading-tight text-primary-foreground shadow-soft hover:bg-status-found/90"
+                className="h-auto min-h-16 flex-col items-start justify-center gap-1.5 whitespace-normal border-2 border-ink bg-status-found px-3 py-3 text-left leading-tight text-primary-foreground hover:bg-status-found/90"
               >
                 <Link to="/animal-encontrado">
                   <House className="h-5 w-5 shrink-0" /> Encontrei um animal
                 </Link>
               </Button>
-            </div>
+              </div>
 
-            <Link
-              to="/buscar"
-              className="mt-6 flex items-center gap-2 border-2 border-ink bg-paper px-4 py-3 text-sm text-muted-foreground shadow-soft"
-            >
-              <Search className="h-4 w-4 shrink-0" />
-              <span className="truncate">Procure por um animal, bairro ou região...</span>
-            </Link>
+              <Link
+                to="/buscar"
+                className="mt-3 flex items-center gap-2 border-2 border-ink bg-secondary px-4 py-3 text-sm text-muted-foreground"
+              >
+                <Search className="h-4 w-4 shrink-0" />
+                <span className="truncate">Procure por um animal, bairro ou região...</span>
+              </Link>
+            </div>
           </div>
 
           <div className="relative mx-auto w-full max-w-sm">
