@@ -33,7 +33,7 @@ function Landing() {
       <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur">
         <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 py-3 sm:px-6">
           <Link to="/" className="min-w-0">
-            <img src={BRAND.logoUrl} alt={`${BRAND.name} — ${BRAND.slogan}`} className="h-8 w-auto" />
+            <img src={BRAND.logoUrl} alt={`${BRAND.name} — ${BRAND.slogan}`} className="h-8 w-auto mix-blend-multiply" />
           </Link>
           <nav className="flex shrink-0 items-center gap-2">
             <Button asChild variant="ghost" size="sm">
@@ -67,17 +67,17 @@ function Landing() {
             </p>
 
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
-              <Button asChild size="lg" className="h-14 justify-start gap-3 bg-status-missing text-primary-foreground hover:bg-status-missing/90">
+              <Button asChild size="lg" className="h-auto min-h-14 justify-start gap-3 whitespace-normal py-3 text-left leading-tight bg-status-missing text-primary-foreground hover:bg-status-missing/90">
                 <Link to="/nova-ocorrencia">
                   <Siren className="h-5 w-5" /> Meu pet desapareceu
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="h-14 justify-start gap-3 border-status-sighted bg-status-sighted/15 hover:bg-status-sighted/25">
+              <Button asChild size="lg" variant="outline" className="h-auto min-h-14 justify-start gap-3 whitespace-normal py-3 text-left leading-tight border-status-sighted bg-status-sighted/15 hover:bg-status-sighted/25">
                 <Link to="/novo-avistamento" search={{ ocorrencia: undefined }}>
                   <Eye className="h-5 w-5" /> Eu vi um animal
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="h-14 justify-start gap-3 border-status-found bg-status-found/10 hover:bg-status-found/20">
+              <Button asChild size="lg" variant="outline" className="h-auto min-h-14 justify-start gap-3 whitespace-normal py-3 text-left leading-tight border-status-found bg-status-found/10 hover:bg-status-found/20">
                 <Link to="/animal-encontrado">
                   <House className="h-5 w-5" /> Encontrei um animal
                 </Link>
@@ -162,7 +162,7 @@ function Landing() {
 
       <footer className="border-t border-border py-10">
         <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 sm:px-6">
-          <img src={BRAND.logoUrl} alt={BRAND.name} className="h-7 w-auto self-start" />
+          <img src={BRAND.logoUrl} alt={BRAND.name} className="h-7 w-auto self-start mix-blend-multiply" />
           <p className="text-sm text-muted-foreground">
             {BRAND.slogan} — dados de demonstração nesta versão inicial.
           </p>

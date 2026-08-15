@@ -21,7 +21,7 @@ function LoginPage() {
     <div className="grid min-h-screen place-items-center bg-accent/40 px-4 py-12">
       <div className="w-full max-w-md">
         <Link to="/" className="mb-8 flex justify-center">
-          <img src={BRAND.logoUrl} alt={`${BRAND.name} — ${BRAND.slogan}`} className="h-9 w-auto" />
+          <img src={BRAND.logoUrl} alt={`${BRAND.name} — ${BRAND.slogan}`} className="h-9 w-auto mix-blend-multiply" />
         </Link>
         <div className="rounded-2xl border border-border bg-card p-6 shadow-lift">
           <h1 className="text-2xl font-bold">Entrar</h1>

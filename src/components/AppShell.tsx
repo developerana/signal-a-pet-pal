@@ -43,7 +43,7 @@ const bottomItems = [
 export function BrandLogo({ className }: { className?: string }) {
   return (
     <Link to="/" className={cn("inline-flex items-center", className)} aria-label={BRAND.name}>
-      <img src={BRAND.logoUrl} alt={`${BRAND.name} — ${BRAND.slogan}`} className="h-8 w-auto" />
+      <img src={BRAND.logoUrl} alt={`${BRAND.name} — ${BRAND.slogan}`} className="h-8 w-auto mix-blend-multiply" />
     </Link>
   );
 }
