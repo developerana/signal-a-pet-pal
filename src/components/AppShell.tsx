@@ -17,6 +17,7 @@ import {
   User,
 } from "lucide-react";
 import { BRAND } from "@/lib/brand";
+import { BrandMark, BrandWordmark } from "@/components/BrandMark";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -43,17 +44,13 @@ const bottomItems = [
 export function BrandLogo({ className }: { className?: string }) {
   return (
     <Link to="/" className={cn("inline-flex items-center", className)} aria-label={BRAND.name}>
-      <img
-        src={BRAND.logoUrl}
-        alt={`${BRAND.name} — ${BRAND.slogan}`}
-        className="h-8 w-auto mix-blend-multiply"
-      />
+      <BrandWordmark />
     </Link>
   );
 }
 
 export function BrandIcon({ className }: { className?: string }) {
-  return <img src={BRAND.iconUrl} alt="" className={cn("h-6 w-6 object-contain", className)} />;
+  return <BrandMark className={cn("h-6 w-6", className)} />;
 }
 
 export const quickActions = [

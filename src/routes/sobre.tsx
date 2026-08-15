@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { BrandMark } from "@/components/BrandMark";
 import { BRAND } from "@/lib/brand";
 import { SiteLayout } from "@/components/SiteChrome";
 import { Button } from "@/components/ui/button";
@@ -41,11 +42,7 @@ function About() {
             </p>
           </div>
           <div className="mx-auto w-full max-w-xs border-2 border-ink bg-paper p-6">
-            <img
-              src={BRAND.iconUrl}
-              alt="Logan, o gato preto que inspirou o SinalizaPet"
-              className="mx-auto h-36 w-36 object-contain"
-            />
+            <BrandMark className="mx-auto h-36 w-36" />
             <p className="mt-4 text-center text-sm font-semibold text-ink">
               Em homenagem ao Logan
             </p>

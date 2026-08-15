@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
+import { BrandWordmark } from "@/components/BrandMark";
 import { BRAND } from "@/lib/brand";
 import { Button } from "@/components/ui/button";
 
@@ -15,11 +16,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b-2 border-ink bg-paper">
       <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 py-3 sm:px-6">
         <Link to="/" className="min-w-0" aria-label={BRAND.name}>
-          <img
-            src={BRAND.logoUrl}
-            alt={`${BRAND.name} — ${BRAND.slogan}`}
-            className="h-8 w-auto mix-blend-multiply"
-          />
+          <BrandWordmark />
         </Link>
         <nav className="flex shrink-0 items-center gap-1 sm:gap-3">
           {links.map((l) => (

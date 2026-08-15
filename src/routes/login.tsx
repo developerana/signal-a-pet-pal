@@ -1,5 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { toast } from "sonner";
+import { BrandMark, BrandWordmark } from "@/components/BrandMark";
 import { BRAND } from "@/lib/brand";
 import { DemoNote, Field } from "@/components/FormKit";
 import { Button } from "@/components/ui/button";
@@ -76,12 +77,12 @@ export function AuthLayout({
             Cada informação sinalizada aproxima um animal de casa.
           </p>
         </div>
-        <img src={BRAND.iconUrl} alt="" className="h-16 w-16 object-contain invert" />
+        <BrandMark className="h-16 w-16 text-primary-foreground" />
       </div>
       <div className="flex items-center justify-center px-4 py-12 sm:px-8">
         <div className="w-full max-w-md">
           <Link to="/" className="lg:hidden">
-            <img src={BRAND.logoUrl} alt={BRAND.name} className="mx-auto h-9 w-auto mix-blend-multiply" />
+            <BrandWordmark className="mx-auto flex justify-center" />
           </Link>
           <div className="poster mt-6 p-6 sm:p-8">
             <h1 className="text-3xl font-black uppercase leading-none">{title}</h1>

@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { LogOut } from "lucide-react";
 import { AppShell, PageHeader } from "@/components/AppShell";
 import { DemoNote, Field, Panel, Stat } from "@/components/FormKit";
+import { BrandMark } from "@/components/BrandMark";
 import { BRAND } from "@/lib/brand";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -35,7 +36,7 @@ function ProfilePage() {
           <Panel>
             <div className="flex items-center gap-4">
               <span className="grid h-16 w-16 place-items-center border-2 border-ink bg-accent">
-                <img src={BRAND.iconUrl} alt="" className="h-9 w-9 object-contain" />
+                <BrandMark className="h-9 w-9" />
               </span>
               <div className="min-w-0">
                 <h2 className="truncate text-xl font-extrabold uppercase leading-tight">
