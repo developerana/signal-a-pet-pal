@@ -65,7 +65,7 @@ function Landing() {
             </p>
 
             <div className="mt-7 border-2 border-ink bg-paper p-4 shadow-soft">
-              <p className="overline border-b-2 border-ink pb-2">O que você precisa fazer?</p>
+              <p className="overline">O que você precisa fazer?</p>
               <div className="mt-4 grid gap-3 sm:grid-cols-3">
               <Button
                 asChild
@@ -110,7 +110,7 @@ function Landing() {
 
           <div className="relative mx-auto w-full max-w-sm">
             <div className="poster p-8">
-              <p className="overline border-b-2 border-ink pb-2 text-center">Procura-se</p>
+              <p className="overline text-center">Procura-se</p>
               <BrandCat className="mx-auto mt-6 h-56 w-auto" />
               <p className="mt-6 text-center font-display text-lg font-extrabold uppercase leading-tight">
                 Juntos, um pet volta pra casa
