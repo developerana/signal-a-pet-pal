@@ -12,11 +12,17 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AnimalEncontradoRouteImport } from './routes/animal-encontrado'
 import { Route as BuscarRouteImport } from './routes/buscar'
+import { Route as CadastroRouteImport } from './routes/cadastro'
 import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as MapaRouteImport } from './routes/mapa'
+import { Route as MeusAnimaisRouteImport } from './routes/meus-animais'
+import { Route as MinhasOcorrenciasRouteImport } from './routes/minhas-ocorrencias'
+import { Route as NotificacoesRouteImport } from './routes/notificacoes'
 import { Route as NovaOcorrenciaRouteImport } from './routes/nova-ocorrencia'
 import { Route as NovoAvistamentoRouteImport } from './routes/novo-avistamento'
+import { Route as PerfilRouteImport } from './routes/perfil'
 import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as OcorrenciaIdRouteImport } from './routes/ocorrencia.$id'
 
@@ -35,6 +41,11 @@ const BuscarRoute = BuscarRouteImport.update({
   path: '/buscar',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CadastroRoute = CadastroRouteImport.update({
+  id: '/cadastro',
+  path: '/cadastro',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ComoFuncionaRoute = ComoFuncionaRouteImport.update({
   id: '/como-funciona',
   path: '/como-funciona',
@@ -45,9 +56,29 @@ const DashboardRoute = DashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MapaRoute = MapaRouteImport.update({
   id: '/mapa',
   path: '/mapa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MeusAnimaisRoute = MeusAnimaisRouteImport.update({
+  id: '/meus-animais',
+  path: '/meus-animais',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MinhasOcorrenciasRoute = MinhasOcorrenciasRouteImport.update({
+  id: '/minhas-ocorrencias',
+  path: '/minhas-ocorrencias',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotificacoesRoute = NotificacoesRouteImport.update({
+  id: '/notificacoes',
+  path: '/notificacoes',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NovaOcorrenciaRoute = NovaOcorrenciaRouteImport.update({
@@ -58,6 +89,11 @@ const NovaOcorrenciaRoute = NovaOcorrenciaRouteImport.update({
 const NovoAvistamentoRoute = NovoAvistamentoRouteImport.update({
   id: '/novo-avistamento',
   path: '/novo-avistamento',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PerfilRoute = PerfilRouteImport.update({
+  id: '/perfil',
+  path: '/perfil',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SobreRoute = SobreRouteImport.update({
@@ -75,11 +111,17 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/animal-encontrado': typeof AnimalEncontradoRoute
   '/buscar': typeof BuscarRoute
+  '/cadastro': typeof CadastroRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/dashboard': typeof DashboardRoute
+  '/login': typeof LoginRoute
   '/mapa': typeof MapaRoute
+  '/meus-animais': typeof MeusAnimaisRoute
+  '/minhas-ocorrencias': typeof MinhasOcorrenciasRoute
+  '/notificacoes': typeof NotificacoesRoute
   '/nova-ocorrencia': typeof NovaOcorrenciaRoute
   '/novo-avistamento': typeof NovoAvistamentoRoute
+  '/perfil': typeof PerfilRoute
   '/sobre': typeof SobreRoute
   '/ocorrencia/$id': typeof OcorrenciaIdRoute
 }
@@ -87,11 +129,17 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/animal-encontrado': typeof AnimalEncontradoRoute
   '/buscar': typeof BuscarRoute
+  '/cadastro': typeof CadastroRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/dashboard': typeof DashboardRoute
+  '/login': typeof LoginRoute
   '/mapa': typeof MapaRoute
+  '/meus-animais': typeof MeusAnimaisRoute
+  '/minhas-ocorrencias': typeof MinhasOcorrenciasRoute
+  '/notificacoes': typeof NotificacoesRoute
   '/nova-ocorrencia': typeof NovaOcorrenciaRoute
   '/novo-avistamento': typeof NovoAvistamentoRoute
+  '/perfil': typeof PerfilRoute
   '/sobre': typeof SobreRoute
   '/ocorrencia/$id': typeof OcorrenciaIdRoute
 }
@@ -100,11 +148,17 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/animal-encontrado': typeof AnimalEncontradoRoute
   '/buscar': typeof BuscarRoute
+  '/cadastro': typeof CadastroRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/dashboard': typeof DashboardRoute
+  '/login': typeof LoginRoute
   '/mapa': typeof MapaRoute
+  '/meus-animais': typeof MeusAnimaisRoute
+  '/minhas-ocorrencias': typeof MinhasOcorrenciasRoute
+  '/notificacoes': typeof NotificacoesRoute
   '/nova-ocorrencia': typeof NovaOcorrenciaRoute
   '/novo-avistamento': typeof NovoAvistamentoRoute
+  '/perfil': typeof PerfilRoute
   '/sobre': typeof SobreRoute
   '/ocorrencia/$id': typeof OcorrenciaIdRoute
 }
@@ -114,11 +168,17 @@ export interface FileRouteTypes {
     | '/'
     | '/animal-encontrado'
     | '/buscar'
+    | '/cadastro'
     | '/como-funciona'
     | '/dashboard'
+    | '/login'
     | '/mapa'
+    | '/meus-animais'
+    | '/minhas-ocorrencias'
+    | '/notificacoes'
     | '/nova-ocorrencia'
     | '/novo-avistamento'
+    | '/perfil'
     | '/sobre'
     | '/ocorrencia/$id'
   fileRoutesByTo: FileRoutesByTo
@@ -126,11 +186,17 @@ export interface FileRouteTypes {
     | '/'
     | '/animal-encontrado'
     | '/buscar'
+    | '/cadastro'
     | '/como-funciona'
     | '/dashboard'
+    | '/login'
     | '/mapa'
+    | '/meus-animais'
+    | '/minhas-ocorrencias'
+    | '/notificacoes'
     | '/nova-ocorrencia'
     | '/novo-avistamento'
+    | '/perfil'
     | '/sobre'
     | '/ocorrencia/$id'
   id:
@@ -138,11 +204,17 @@ export interface FileRouteTypes {
     | '/'
     | '/animal-encontrado'
     | '/buscar'
+    | '/cadastro'
     | '/como-funciona'
     | '/dashboard'
+    | '/login'
     | '/mapa'
+    | '/meus-animais'
+    | '/minhas-ocorrencias'
+    | '/notificacoes'
     | '/nova-ocorrencia'
     | '/novo-avistamento'
+    | '/perfil'
     | '/sobre'
     | '/ocorrencia/$id'
   fileRoutesById: FileRoutesById
@@ -151,11 +223,17 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AnimalEncontradoRoute: typeof AnimalEncontradoRoute
   BuscarRoute: typeof BuscarRoute
+  CadastroRoute: typeof CadastroRoute
   ComoFuncionaRoute: typeof ComoFuncionaRoute
   DashboardRoute: typeof DashboardRoute
+  LoginRoute: typeof LoginRoute
   MapaRoute: typeof MapaRoute
+  MeusAnimaisRoute: typeof MeusAnimaisRoute
+  MinhasOcorrenciasRoute: typeof MinhasOcorrenciasRoute
+  NotificacoesRoute: typeof NotificacoesRoute
   NovaOcorrenciaRoute: typeof NovaOcorrenciaRoute
   NovoAvistamentoRoute: typeof NovoAvistamentoRoute
+  PerfilRoute: typeof PerfilRoute
   SobreRoute: typeof SobreRoute
   OcorrenciaIdRoute: typeof OcorrenciaIdRoute
 }
@@ -183,6 +261,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BuscarRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cadastro': {
+      id: '/cadastro'
+      path: '/cadastro'
+      fullPath: '/cadastro'
+      preLoaderRoute: typeof CadastroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/como-funciona': {
       id: '/como-funciona'
       path: '/como-funciona'
@@ -197,11 +282,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/mapa': {
       id: '/mapa'
       path: '/mapa'
       fullPath: '/mapa'
       preLoaderRoute: typeof MapaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/meus-animais': {
+      id: '/meus-animais'
+      path: '/meus-animais'
+      fullPath: '/meus-animais'
+      preLoaderRoute: typeof MeusAnimaisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/minhas-ocorrencias': {
+      id: '/minhas-ocorrencias'
+      path: '/minhas-ocorrencias'
+      fullPath: '/minhas-ocorrencias'
+      preLoaderRoute: typeof MinhasOcorrenciasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notificacoes': {
+      id: '/notificacoes'
+      path: '/notificacoes'
+      fullPath: '/notificacoes'
+      preLoaderRoute: typeof NotificacoesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/nova-ocorrencia': {
@@ -216,6 +329,13 @@ declare module '@tanstack/react-router' {
       path: '/novo-avistamento'
       fullPath: '/novo-avistamento'
       preLoaderRoute: typeof NovoAvistamentoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/perfil': {
+      id: '/perfil'
+      path: '/perfil'
+      fullPath: '/perfil'
+      preLoaderRoute: typeof PerfilRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sobre': {
@@ -239,11 +359,17 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AnimalEncontradoRoute: AnimalEncontradoRoute,
   BuscarRoute: BuscarRoute,
+  CadastroRoute: CadastroRoute,
   ComoFuncionaRoute: ComoFuncionaRoute,
   DashboardRoute: DashboardRoute,
+  LoginRoute: LoginRoute,
   MapaRoute: MapaRoute,
+  MeusAnimaisRoute: MeusAnimaisRoute,
+  MinhasOcorrenciasRoute: MinhasOcorrenciasRoute,
+  NotificacoesRoute: NotificacoesRoute,
   NovaOcorrenciaRoute: NovaOcorrenciaRoute,
   NovoAvistamentoRoute: NovoAvistamentoRoute,
+  PerfilRoute: PerfilRoute,
   SobreRoute: SobreRoute,
   OcorrenciaIdRoute: OcorrenciaIdRoute,
 }
