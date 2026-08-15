@@ -22,7 +22,7 @@ export function BrandWordmark({ className }: { className?: string }) {
   return (
     <span className={cn("inline-flex items-center gap-[0.45em] leading-none text-ink", className)}>
       <BrandCat className="h-[1.05em] w-auto" />
-      <span className="font-display text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-tight leading-none">
+      <span className="font-display text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tight leading-none">
         SinalizaPet
       </span>
     </span>
