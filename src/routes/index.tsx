@@ -37,9 +37,9 @@ function Landing() {
     <SiteLayout>
       <Marquee
         items={[
-          "21 animais desaparecidos agora",
-          "57 sinalizações da comunidade",
-          "12 reencontros neste mês",
+          "Projeto em construção",
+          "Viu? Sinaliza. Encontrou? Avisa.",
+          "Projeto em construção",
           "Viu? Sinaliza. Encontrou? Avisa.",
         ]}
       />
