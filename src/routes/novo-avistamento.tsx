@@ -13,7 +13,7 @@ import { demoOccurrences } from "@/data/demo";
 
 export const Route = createFileRoute("/novo-avistamento")({
   validateSearch: (search: Record<string, unknown>) => ({
-    ocorrencia: typeof search.ocorrencia === "string" ? search.ocorrencia : undefined,
+    ocorrencia: typeof search["ocorrencia"] === "string" ? (search["ocorrencia"] as string) : undefined,
   }),
   head: () => ({
     meta: [

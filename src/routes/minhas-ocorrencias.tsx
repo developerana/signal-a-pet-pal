@@ -42,7 +42,7 @@ function MinhasOcorrencias() {
               <div className="min-w-0 flex-1">
                 <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-2">
                   <h2 className="truncate text-lg font-bold">{o.name}</h2>
-                  <StatusBadge status={statusMap[o.id]} />
+                  <StatusBadge status={statusMap[o.id] ?? o.status} />
                 </div>
                 <p className="truncate text-sm text-muted-foreground">
                   {o.neighborhood} • {o.date} • {o.sightingsCount} avistamento
@@ -52,7 +52,7 @@ function MinhasOcorrencias() {
             </div>
             <div className="mt-4 flex flex-wrap items-center gap-2">
               <Select
-                value={statusMap[o.id]}
+                value={statusMap[o.id] ?? o.status}
                 onValueChange={(v) => {
                   setStatusMap((m) => ({ ...m, [o.id]: v as OccurrenceStatus }));
                   toast.success("Status atualizado nesta sessão", {

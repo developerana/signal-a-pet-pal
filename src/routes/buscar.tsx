@@ -37,6 +37,7 @@ function BuscarPage() {
 
   const results = useMemo(() => {
     const t = term.trim().toLowerCase();
+    const maxKm = radius[0] ?? 20;
     const list = demoOccurrences.filter((o) => {
       const matchTerm =
         !t ||
@@ -47,7 +48,7 @@ function BuscarPage() {
       const matchSpecies = species === "todos" || o.species === species;
       const matchStatus = status === "todos" || o.status === status;
       const matchNeighborhood = neighborhood === "todos" || o.neighborhood === neighborhood;
-      return matchTerm && matchSpecies && matchStatus && matchNeighborhood && o.distanceKm <= radius[0];
+      return matchTerm && matchSpecies && matchStatus && matchNeighborhood && o.distanceKm <= maxKm;
     });
     if (sort === "proximos") return [...list].sort((a, b) => a.distanceKm - b.distanceKm);
     if (sort === "avistados") return [...list].sort((a, b) => b.sightingsCount - a.sightingsCount);

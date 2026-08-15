@@ -73,7 +73,7 @@ function Landing() {
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="h-14 justify-start gap-3 border-status-sighted bg-status-sighted/15 hover:bg-status-sighted/25">
-                <Link to="/novo-avistamento">
+                <Link to="/novo-avistamento" search={{ ocorrencia: undefined }}>
                   <Eye className="h-5 w-5" /> Eu vi um animal
                 </Link>
               </Button>

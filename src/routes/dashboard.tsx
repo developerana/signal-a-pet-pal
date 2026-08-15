@@ -37,7 +37,7 @@ function Dashboard() {
             </Link>
           </Button>
           <Button asChild size="lg" variant="outline" className="gap-2 bg-background">
-            <Link to="/novo-avistamento">
+            <Link to="/novo-avistamento" search={{ ocorrencia: undefined }}>
               <Eye className="h-5 w-5" /> Sinalizar avistamento
             </Link>
           </Button>

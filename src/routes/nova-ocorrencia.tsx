@@ -120,7 +120,7 @@ function NovaOcorrencia() {
                 </Field>
                 <Field label="Sexo">
                   <RadioGroup value={form.sex} onValueChange={(v) => set("sex", v)} className="flex gap-4 pt-1">
-                    {[["macho", "Macho"], ["femea", "Fêmea"], ["indefinido", "Não sei"]].map(([v, l]) => (
+                    {([["macho", "Macho"], ["femea", "Fêmea"], ["indefinido", "Não sei"]] as const).map(([v, l]) => (
                       <div key={v} className="flex items-center gap-2">
                         <RadioGroupItem value={v} id={`sex-${v}`} />
                         <Label htmlFor={`sex-${v}`} className="text-sm font-normal">{l}</Label>
@@ -185,11 +185,11 @@ function NovaOcorrencia() {
                 quem tiver informações.
               </p>
               <RadioGroup value={form.contact} onValueChange={(v) => set("contact", v)} className="grid gap-3">
-                {[
+                {([
                   ["chat", "Chat da plataforma", "Mais seguro: nenhum dado seu é exposto."],
                   ["whatsapp-mediado", "WhatsApp mediado", "A plataforma intermedia o primeiro contato."],
                   ["email-mediado", "E-mail mediado", "Você recebe as mensagens sem revelar seu e-mail."],
-                ].map(([v, title, desc]) => (
+                ] as const).map(([v, title, desc]) => (
                   <label key={v} className="flex cursor-pointer gap-3 rounded-xl border border-border p-4 has-[:checked]:border-primary">
                     <RadioGroupItem value={v} id={`c-${v}`} className="mt-1" />
                     <span>

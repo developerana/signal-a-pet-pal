@@ -39,10 +39,10 @@ export function Field({
   className,
 }: {
   label: string;
-  htmlFor?: string;
-  hint?: string;
+  htmlFor?: string | undefined;
+  hint?: string | undefined;
   children: ReactNode;
-  className?: string;
+  className?: string | undefined;
 }) {
   return (
     <div className={cn("grid gap-1.5", className)}>
@@ -63,7 +63,7 @@ export function DemoNotice({ children }: { children: ReactNode }) {
   );
 }
 
-export function FormCard({ children, className }: { children: ReactNode; className?: string }) {
+export function FormCard({ children, className }: { children: ReactNode; className?: string | undefined }) {
   return (
     <div className={cn("rounded-2xl border border-border bg-card p-5 shadow-soft sm:p-6", className)}>
       {children}
@@ -71,7 +71,7 @@ export function FormCard({ children, className }: { children: ReactNode; classNa
   );
 }
 
-export function PhotoPicker({ label, hint }: { label: string; hint?: string }) {
+export function PhotoPicker({ label, hint }: { label: string; hint?: string | undefined }) {
   return (
     <Field label={label} hint={hint}>
       <label className="grid cursor-pointer place-items-center gap-1 rounded-xl border border-dashed border-border bg-secondary/40 px-4 py-8 text-center text-sm text-muted-foreground">
