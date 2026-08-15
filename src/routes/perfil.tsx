@@ -1,124 +1,112 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { AppShell, BrandIcon, PageHeader } from "@/components/AppShell";
-import { StatusBadge } from "@/components/StatusBadge";
+import { LogOut } from "lucide-react";
+import { AppShell, PageHeader } from "@/components/AppShell";
+import { DemoNote, Field, Panel, Stat } from "@/components/FormKit";
+import { BRAND } from "@/lib/brand";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { demoOccurrences, demoPets, demoUser } from "@/data/demo";
+import { Input } from "@/components/ui/input";
+import { Switch } from "@/components/ui/switch";
+import { demoUser } from "@/data/demo";
 
 export const Route = createFileRoute("/perfil")({
   head: () => ({
     meta: [
       { title: "Meu perfil — SinalizaPet" },
-      { name: "description", content: "Seus animais, ocorrências, avistamentos e favoritos." },
+      {
+        name: "description",
+        content: "Gerencie seus dados, região de alertas e preferências de notificação no SinalizaPet.",
+      },
       { property: "og:title", content: "Meu perfil — SinalizaPet" },
-      { property: "og:description", content: "Acompanhe sua participação na rede comunitária." },
+      { property: "og:description", content: "Dados, alertas e preferências da sua conta." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
-  component: Perfil,
+  component: ProfilePage,
 });
 
-function Perfil() {
-  const mine = demoOccurrences.slice(0, 3);
-  const favorites = demoOccurrences.slice(3, 5);
-
+function ProfilePage() {
   return (
     <AppShell>
-      <PageHeader title="Meu perfil" />
+      <PageHeader title="Perfil" description="Seus dados e preferências de alerta." />
 
-      <div className="rounded-2xl border border-border bg-card p-5 shadow-soft sm:p-6">
-        <div className="flex min-w-0 items-center gap-4">
-          <div className="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-accent">
-            <BrandIcon className="h-9 w-9" />
-          </div>
-          <div className="min-w-0">
-            <h2 className="truncate text-xl font-bold">{demoUser.name}</h2>
-            <p className="truncate text-sm text-muted-foreground">
-              {demoUser.city} • na comunidade desde {demoUser.memberSince}
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {[
-            ["Animais cadastrados", demoPets.length],
-            ["Ocorrências criadas", mine.length],
-            ["Avistamentos realizados", demoUser.signals],
-            ["Favoritos", favorites.length],
-          ].map(([label, value]) => (
-            <div key={label as string} className="rounded-xl bg-secondary/60 p-3">
-              <p className="font-display text-2xl font-bold">{value}</p>
-              <p className="text-xs text-muted-foreground">{label}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-4 rounded-xl border border-border bg-accent/40 p-4">
-          <p className="font-display font-bold">🐾 {demoUser.signals} sinalizações realizadas</p>
-          <p className="text-sm text-muted-foreground">
-            Informações que ajudaram outros tutores na busca. Obrigada por colaborar.
-          </p>
-        </div>
-      </div>
-
-      <Tabs defaultValue="ocorrencias" className="mt-6">
-        <TabsList>
-          <TabsTrigger value="ocorrencias">Ocorrências</TabsTrigger>
-          <TabsTrigger value="animais">Animais</TabsTrigger>
-          <TabsTrigger value="favoritos">Favoritos</TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="ocorrencias" className="mt-4 grid gap-3">
-          {mine.map((o) => (
-            <ProfileRow key={o.id} id={o.id} name={o.name} photo={o.photoUrl} sub={`${o.neighborhood} • ${o.date}`} status={o.status} />
-          ))}
-        </TabsContent>
-
-        <TabsContent value="animais" className="mt-4 grid gap-3">
-          {demoPets.map((p) => (
-            <div key={p.id} className="flex items-center gap-3 rounded-2xl border border-border bg-card p-3">
-              <img src={p.photoUrl} alt={p.name} loading="lazy" className="h-14 w-14 rounded-xl object-cover" />
+      <div className="grid gap-6 lg:grid-cols-[1fr_1.2fr] lg:items-start">
+        <div className="grid gap-4">
+          <Panel>
+            <div className="flex items-center gap-4">
+              <span className="grid h-16 w-16 place-items-center border-2 border-ink bg-accent">
+                <img src={BRAND.iconUrl} alt="" className="h-9 w-9 object-contain" />
+              </span>
               <div className="min-w-0">
-                <p className="truncate font-bold">{p.name}</p>
-                <p className="truncate text-sm capitalize text-muted-foreground">{p.species} • {p.traits}</p>
+                <h2 className="truncate text-xl font-extrabold uppercase leading-tight">
+                  {demoUser.name}
+                </h2>
+                <p className="overline text-muted-foreground">
+                  {demoUser.city} · desde {demoUser.memberSince}
+                </p>
               </div>
             </div>
-          ))}
-        </TabsContent>
+            <div className="mt-5 grid grid-cols-2 gap-3">
+              <Stat label="Sinalizações" value={demoUser.signals} />
+              <Stat label="Reencontros" value={2} tone="text-status-reunited" />
+            </div>
+          </Panel>
 
-        <TabsContent value="favoritos" className="mt-4 grid gap-3">
-          {favorites.map((o) => (
-            <ProfileRow key={o.id} id={o.id} name={o.name} photo={o.photoUrl} sub={`${o.neighborhood} • ${o.date}`} status={o.status} />
-          ))}
-        </TabsContent>
-      </Tabs>
-    </AppShell>
-  );
-}
+          <Panel title="Atalhos">
+            <div className="grid gap-2">
+              <Button asChild variant="outline" className="justify-start border-2 border-ink">
+                <Link to="/minhas-ocorrencias">Minhas ocorrências</Link>
+              </Button>
+              <Button asChild variant="outline" className="justify-start border-2 border-ink">
+                <Link to="/meus-animais">Meus animais</Link>
+              </Button>
+              <Button asChild variant="ghost" className="justify-start text-muted-foreground">
+                <Link to="/">
+                  <LogOut className="h-4 w-4" /> Sair
+                </Link>
+              </Button>
+            </div>
+          </Panel>
+        </div>
 
-function ProfileRow({
-  id,
-  name,
-  photo,
-  sub,
-  status,
-}: {
-  id: string;
-  name: string;
-  photo: string;
-  sub: string;
-  status: Parameters<typeof StatusBadge>[0]["status"];
-}) {
-  return (
-    <div className="flex items-center gap-3 rounded-2xl border border-border bg-card p-3">
-      <img src={photo} alt={name} loading="lazy" className="h-14 w-14 rounded-xl object-cover" />
-      <div className="min-w-0 flex-1">
-        <p className="truncate font-bold">{name}</p>
-        <p className="truncate text-sm text-muted-foreground">{sub}</p>
+        <div className="grid gap-4">
+          <Panel title="Dados pessoais">
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Field label="Nome">
+                <Input defaultValue={demoUser.name} />
+              </Field>
+              <Field label="Cidade">
+                <Input defaultValue={demoUser.city} />
+              </Field>
+              <Field label="E-mail">
+                <Input type="email" defaultValue="ana@email.com" />
+              </Field>
+              <Field label="Telefone" hint="Nunca exibido publicamente.">
+                <Input defaultValue="(31) 9 ****-**89" />
+              </Field>
+            </div>
+          </Panel>
+
+          <Panel title="Alertas">
+            <div className="grid gap-4">
+              {[
+                { label: "Avistamentos das minhas ocorrências", desc: "Aviso imediato no app." },
+                { label: "Ocorrências próximas", desc: "Até 5 km da minha região." },
+                { label: "Resumo semanal", desc: "Um e-mail com o que aconteceu por perto." },
+              ].map((a, i) => (
+                <div key={a.label} className="flex items-start justify-between gap-4">
+                  <div>
+                    <p className="text-sm font-semibold">{a.label}</p>
+                    <p className="text-xs text-muted-foreground">{a.desc}</p>
+                  </div>
+                  <Switch defaultChecked={i < 2} />
+                </div>
+              ))}
+              <DemoNote />
+            </div>
+          </Panel>
+        </div>
       </div>
-      <StatusBadge status={status} />
-      <Button asChild size="sm" variant="ghost">
-        <Link to="/ocorrencia/$id" params={{ id }}>Abrir</Link>
-      </Button>
-    </div>
+    </AppShell>
   );
 }

@@ -4,7 +4,8 @@ import { BRAND } from "@/lib/brand";
 import { Button } from "@/components/ui/button";
 import { OccurrenceCard } from "@/components/OccurrenceCard";
 import { MapCanvas, MapLegend } from "@/components/MapCanvas";
-import { demoOccurrences } from "@/data/demo";
+import { Marquee, SiteLayout } from "@/components/SiteChrome";
+import { demoAdminStats, demoOccurrences } from "@/data/demo";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -13,80 +14,90 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Plataforma comunitária para ajudar animais perdidos a encontrarem o caminho de volta para casa.",
+          "Rede comunitária de busca por animais perdidos: abra uma ocorrência, sinalize avistamentos e acompanhe o mapa do seu bairro.",
       },
       { property: "og:title", content: "SinalizaPet — Viu? Sinaliza. Encontrou? Avisa." },
       {
         property: "og:description",
-        content: "Cadastre um desaparecimento, sinalize um avistamento e ajude um pet a voltar para casa.",
+        content:
+          "Uma informação pode ser a diferença entre um animal continuar perdido e voltar para casa.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Landing,
 });
 
 function Landing() {
-  const highlights = demoOccurrences.filter((o) => o.status !== "obito").slice(0, 3);
+  const highlights = demoOccurrences.filter((o) => o.status !== "obito").slice(0, 4);
 
   return (
-    <div className="min-h-screen bg-background">
-      <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur">
-        <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 py-3 sm:px-6">
-          <Link to="/" className="min-w-0">
-            <img src={BRAND.logoUrl} alt={`${BRAND.name} — ${BRAND.slogan}`} className="h-8 w-auto mix-blend-multiply" />
-          </Link>
-          <nav className="flex shrink-0 items-center gap-2">
-            <Button asChild variant="ghost" size="sm">
-              <Link to="/buscar">Buscar</Link>
-            </Button>
-            <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
-              <Link to="/login">Entrar</Link>
-            </Button>
-            <Button asChild size="sm">
-              <Link to="/cadastro">Criar conta</Link>
-            </Button>
-          </nav>
-        </div>
-      </header>
+    <SiteLayout>
+      <Marquee
+        items={[
+          "21 animais desaparecidos agora",
+          "57 sinalizações da comunidade",
+          "12 reencontros neste mês",
+          "Viu? Sinaliza. Encontrou? Avisa.",
+        ]}
+      />
 
-      <section className="relative overflow-hidden border-b border-border bg-accent/40">
-        <div className="absolute inset-0 sand-grid opacity-60" aria-hidden />
-        <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 sm:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-          <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-background px-3 py-1 text-xs font-semibold uppercase tracking-wide">
-              <span className="h-1.5 w-1.5 rounded-full bg-status-missing" /> Rede comunitária de busca
+      {/* HERO */}
+      <section className="border-b-2 border-ink bg-accent/50">
+        <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+          <div className="absolute inset-0 sand-grid opacity-50" aria-hidden />
+          <div className="relative">
+            <span className="overline inline-flex items-center gap-2 border-2 border-ink bg-paper px-3 py-1.5">
+              <span className="h-2 w-2 bg-status-missing" /> Mural comunitário de busca
             </span>
-            <h1 className="mt-5 text-4xl font-bold leading-[1.05] sm:text-6xl">
-              SinalizaPet
+            <h1 className="mt-5 text-[3.25rem] font-black uppercase leading-[0.88] sm:text-7xl">
+              Um animal
+              <br />
+              perdido
+              <br />
+              <span className="bg-ink px-2 text-primary-foreground">volta pra casa</span>
             </h1>
-            <p className="mt-3 font-display text-xl font-semibold sm:text-2xl">{BRAND.slogan}</p>
-            <p className="mt-4 max-w-xl text-base text-foreground/75 sm:text-lg">
-              Uma plataforma comunitária para ajudar animais perdidos a encontrarem o caminho de volta
-              para casa. Uma informação pode ser a diferença entre um animal continuar perdido e voltar
-              para casa.
+            <p className="mt-6 max-w-xl text-base text-foreground/80 sm:text-lg">
+              O SinalizaPet transforma informação solta em pista útil: cada avistamento entra na linha
+              do tempo da ocorrência e avisa o tutor na hora.
             </p>
 
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
-              <Button asChild size="lg" className="h-auto min-h-14 justify-start gap-3 whitespace-normal py-3 text-left leading-tight bg-status-missing text-primary-foreground hover:bg-status-missing/90">
+              <Button
+                asChild
+                size="lg"
+                className="h-auto min-h-14 justify-start gap-2 whitespace-normal border-2 border-ink bg-status-missing py-3 text-left leading-tight text-primary-foreground shadow-soft hover:bg-status-missing/90"
+              >
                 <Link to="/nova-ocorrencia">
-                  <Siren className="h-5 w-5" /> Meu pet desapareceu
+                  <Siren className="h-5 w-5 shrink-0" /> Meu pet desapareceu
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="h-auto min-h-14 justify-start gap-3 whitespace-normal py-3 text-left leading-tight border-status-sighted bg-status-sighted/15 hover:bg-status-sighted/25">
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="h-auto min-h-14 justify-start gap-2 whitespace-normal border-2 border-ink bg-status-sighted py-3 text-left leading-tight text-primary shadow-soft hover:bg-status-sighted/80"
+              >
                 <Link to="/novo-avistamento" search={{ ocorrencia: undefined }}>
-                  <Eye className="h-5 w-5" /> Eu vi um animal
+                  <Eye className="h-5 w-5 shrink-0" /> Eu vi um animal
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="h-auto min-h-14 justify-start gap-3 whitespace-normal py-3 text-left leading-tight border-status-found bg-status-found/10 hover:bg-status-found/20">
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="h-auto min-h-14 justify-start gap-2 whitespace-normal border-2 border-ink bg-status-found py-3 text-left leading-tight text-primary-foreground shadow-soft hover:bg-status-found/90"
+              >
                 <Link to="/animal-encontrado">
-                  <House className="h-5 w-5" /> Encontrei um animal
+                  <House className="h-5 w-5 shrink-0" /> Encontrei um animal
                 </Link>
               </Button>
             </div>
 
             <Link
               to="/buscar"
-              className="mt-6 flex items-center gap-2 rounded-full border border-border bg-background px-4 py-3 text-sm text-muted-foreground shadow-soft"
+              className="mt-6 flex items-center gap-2 border-2 border-ink bg-paper px-4 py-3 text-sm text-muted-foreground shadow-soft"
             >
               <Search className="h-4 w-4 shrink-0" />
               <span className="truncate">Procure por um animal, bairro ou região...</span>
@@ -94,16 +105,17 @@ function Landing() {
           </div>
 
           <div className="relative mx-auto w-full max-w-sm">
-            <div className="rounded-[2rem] border border-border bg-background p-8 shadow-lift">
+            <div className="poster p-8">
+              <p className="overline border-b-2 border-ink pb-2 text-center">Procura-se</p>
               <img
                 src={BRAND.iconUrl}
                 alt="Ícone do gato preto, símbolo do SinalizaPet"
                 width={512}
                 height={512}
-                className="mx-auto h-44 w-44 object-contain"
+                className="mx-auto mt-6 h-40 w-40 object-contain"
               />
-              <p className="mt-6 text-center font-display text-lg font-bold">
-                Juntos, podemos ajudar um pet a voltar para casa.
+              <p className="mt-6 text-center font-display text-lg font-extrabold uppercase leading-tight">
+                Juntos, um pet volta pra casa
               </p>
               <p className="mt-2 text-center text-sm text-muted-foreground">
                 O gato preto é uma homenagem ao Logan, origem deste projeto.
@@ -113,33 +125,80 @@ function Landing() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-        <div className="grid gap-3 sm:grid-cols-3">
+      {/* NÚMEROS */}
+      <section className="border-b-2 border-ink bg-ink text-primary-foreground">
+        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-6 px-4 py-8 sm:px-6 md:grid-cols-4">
           {[
-            { icon: Siren, title: "Sinalize em minutos", text: "Formulário curto, feito para o celular e para momentos de estresse." },
-            { icon: MapPin, title: "Localização aproximada", text: "Ocorrências aparecem por bairro e raio, nunca no endereço exato." },
-            { icon: Eye, title: "Avistamentos que ajudam", text: "Cada sinalização entra na linha do tempo e notifica o tutor." },
-          ].map((f) => (
-            <div key={f.title} className="rounded-2xl border border-border bg-card p-5 shadow-soft">
-              <f.icon className="h-5 w-5" />
-              <h3 className="mt-3 text-base font-bold">{f.title}</h3>
-              <p className="mt-1 text-sm text-muted-foreground">{f.text}</p>
+            { label: "Ocorrências ativas", value: demoAdminStats.activeOccurrences },
+            { label: "Sinalizações", value: demoAdminStats.sightings },
+            { label: "Reencontros", value: demoAdminStats.reunited },
+            { label: "Pessoas na rede", value: demoAdminStats.users },
+          ].map((s) => (
+            <div key={s.label}>
+              <p className="font-display text-4xl font-black leading-none">{s.value}</p>
+              <p className="overline mt-2 text-primary-foreground/60">{s.label}</p>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="border-y border-border bg-secondary/40 py-14">
+      {/* COMO FUNCIONA */}
+      <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+        <h2 className="text-3xl font-extrabold uppercase leading-none sm:text-4xl">
+          Três passos, nada de burocracia
+        </h2>
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
+          {[
+            {
+              n: "01",
+              icon: Siren,
+              title: "Sinalize em minutos",
+              text: "Formulário curto, feito para o celular e para momentos de estresse.",
+            },
+            {
+              n: "02",
+              icon: MapPin,
+              title: "Localização aproximada",
+              text: "Ocorrências aparecem por bairro e raio, nunca no endereço exato.",
+            },
+            {
+              n: "03",
+              icon: Eye,
+              title: "A rede responde",
+              text: "Cada avistamento entra na linha do tempo e notifica o tutor na hora.",
+            },
+          ].map((f) => (
+            <div key={f.title} className="poster p-5">
+              <div className="flex items-center justify-between">
+                <f.icon className="h-6 w-6" />
+                <span className="font-display text-3xl font-black text-ink/15">{f.n}</span>
+              </div>
+              <h3 className="mt-4 text-lg font-extrabold uppercase leading-tight">{f.title}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{f.text}</p>
+            </div>
+          ))}
+        </div>
+        <Button asChild variant="ghost" className="mt-6 gap-2">
+          <Link to="/como-funciona">
+            Ver o passo a passo completo <ArrowRight className="h-4 w-4" />
+          </Link>
+        </Button>
+      </section>
+
+      {/* MURAL */}
+      <section className="border-y-2 border-ink bg-secondary py-14">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="mb-6 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
-            <h2 className="truncate text-2xl font-bold">Ocorrências recentes</h2>
-            <Button asChild variant="ghost" size="sm" className="gap-1">
+          <div className="mb-6 grid grid-cols-[minmax(0,1fr)_auto] items-end gap-3">
+            <h2 className="truncate text-3xl font-extrabold uppercase leading-none sm:text-4xl">
+              Mural recente
+            </h2>
+            <Button asChild variant="outline" size="sm" className="gap-1 border-2 border-ink">
               <Link to="/buscar">
                 Ver todas <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
           </div>
-          <div className="grid gap-4">
+          <div className="grid gap-4 md:grid-cols-2">
             {highlights.map((o) => (
               <OccurrenceCard key={o.id} occurrence={o} />
             ))}
@@ -147,27 +206,40 @@ function Landing() {
         </div>
       </section>
 
+      {/* MAPA */}
       <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-        <h2 className="text-2xl font-bold">Ocorrências no mapa</h2>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Veja o que está acontecendo por perto. Marcadores por status, sempre em localização aproximada.
+        <h2 className="text-3xl font-extrabold uppercase leading-none sm:text-4xl">
+          O que está acontecendo por perto
+        </h2>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Marcadores por status, sempre em localização aproximada.
         </p>
-        <div className="mt-4">
+        <div className="mt-6">
           <MapCanvas occurrences={demoOccurrences} className="h-[380px]" />
-          <div className="mt-3">
+          <div className="mt-4">
             <MapLegend />
           </div>
         </div>
       </section>
 
-      <footer className="border-t border-border py-10">
-        <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 sm:px-6">
-          <img src={BRAND.logoUrl} alt={BRAND.name} className="h-7 w-auto self-start mix-blend-multiply" />
-          <p className="text-sm text-muted-foreground">
-            {BRAND.slogan} — dados de demonstração nesta versão inicial.
-          </p>
+      {/* CTA */}
+      <section className="border-t-2 border-ink bg-status-missing text-primary-foreground">
+        <div className="mx-auto grid max-w-6xl gap-4 px-4 py-12 sm:px-6 md:grid-cols-[1fr_auto] md:items-center">
+          <div>
+            <h2 className="text-3xl font-black uppercase leading-none sm:text-4xl">
+              Viu um animal na rua?
+            </h2>
+            <p className="mt-2 text-primary-foreground/85">
+              Leva menos de dois minutos e pode encerrar uma busca de semanas.
+            </p>
+          </div>
+          <Button asChild size="lg" className="border-2 border-ink bg-paper text-ink hover:bg-paper/90">
+            <Link to="/novo-avistamento" search={{ ocorrencia: undefined }}>
+              Sinalizar agora
+            </Link>
+          </Button>
         </div>
-      </footer>
-    </div>
+      </section>
+    </SiteLayout>
   );
 }

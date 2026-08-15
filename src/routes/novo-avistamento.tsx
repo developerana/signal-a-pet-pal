@@ -1,148 +1,130 @@
-import { useState } from "react";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { toast } from "sonner";
-import { Check, Eye } from "lucide-react";
+import { z } from "zod";
 import { AppShell, PageHeader } from "@/components/AppShell";
-import { DemoNotice, Field, FormCard, PhotoPicker } from "@/components/FormKit";
+import { DemoNote, Field, Panel, PhotoPicker } from "@/components/FormKit";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { StatusBadge } from "@/components/StatusBadge";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { demoOccurrences } from "@/data/demo";
 
+const searchSchema = z.object({ ocorrencia: z.string().optional() });
+
 export const Route = createFileRoute("/novo-avistamento")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    ocorrencia: typeof search["ocorrencia"] === "string" ? (search["ocorrencia"] as string) : undefined,
-  }),
+  validateSearch: searchSchema,
   head: () => ({
     meta: [
       { title: "Sinalizar avistamento — SinalizaPet" },
-      { name: "description", content: "Viu um animal? Registre o avistamento e avise o tutor." },
+      {
+        name: "description",
+        content:
+          "Viu um animal na rua? Sinalize onde, quando e como ele estava — o tutor é avisado na hora.",
+      },
       { property: "og:title", content: "Sinalizar avistamento — SinalizaPet" },
-      { property: "og:description", content: "Uma informação simples pode ajudar um pet a voltar para casa." },
+      {
+        property: "og:description",
+        content: "Uma informação pode encerrar uma busca de semanas.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: NovoAvistamento,
+  component: NewSighting,
 });
 
-function NovoAvistamento() {
+function NewSighting() {
   const { ocorrencia } = Route.useSearch();
-  const [target, setTarget] = useState(ocorrencia ?? "");
-  const [sent, setSent] = useState(false);
-  const occurrence = demoOccurrences.find((o) => o.id === target);
+  const navigate = useNavigate();
+  const linked = demoOccurrences.find((o) => o.id === ocorrencia);
 
-  if (sent) {
-    return (
-      <AppShell>
-        <FormCard className="mx-auto max-w-lg text-center">
-          <div className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-status-sighted">
-            <Check className="h-7 w-7" />
-          </div>
-          <h1 className="mt-4 text-2xl font-bold">Avistamento registrado!</h1>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Sua informação pode ajudar esse animal a voltar para casa. O tutor será notificado assim que as
-            notificações estiverem conectadas.
-          </p>
-          <div className="mt-6 grid gap-2">
-            {occurrence && (
-              <Button asChild>
-                <Link to="/ocorrencia/$id" params={{ id: occurrence.id }}>Ver ocorrência</Link>
-              </Button>
-            )}
-            <Button asChild variant="ghost">
-              <Link to="/buscar">Ver outras ocorrências</Link>
-            </Button>
-          </div>
-        </FormCard>
-      </AppShell>
-    );
-  }
+  const submit = () => {
+    toast.success("Avistamento sinalizado", {
+      description: linked
+        ? `O tutor de ${linked.name} foi avisado.`
+        : "Vamos cruzar sua sinalização com as ocorrências da região.",
+    });
+    void navigate({ to: linked ? "/ocorrencia/$id" : "/buscar", params: { id: linked?.id ?? "" } });
+  };
 
   return (
     <AppShell>
-      <div className="mx-auto max-w-2xl">
-        <PageHeader
-          title="Eu vi um animal"
-          description="Conte o que você viu. Qualquer detalhe ajuda na busca."
-        />
+      <PageHeader
+        title="Eu vi um animal"
+        description="Descreva o que viu. Detalhes de local e horário são os mais importantes."
+      />
+      <div className="max-w-2xl">
+        <Panel>
+          <div className="grid gap-4">
+            {linked && (
+              <div className="flex items-center gap-3 border-2 border-ink bg-status-sighted/40 p-3">
+                <img
+                  src={linked.photoUrl}
+                  alt={linked.name}
+                  className="h-12 w-12 border-2 border-ink object-cover"
+                />
+                <div className="min-w-0">
+                  <p className="overline text-muted-foreground">Vinculado à ocorrência</p>
+                  <p className="truncate text-sm font-bold">
+                    {linked.name} — {linked.neighborhood}
+                  </p>
+                </div>
+              </div>
+            )}
 
-        {occurrence && (
-          <div className="mb-4 flex gap-3 rounded-2xl border-2 border-status-sighted bg-status-sighted/10 p-4">
-            <img src={occurrence.photoUrl} alt={occurrence.name} loading="lazy" className="h-16 w-16 rounded-xl object-cover" />
-            <div className="min-w-0">
-              <p className="inline-flex items-center gap-2 font-display font-bold">
-                <Eye className="h-4 w-4" /> Você viu {occurrence.name}?
-              </p>
-              <div className="mt-1"><StatusBadge status={occurrence.status} /></div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Field label="Espécie" required>
+                <Select>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Selecione" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="cachorro">Cachorro</SelectItem>
+                    <SelectItem value="gato">Gato</SelectItem>
+                    <SelectItem value="ave">Ave</SelectItem>
+                    <SelectItem value="outro">Outro</SelectItem>
+                  </SelectContent>
+                </Select>
+              </Field>
+              <Field label="Cor predominante">
+                <Input placeholder="Preto, caramelo..." />
+              </Field>
+              <Field label="Bairro onde viu" required>
+                <Input placeholder="Centro" />
+              </Field>
+              <Field label="Ponto de referência">
+                <Input placeholder="Perto da padaria da esquina" />
+              </Field>
+              <Field label="Data" required>
+                <Input type="date" />
+              </Field>
+              <Field label="Horário aproximado" required>
+                <Input type="time" />
+              </Field>
             </div>
+
+            <Field label="Como o animal estava" hint="Assustado, ferido, com coleira, acompanhado...">
+              <Textarea rows={4} placeholder="Estava assustado, correndo em direção à avenida." />
+            </Field>
+
+            <PhotoPicker label="Foto do avistamento (opcional)" />
+            <DemoNote>Seu contato não é exibido: o tutor responde pela plataforma.</DemoNote>
+
+            <Button
+              size="lg"
+              className="border-2 border-ink bg-status-sighted text-primary hover:bg-status-sighted/80"
+              onClick={submit}
+            >
+              Enviar sinalização
+            </Button>
           </div>
-        )}
-
-        <FormCard className="space-y-5">
-          <Field label="Sobre qual ocorrência é o avistamento?" hint="Se não souber, deixe em branco e descreva o animal.">
-            <Select value={target} onValueChange={setTarget}>
-              <SelectTrigger><SelectValue placeholder="Selecionar ocorrência (opcional)" /></SelectTrigger>
-              <SelectContent>
-                {demoOccurrences
-                  .filter((o) => o.status !== "obito")
-                  .map((o) => (
-                    <SelectItem key={o.id} value={o.id}>
-                      {o.name} • {o.species} • {o.neighborhood}
-                    </SelectItem>
-                  ))}
-              </SelectContent>
-            </Select>
-          </Field>
-
-          <div className="grid gap-4 sm:grid-cols-2">
-            <Field label="Bairro / localização aproximada" htmlFor="local"><Input id="local" placeholder="Ex.: próximo à praça" /></Field>
-            <Field label="Rua ou referência" htmlFor="ref"><Input id="ref" placeholder="Ex.: rua das Acácias" /></Field>
-            <Field label="Data" htmlFor="data"><Input id="data" type="date" /></Field>
-            <Field label="Horário" htmlFor="hora"><Input id="hora" type="time" /></Field>
-          </div>
-
-          <PhotoPicker label="Foto (opcional)" hint="Mesmo uma foto de longe ajuda a confirmar." />
-
-          <Field label="O que você viu?" htmlFor="desc">
-            <Textarea
-              id="desc"
-              rows={4}
-              placeholder="Vi um gato preto próximo à praça por volta das 18h. Ele estava caminhando em direção à avenida."
-            />
-          </Field>
-
-          <Field label="Comportamento observado">
-            <Select defaultValue="assustado">
-              <SelectTrigger><SelectValue /></SelectTrigger>
-              <SelectContent>
-                <SelectItem value="calmo">Calmo</SelectItem>
-                <SelectItem value="assustado">Assustado</SelectItem>
-                <SelectItem value="arisco">Arisco, fugiu</SelectItem>
-                <SelectItem value="ferido">Parecia ferido</SelectItem>
-                <SelectItem value="acompanhado">Estava com alguém</SelectItem>
-              </SelectContent>
-            </Select>
-          </Field>
-
-          <DemoNotice>
-            Demonstração: o avistamento e a notificação ao tutor serão enviados de verdade quando o
-            backend estiver conectado.
-          </DemoNotice>
-
-          <Button
-            size="lg"
-            className="w-full"
-            onClick={() => {
-              setSent(true);
-              toast.success("Avistamento registrado!", {
-                description: "Sua informação pode ajudar esse animal a voltar para casa.",
-              });
-            }}
-          >
-            Enviar avistamento
-          </Button>
-        </FormCard>
+        </Panel>
       </div>
     </AppShell>
   );

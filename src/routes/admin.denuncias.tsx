@@ -1,48 +1,59 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AppShell, PageHeader } from "@/components/AppShell";
 import { AdminNav } from "@/components/AdminNav";
-import { DemoNotice } from "@/components/FormKit";
-import { Badge } from "@/components/ui/badge";
+import { DemoNote } from "@/components/FormKit";
+import { Button } from "@/components/ui/button";
 import { demoReports } from "@/data/demo";
 
 export const Route = createFileRoute("/admin/denuncias")({
   head: () => ({
     meta: [
-      { title: "Denúncias — Administração SinalizaPet" },
-      { name: "description", content: "Fila de moderação de denúncias da comunidade." },
-      { property: "og:title", content: "Denúncias — Administração SinalizaPet" },
-      { property: "og:description", content: "Moderação de conteúdo e comportamento na plataforma." },
+      { title: "Denúncias — SinalizaPet" },
+      {
+        name: "description",
+        content: "Fila de denúncias de informação falsa, conteúdo duplicado e condutas inadequadas.",
+      },
+      { property: "og:title", content: "Denúncias — SinalizaPet" },
+      { property: "og:description", content: "Moderação de conteúdo e condutas na plataforma." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { name: "robots", content: "noindex" },
     ],
   }),
-  component: AdminDenuncias,
+  component: AdminReports,
 });
 
-function AdminDenuncias() {
+function AdminReports() {
   return (
     <AppShell>
-      <PageHeader title="Denúncias" description="Fila de moderação para manter a plataforma confiável." />
-      <AdminNav current="/admin/denuncias" />
-      <ul className="grid gap-3">
+      <PageHeader title="Denúncias" description="Fila de moderação da comunidade." />
+      <AdminNav />
+      <ul className="mt-6 grid gap-3">
         {demoReports.map((r) => (
-          <li key={r.id} className="rounded-2xl border border-border bg-card p-4 shadow-soft">
-            <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
-              <div className="min-w-0">
-                <p className="truncate font-bold">{r.target}</p>
-                <p className="text-sm text-muted-foreground">{r.reason}</p>
-              </div>
-              <Badge variant={r.status === "resolvida" ? "secondary" : "outline"} className="capitalize">
-                {r.status}
-              </Badge>
+          <li key={r.id} className="poster flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="min-w-0">
+              <p className="text-sm font-bold">{r.target}</p>
+              <p className="mt-1 text-sm text-foreground/80">{r.reason}</p>
+              <p className="overline mt-2 text-muted-foreground">
+                {r.date} · {r.status}
+              </p>
             </div>
-            <p className="mt-2 text-xs text-muted-foreground">Recebida em {r.date}</p>
+            <div className="flex shrink-0 gap-2">
+              <Button variant="outline" size="sm" className="border-2 border-ink">
+                Arquivar
+              </Button>
+              <Button
+                size="sm"
+                className="border-2 border-ink bg-status-missing text-primary-foreground hover:bg-status-missing/90"
+              >
+                Remover conteúdo
+              </Button>
+            </div>
           </li>
         ))}
       </ul>
-      <div className="mt-4">
-        <DemoNotice>
-          Estrutura de moderação pronta: as ações de remover, ocultar e bloquear serão ligadas ao backend.
-        </DemoNotice>
+      <div className="mt-6 max-w-xl">
+        <DemoNote />
       </div>
     </AppShell>
   );

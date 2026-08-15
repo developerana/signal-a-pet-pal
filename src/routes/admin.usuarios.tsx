@@ -1,64 +1,71 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AppShell, PageHeader } from "@/components/AppShell";
 import { AdminNav } from "@/components/AdminNav";
-import { DemoNotice } from "@/components/FormKit";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { DemoNote } from "@/components/FormKit";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/admin/usuarios")({
   head: () => ({
     meta: [
-      { title: "Usuários — Administração SinalizaPet" },
-      { name: "description", content: "Usuários cadastrados, participação e moderação." },
-      { property: "og:title", content: "Usuários — Administração SinalizaPet" },
-      { property: "og:description", content: "Gestão de usuários da comunidade." },
+      { title: "Usuários — SinalizaPet" },
+      {
+        name: "description",
+        content: "Gestão das pessoas cadastradas na rede: sinalizações, região e situação da conta.",
+      },
+      { property: "og:title", content: "Usuários — SinalizaPet" },
+      { property: "og:description", content: "Gestão de contas da comunidade." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { name: "robots", content: "noindex" },
     ],
   }),
-  component: AdminUsuarios,
+  component: AdminUsers,
 });
 
-// DEMO: usuários fictícios, sem dados pessoais reais.
 const users = [
-  { id: "u1", handle: "@ana.h", city: "Belo Horizonte", occurrences: 3, sightings: 8, since: "05/2026" },
-  { id: "u2", handle: "@rvieira", city: "Belo Horizonte", occurrences: 1, sightings: 2, since: "04/2026" },
-  { id: "u3", handle: "@lu.campos", city: "Contagem", occurrences: 0, sightings: 11, since: "03/2026" },
-  { id: "u4", handle: "@petcentro", city: "Belo Horizonte", occurrences: 6, sightings: 4, since: "02/2026" },
+  { id: "u1", name: "Ana Helouise", city: "Belo Horizonte", signals: 8, status: "ativa" },
+  { id: "u2", name: "Rafael Vieira", city: "Belo Horizonte", signals: 3, status: "em análise" },
+  { id: "u3", name: "Camila Souza", city: "Contagem", signals: 12, status: "ativa" },
+  { id: "u4", name: "Pedro Lima", city: "Belo Horizonte", signals: 1, status: "suspensa" },
 ];
 
-function AdminUsuarios() {
+function AdminUsers() {
   return (
     <AppShell>
-      <PageHeader title="Usuários" description="Participação da comunidade, sem exposição de dados pessoais." />
-      <AdminNav current="/admin/usuarios" />
-      <div className="overflow-x-auto rounded-2xl border border-border bg-card shadow-soft">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Usuário</TableHead>
-              <TableHead>Cidade</TableHead>
-              <TableHead>Ocorrências</TableHead>
-              <TableHead>Avistamentos</TableHead>
-              <TableHead>Desde</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
+      <PageHeader title="Usuários" description="Pessoas cadastradas na rede." />
+      <AdminNav />
+      <div className="mt-6 overflow-x-auto border-2 border-ink bg-paper">
+        <table className="w-full min-w-[640px] text-sm">
+          <thead className="border-b-2 border-ink bg-secondary">
+            <tr className="text-left">
+              {["Nome", "Cidade", "Sinalizações", "Situação", ""].map((h) => (
+                <th key={h} className="overline px-4 py-3">
+                  {h}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
             {users.map((u) => (
-              <TableRow key={u.id}>
-                <TableCell className="font-medium">{u.handle}</TableCell>
-                <TableCell>{u.city}</TableCell>
-                <TableCell>{u.occurrences}</TableCell>
-                <TableCell>{u.sightings}</TableCell>
-                <TableCell>{u.since}</TableCell>
-              </TableRow>
+              <tr key={u.id} className="border-b border-ink/15 last:border-0">
+                <td className="px-4 py-3 font-semibold">{u.name}</td>
+                <td className="px-4 py-3">{u.city}</td>
+                <td className="px-4 py-3">{u.signals}</td>
+                <td className="px-4 py-3">
+                  <span className="overline border-2 border-ink bg-secondary px-2 py-0.5">{u.status}</span>
+                </td>
+                <td className="px-4 py-3 text-right">
+                  <Button variant="ghost" size="sm">
+                    Gerenciar
+                  </Button>
+                </td>
+              </tr>
             ))}
-          </TableBody>
-        </Table>
+          </tbody>
+        </table>
       </div>
-      <div className="mt-4">
-        <DemoNotice>
-          E-mails e telefones nunca aparecem no painel. Bloqueio de usuários será liberado com a
-          autenticação e os papéis de acesso.
-        </DemoNotice>
+      <div className="mt-6 max-w-xl">
+        <DemoNote />
       </div>
     </AppShell>
   );

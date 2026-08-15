@@ -1,63 +1,61 @@
-import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { AppShell, PageHeader } from "@/components/AppShell";
 import { MapCanvas, MapLegend } from "@/components/MapCanvas";
-import { DemoNotice } from "@/components/FormKit";
-import { Button } from "@/components/ui/button";
-import { demoOccurrences } from "@/data/demo";
-import type { OccurrenceStatus } from "@/types";
+import { DemoNote, Panel } from "@/components/FormKit";
+import { demoByNeighborhood, demoOccurrences } from "@/data/demo";
 
 export const Route = createFileRoute("/mapa")({
   head: () => ({
     meta: [
       { title: "Mapa de ocorrências — SinalizaPet" },
-      { name: "description", content: "Veja desaparecimentos, avistamentos e animais encontrados por região." },
+      {
+        name: "description",
+        content:
+          "Veja as ocorrências de animais desaparecidos, avistados e encontrados por região, sempre em localização aproximada.",
+      },
       { property: "og:title", content: "Mapa de ocorrências — SinalizaPet" },
-      { property: "og:description", content: "Marcadores por status em localização aproximada, para proteger a privacidade dos tutores." },
+      {
+        property: "og:description",
+        content: "Marcadores por status e por bairro, sem expor endereços exatos.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: MapaPage,
+  component: MapPage,
 });
 
-const filters: (OccurrenceStatus | "todos")[] = [
-  "todos",
-  "desaparecido",
-  "avistado",
-  "encontrado",
-  "reencontrado",
-];
-
-function MapaPage() {
-  const [filter, setFilter] = useState<OccurrenceStatus | "todos">("todos");
-  const list = demoOccurrences.filter((o) => (filter === "todos" ? o.status !== "obito" : o.status === filter));
-
+function MapPage() {
   return (
     <AppShell>
-      <PageHeader title="Mapa" description="Ocorrências por região, sempre em localização aproximada." />
-
-      <div className="flex flex-wrap gap-2">
-        {filters.map((f) => (
-          <Button
-            key={f}
-            size="sm"
-            variant={filter === f ? "default" : "outline"}
-            onClick={() => setFilter(f)}
-            className="capitalize"
-          >
-            {f === "todos" ? "Todos" : f}
-          </Button>
-        ))}
-      </div>
-
-      <div className="mt-4">
-        <MapCanvas occurrences={list} className="h-[65vh] min-h-[420px]" />
-      </div>
-      <div className="mt-3 space-y-3">
-        <MapLegend />
-        <DemoNotice>
-          Mapa de demonstração. A integração com uma API de mapas e geolocalização real está preparada
-          para ser conectada — por segurança, a localização exata da residência do tutor nunca é exibida.
-        </DemoNotice>
+      <PageHeader
+        title="Mapa"
+        description="Ocorrências por região, em localização aproximada por bairro."
+      />
+      <div className="grid gap-6 lg:grid-cols-[1.6fr_1fr]">
+        <div className="grid gap-4">
+          <MapCanvas occurrences={demoOccurrences} className="h-[420px] sm:h-[520px]" />
+          <MapLegend />
+          <DemoNote>Mapa ilustrativo: a versão final usará geolocalização por bairro.</DemoNote>
+        </div>
+        <Panel title="Bairros com mais ocorrências">
+          <ul className="grid gap-3">
+            {demoByNeighborhood.map((n) => (
+              <li key={n.label} className="grid gap-1">
+                <div className="flex items-center justify-between text-sm font-semibold">
+                  <span>{n.label}</span>
+                  <span>{n.value}</span>
+                </div>
+                <div className="h-3 border-2 border-ink bg-secondary">
+                  <div
+                    className="h-full bg-status-missing"
+                    style={{ width: `${(n.value / 12) * 100}%` }}
+                  />
+                </div>
+              </li>
+            ))}
+          </ul>
+        </Panel>
       </div>
     </AppShell>
   );

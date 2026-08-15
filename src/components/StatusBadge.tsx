@@ -1,15 +1,28 @@
-import { cn } from "@/lib/utils";
 import type { OccurrenceStatus } from "@/types";
+import { cn } from "@/lib/utils";
 
-export const STATUS_META: Record<
-  OccurrenceStatus,
-  { label: string; dot: string; chip: string; emoji: string }
-> = {
-  desaparecido: { label: "Desaparecido", dot: "bg-status-missing", chip: "bg-status-missing text-primary-foreground", emoji: "🚨" },
-  avistado: { label: "Avistado", dot: "bg-status-sighted", chip: "bg-status-sighted text-primary", emoji: "👀" },
-  encontrado: { label: "Encontrado", dot: "bg-status-found", chip: "bg-status-found text-primary-foreground", emoji: "🏠" },
-  reencontrado: { label: "Reencontrado", dot: "bg-status-reunited", chip: "bg-status-reunited text-primary", emoji: "🐾" },
-  obito: { label: "Óbito", dot: "bg-status-deceased", chip: "bg-muted text-muted-foreground border border-border", emoji: "" },
+export const statusLabel: Record<OccurrenceStatus, string> = {
+  desaparecido: "Desaparecido",
+  avistado: "Avistado",
+  encontrado: "Encontrado",
+  reencontrado: "Reencontrado",
+  obito: "Encerrada",
+};
+
+const statusTone: Record<OccurrenceStatus, string> = {
+  desaparecido: "bg-status-missing text-primary-foreground",
+  avistado: "bg-status-sighted text-primary",
+  encontrado: "bg-status-found text-primary-foreground",
+  reencontrado: "bg-status-reunited text-primary",
+  obito: "bg-status-deceased text-primary-foreground",
+};
+
+export const statusDot: Record<OccurrenceStatus, string> = {
+  desaparecido: "bg-status-missing",
+  avistado: "bg-status-sighted",
+  encontrado: "bg-status-found",
+  reencontrado: "bg-status-reunited",
+  obito: "bg-status-deceased",
 };
 
 export function StatusBadge({
@@ -19,17 +32,15 @@ export function StatusBadge({
   status: OccurrenceStatus;
   className?: string;
 }) {
-  const meta = STATUS_META[status];
   return (
     <span
       className={cn(
-        "inline-flex shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold uppercase tracking-wide",
-        meta.chip,
+        "overline inline-flex items-center gap-1.5 border-2 border-ink px-2 py-1 leading-none",
+        statusTone[status],
         className,
       )}
     >
-      {status !== "obito" && <span className="h-1.5 w-1.5 rounded-full bg-current opacity-80" />}
-      {meta.label}
+      {statusLabel[status]}
     </span>
   );
 }

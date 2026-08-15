@@ -2,63 +2,70 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { AppShell, PageHeader } from "@/components/AppShell";
 import { AdminNav } from "@/components/AdminNav";
 import { StatusBadge } from "@/components/StatusBadge";
-import { DemoNotice } from "@/components/FormKit";
+import { DemoNote } from "@/components/FormKit";
 import { Button } from "@/components/ui/button";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { demoOccurrences } from "@/data/demo";
 
 export const Route = createFileRoute("/admin/ocorrencias")({
   head: () => ({
     meta: [
-      { title: "Ocorrências — Administração SinalizaPet" },
-      { name: "description", content: "Moderação e acompanhamento de todas as ocorrências." },
-      { property: "og:title", content: "Ocorrências — Administração SinalizaPet" },
-      { property: "og:description", content: "Lista completa de ocorrências para moderação." },
+      { title: "Moderar ocorrências — SinalizaPet" },
+      {
+        name: "description",
+        content: "Lista de ocorrências da plataforma para revisão, ajuste de status e moderação.",
+      },
+      { property: "og:title", content: "Moderar ocorrências — SinalizaPet" },
+      { property: "og:description", content: "Revisão e moderação das ocorrências abertas." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { name: "robots", content: "noindex" },
     ],
   }),
-  component: AdminOcorrencias,
+  component: AdminOccurrences,
 });
 
-function AdminOcorrencias() {
+function AdminOccurrences() {
   return (
     <AppShell>
-      <PageHeader title="Ocorrências" description="Todas as ocorrências registradas na plataforma." />
-      <AdminNav current="/admin/ocorrencias" />
-      <div className="overflow-x-auto rounded-2xl border border-border bg-card shadow-soft">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Animal</TableHead>
-              <TableHead>Espécie</TableHead>
-              <TableHead>Bairro</TableHead>
-              <TableHead>Data</TableHead>
-              <TableHead>Avistamentos</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead />
-            </TableRow>
-          </TableHeader>
-          <TableBody>
+      <PageHeader title="Ocorrências" description="Revisão e moderação." />
+      <AdminNav />
+      <div className="mt-6 overflow-x-auto border-2 border-ink bg-paper">
+        <table className="w-full min-w-[720px] text-sm">
+          <thead className="border-b-2 border-ink bg-secondary">
+            <tr className="text-left">
+              {["Animal", "Status", "Região", "Data", "Avistamentos", ""].map((h) => (
+                <th key={h} className="overline px-4 py-3">
+                  {h}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
             {demoOccurrences.map((o) => (
-              <TableRow key={o.id}>
-                <TableCell className="font-medium">{o.name}</TableCell>
-                <TableCell className="capitalize">{o.species}</TableCell>
-                <TableCell>{o.neighborhood}</TableCell>
-                <TableCell>{o.date}</TableCell>
-                <TableCell>{o.sightingsCount}</TableCell>
-                <TableCell><StatusBadge status={o.status} /></TableCell>
-                <TableCell>
-                  <Button asChild size="sm" variant="ghost">
-                    <Link to="/ocorrencia/$id" params={{ id: o.id }}>Abrir</Link>
+              <tr key={o.id} className="border-b border-ink/15 last:border-0">
+                <td className="px-4 py-3 font-semibold">{o.name}</td>
+                <td className="px-4 py-3">
+                  <StatusBadge status={o.status} />
+                </td>
+                <td className="px-4 py-3">
+                  {o.neighborhood}, {o.city}
+                </td>
+                <td className="px-4 py-3">{o.date}</td>
+                <td className="px-4 py-3">{o.sightingsCount}</td>
+                <td className="px-4 py-3 text-right">
+                  <Button asChild variant="ghost" size="sm">
+                    <Link to="/ocorrencia/$id" params={{ id: o.id }}>
+                      Abrir
+                    </Link>
                   </Button>
-                </TableCell>
-              </TableRow>
+                </td>
+              </tr>
             ))}
-          </TableBody>
-        </Table>
+          </tbody>
+        </table>
       </div>
-      <div className="mt-4">
-        <DemoNotice>Ações de moderação serão habilitadas com autenticação e perfis de administrador.</DemoNotice>
+      <div className="mt-6 max-w-xl">
+        <DemoNote />
       </div>
     </AppShell>
   );

@@ -1,84 +1,115 @@
 import type { ReactNode } from "react";
-import { Info } from "lucide-react";
+import { Camera, Info } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Label } from "@/components/ui/label";
 
-export function Stepper({ steps, current }: { steps: string[]; current: number }) {
+export function Panel({
+  title,
+  action,
+  children,
+  className,
+}: {
+  title?: string;
+  action?: ReactNode;
+  children: ReactNode;
+  className?: string;
+}) {
   return (
-    <ol className="mb-6 flex items-center gap-2">
-      {steps.map((label, i) => (
-        <li key={label} className="flex min-w-0 flex-1 items-center gap-2">
-          <span
+    <section className={cn("poster p-5 sm:p-6", className)}>
+      {(title || action) && (
+        <header className="mb-4 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
+          {title && <h2 className="truncate text-lg font-bold sm:text-xl">{title}</h2>}
+          {action}
+        </header>
+      )}
+      {children}
+    </section>
+  );
+}
+
+export function DemoNote({ children }: { children?: ReactNode }) {
+  return (
+    <p className="flex items-start gap-2 border-2 border-dashed border-ink/40 bg-secondary px-3 py-2 text-xs text-muted-foreground">
+      <Info className="mt-0.5 h-3.5 w-3.5 shrink-0" />
+      <span>{children ?? "Versão de demonstração: os dados não são salvos ainda."}</span>
+    </p>
+  );
+}
+
+export function Stepper({ steps, current }: { steps: readonly string[]; current: number }) {
+  return (
+    <ol className="mb-6 flex flex-wrap gap-2">
+      {steps.map((step, i) => {
+        const active = i === current;
+        const done = i < current;
+        return (
+          <li
+            key={step}
             className={cn(
-              "grid h-7 w-7 shrink-0 place-items-center rounded-full text-xs font-bold",
-              i <= current ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground",
+              "overline flex items-center gap-2 border-2 border-ink px-2.5 py-1.5",
+              active && "bg-ink text-primary-foreground",
+              done && "bg-status-reunited text-primary",
+              !active && !done && "bg-paper text-muted-foreground",
             )}
           >
-            {i + 1}
-          </span>
-          <span
-            className={cn(
-              "hidden truncate text-xs font-medium sm:block",
-              i === current ? "text-foreground" : "text-muted-foreground",
-            )}
-          >
-            {label}
-          </span>
-          {i < steps.length - 1 && <span className="h-px flex-1 bg-border" />}
-        </li>
-      ))}
+            <span>{String(i + 1).padStart(2, "0")}</span>
+            <span className="hidden sm:inline">{step}</span>
+          </li>
+        );
+      })}
     </ol>
   );
 }
 
 export function Field({
   label,
-  htmlFor,
   hint,
+  required,
   children,
-  className,
 }: {
   label: string;
-  htmlFor?: string | undefined;
-  hint?: string | undefined;
+  hint?: string;
+  required?: boolean;
   children: ReactNode;
-  className?: string | undefined;
 }) {
   return (
-    <div className={cn("grid gap-1.5", className)}>
-      <Label htmlFor={htmlFor}>{label}</Label>
+    <label className="grid gap-1.5">
+      <span className="overline">
+        {label} {required && <span className="text-status-missing">*</span>}
+      </span>
       {children}
-      {hint && <p className="text-xs text-muted-foreground">{hint}</p>}
+      {hint ? <span className="text-xs text-muted-foreground">{hint}</span> : null}
+    </label>
+  );
+}
+
+export function PhotoPicker({ label = "Fotos do animal" }: { label?: string }) {
+  return (
+    <div className="grid gap-1.5">
+      <span className="overline">{label}</span>
+      <div className="grid place-items-center gap-2 border-2 border-dashed border-ink/50 bg-secondary px-4 py-8 text-center">
+        <Camera className="h-6 w-6" />
+        <p className="text-sm font-medium">Toque para adicionar fotos</p>
+        <p className="text-xs text-muted-foreground">
+          Fotos nítidas do rosto e do corpo aumentam muito a chance de reconhecimento.
+        </p>
+      </div>
     </div>
   );
 }
 
-/** Aviso honesto: o MVP ainda não possui backend conectado. */
-export function DemoNotice({ children }: { children: ReactNode }) {
+export function Stat({
+  label,
+  value,
+  tone,
+}: {
+  label: string;
+  value: string | number;
+  tone?: string;
+}) {
   return (
-    <p className="flex gap-2 rounded-xl border border-dashed border-border bg-secondary/50 p-3 text-xs text-muted-foreground">
-      <Info className="mt-0.5 h-4 w-4 shrink-0" />
-      <span>{children}</span>
-    </p>
-  );
-}
-
-export function FormCard({ children, className }: { children: ReactNode; className?: string | undefined }) {
-  return (
-    <div className={cn("rounded-2xl border border-border bg-card p-5 shadow-soft sm:p-6", className)}>
-      {children}
+    <div className="poster p-4">
+      <p className="overline text-muted-foreground">{label}</p>
+      <p className={cn("mt-1 font-display text-3xl font-extrabold leading-none", tone)}>{value}</p>
     </div>
-  );
-}
-
-export function PhotoPicker({ label, hint }: { label: string; hint?: string | undefined }) {
-  return (
-    <Field label={label} hint={hint}>
-      <label className="grid cursor-pointer place-items-center gap-1 rounded-xl border border-dashed border-border bg-secondary/40 px-4 py-8 text-center text-sm text-muted-foreground">
-        <input type="file" accept="image/*" className="hidden" />
-        <span className="font-medium text-foreground">Escolher foto</span>
-        <span className="text-xs">O envio de imagens será ativado com o armazenamento conectado.</span>
-      </label>
-    </Field>
   );
 }

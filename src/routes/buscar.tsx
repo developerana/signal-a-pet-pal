@@ -3,157 +3,169 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Search } from "lucide-react";
 import { AppShell, PageHeader } from "@/components/AppShell";
 import { OccurrenceCard } from "@/components/OccurrenceCard";
+import { DemoNote } from "@/components/FormKit";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Slider } from "@/components/ui/slider";
+import { statusLabel } from "@/components/StatusBadge";
+import { cn } from "@/lib/utils";
 import { demoOccurrences } from "@/data/demo";
 import type { OccurrenceStatus, Species } from "@/types";
 
 export const Route = createFileRoute("/buscar")({
   head: () => ({
     meta: [
-      { title: "Buscar animais e ocorrências — SinalizaPet" },
-      { name: "description", content: "Procure por um animal, bairro ou região e filtre por espécie, status e distância." },
-      { property: "og:title", content: "Buscar animais e ocorrências — SinalizaPet" },
-      { property: "og:description", content: "Filtre ocorrências por espécie, status, região e raio de distância." },
+      { title: "Buscar animais — SinalizaPet" },
+      {
+        name: "description",
+        content:
+          "Busque animais desaparecidos, avistados e encontrados por espécie, status, bairro e distância aproximada.",
+      },
+      { property: "og:title", content: "Buscar animais — SinalizaPet" },
+      {
+        property: "og:description",
+        content: "Filtre o mural por espécie, status e distância para achar a ocorrência certa.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: BuscarPage,
+  component: SearchPage,
 });
 
-function BuscarPage() {
-  const [term, setTerm] = useState("");
-  const [species, setSpecies] = useState<Species | "todos">("todos");
-  const [status, setStatus] = useState<OccurrenceStatus | "todos">("todos");
-  const [neighborhood, setNeighborhood] = useState("todos");
-  const [radius, setRadius] = useState([10]);
-  const [sort, setSort] = useState("recentes");
+const speciesOptions: { value: Species | "todas"; label: string }[] = [
+  { value: "todas", label: "Todas" },
+  { value: "cachorro", label: "Cachorro" },
+  { value: "gato", label: "Gato" },
+  { value: "ave", label: "Ave" },
+  { value: "outro", label: "Outro" },
+];
 
-  const neighborhoods = useMemo(
-    () => Array.from(new Set(demoOccurrences.map((o) => o.neighborhood))),
-    [],
-  );
+const statusOptions: (OccurrenceStatus | "todos")[] = [
+  "todos",
+  "desaparecido",
+  "avistado",
+  "encontrado",
+  "reencontrado",
+];
+
+const distances = [1, 3, 5, 10] as const;
+
+function SearchPage() {
+  const [query, setQuery] = useState("");
+  const [species, setSpecies] = useState<Species | "todas">("todas");
+  const [status, setStatus] = useState<OccurrenceStatus | "todos">("todos");
+  const [radius, setRadius] = useState<number>(10);
 
   const results = useMemo(() => {
-    const t = term.trim().toLowerCase();
-    const maxKm = radius[0] ?? 20;
-    const list = demoOccurrences.filter((o) => {
-      const matchTerm =
-        !t ||
-        o.name.toLowerCase().includes(t) ||
-        o.neighborhood.toLowerCase().includes(t) ||
-        o.city.toLowerCase().includes(t) ||
-        o.summary.toLowerCase().includes(t);
-      const matchSpecies = species === "todos" || o.species === species;
+    const q = query.trim().toLowerCase();
+    return demoOccurrences.filter((o) => {
+      const matchQuery =
+        !q ||
+        o.name.toLowerCase().includes(q) ||
+        o.neighborhood.toLowerCase().includes(q) ||
+        o.city.toLowerCase().includes(q) ||
+        o.summary.toLowerCase().includes(q);
+      const matchSpecies = species === "todas" || o.species === species;
       const matchStatus = status === "todos" || o.status === status;
-      const matchNeighborhood = neighborhood === "todos" || o.neighborhood === neighborhood;
-      return matchTerm && matchSpecies && matchStatus && matchNeighborhood && o.distanceKm <= maxKm;
+      return matchQuery && matchSpecies && matchStatus && o.distanceKm <= radius;
     });
-    if (sort === "proximos") return [...list].sort((a, b) => a.distanceKm - b.distanceKm);
-    if (sort === "avistados") return [...list].sort((a, b) => b.sightingsCount - a.sightingsCount);
-    return list;
-  }, [term, species, status, neighborhood, radius, sort]);
+  }, [query, species, status, radius]);
 
   return (
     <AppShell>
-      <PageHeader title="Buscar" description="Encontre ocorrências por animal, bairro ou região." />
+      <PageHeader
+        title="Buscar"
+        description="Filtre o mural por espécie, status e distância aproximada."
+      />
 
-      <div className="rounded-2xl border border-border bg-card p-4 shadow-soft sm:p-5">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+      <div className="poster mb-6 grid gap-4 p-4 sm:p-5">
+        <div className="flex items-center gap-2 border-2 border-ink bg-secondary px-3">
+          <Search className="h-4 w-4 shrink-0" />
           <Input
-            value={term}
-            onChange={(e) => setTerm(e.target.value)}
-            placeholder="Procure por um animal, bairro ou região..."
-            className="h-12 pl-9"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Animal, bairro ou região..."
             aria-label="Buscar"
+            className="border-0 bg-transparent px-0 shadow-none focus-visible:ring-0"
           />
         </div>
 
-        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          <Select value={species} onValueChange={(v) => setSpecies(v as Species | "todos")}>
-            <SelectTrigger aria-label="Espécie"><SelectValue placeholder="Espécie" /></SelectTrigger>
-            <SelectContent>
-              <SelectItem value="todos">Todas as espécies</SelectItem>
-              <SelectItem value="cachorro">Cachorro</SelectItem>
-              <SelectItem value="gato">Gato</SelectItem>
-              <SelectItem value="ave">Ave</SelectItem>
-              <SelectItem value="outro">Outro</SelectItem>
-            </SelectContent>
-          </Select>
+        <FilterRow label="Espécie">
+          {speciesOptions.map((s) => (
+            <Chip key={s.value} active={species === s.value} onClick={() => setSpecies(s.value)}>
+              {s.label}
+            </Chip>
+          ))}
+        </FilterRow>
 
-          <Select value={status} onValueChange={(v) => setStatus(v as OccurrenceStatus | "todos")}>
-            <SelectTrigger aria-label="Status"><SelectValue placeholder="Status" /></SelectTrigger>
-            <SelectContent>
-              <SelectItem value="todos">Todos os status</SelectItem>
-              <SelectItem value="desaparecido">Desaparecido</SelectItem>
-              <SelectItem value="avistado">Avistado</SelectItem>
-              <SelectItem value="encontrado">Encontrado</SelectItem>
-              <SelectItem value="reencontrado">Reencontrado</SelectItem>
-            </SelectContent>
-          </Select>
+        <FilterRow label="Status">
+          {statusOptions.map((s) => (
+            <Chip key={s} active={status === s} onClick={() => setStatus(s)}>
+              {s === "todos" ? "Todos" : statusLabel[s]}
+            </Chip>
+          ))}
+        </FilterRow>
 
-          <Select value={neighborhood} onValueChange={setNeighborhood}>
-            <SelectTrigger aria-label="Bairro"><SelectValue placeholder="Bairro" /></SelectTrigger>
-            <SelectContent>
-              <SelectItem value="todos">Todos os bairros</SelectItem>
-              {neighborhoods.map((n) => (
-                <SelectItem key={n} value={n}>{n}</SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+        <FilterRow label="Distância">
+          {distances.map((d) => (
+            <Chip key={d} active={radius === d} onClick={() => setRadius(d)}>
+              até {d} km
+            </Chip>
+          ))}
+        </FilterRow>
 
-          <Select value={sort} onValueChange={setSort}>
-            <SelectTrigger aria-label="Ordenação"><SelectValue placeholder="Ordenar" /></SelectTrigger>
-            <SelectContent>
-              <SelectItem value="recentes">Mais recentes</SelectItem>
-              <SelectItem value="proximos">Mais próximos</SelectItem>
-              <SelectItem value="avistados">Mais avistados</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-
-        <div className="mt-5">
-          <div className="flex items-center justify-between text-sm">
-            <span className="font-medium">Raio de distância</span>
-            <span className="text-muted-foreground">até {radius[0]} km</span>
-          </div>
-          <Slider value={radius} onValueChange={setRadius} min={1} max={20} step={1} className="mt-3" />
-        </div>
+        <DemoNote>Busca aplicada sobre dados de demonstração.</DemoNote>
       </div>
 
-      <p className="mt-6 text-sm text-muted-foreground">
-        {results.length} ocorrência{results.length === 1 ? "" : "s"} encontrada
-        {results.length === 1 ? "" : "s"}
+      <p className="overline mb-3">
+        {results.length} {results.length === 1 ? "ocorrência" : "ocorrências"}
       </p>
 
-      <div className="mt-3 grid gap-4">
-        {results.map((o) => (
-          <OccurrenceCard key={o.id} occurrence={o} />
-        ))}
-        {results.length === 0 && (
-          <div className="rounded-2xl border border-dashed border-border p-10 text-center">
-            <p className="font-display text-lg font-bold">Nada encontrado por aqui</p>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Tente aumentar o raio de distância ou remover alguns filtros.
-            </p>
-            <Button
-              className="mt-4"
-              variant="outline"
-              onClick={() => {
-                setTerm("");
-                setSpecies("todos");
-                setStatus("todos");
-                setNeighborhood("todos");
-                setRadius([20]);
-              }}
-            >
-              Limpar filtros
-            </Button>
-          </div>
-        )}
-      </div>
+      {results.length === 0 ? (
+        <div className="poster p-8 text-center">
+          <p className="font-display text-lg font-extrabold uppercase">Nada por aqui</p>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Tente ampliar a distância ou remover algum filtro.
+          </p>
+        </div>
+      ) : (
+        <div className="grid gap-4 xl:grid-cols-2">
+          {results.map((o) => (
+            <OccurrenceCard key={o.id} occurrence={o} />
+          ))}
+        </div>
+      )}
     </AppShell>
+  );
+}
+
+function FilterRow({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div className="grid gap-2">
+      <span className="overline text-muted-foreground">{label}</span>
+      <div className="flex flex-wrap gap-2">{children}</div>
+    </div>
+  );
+}
+
+function Chip({
+  active,
+  onClick,
+  children,
+}: {
+  active: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={cn(
+        "border-2 border-ink px-3 py-1.5 text-xs font-semibold transition-colors",
+        active ? "bg-ink text-primary-foreground" : "bg-paper hover:bg-secondary",
+      )}
+    >
+      {children}
+    </button>
   );
 }

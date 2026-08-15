@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AnimalEncontradoRouteImport } from './routes/animal-encontrado'
 import { Route as BuscarRouteImport } from './routes/buscar'
 import { Route as CadastroRouteImport } from './routes/cadastro'
+import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as MapaRouteImport } from './routes/mapa'
@@ -22,6 +23,7 @@ import { Route as NotificacoesRouteImport } from './routes/notificacoes'
 import { Route as NovaOcorrenciaRouteImport } from './routes/nova-ocorrencia'
 import { Route as NovoAvistamentoRouteImport } from './routes/novo-avistamento'
 import { Route as PerfilRouteImport } from './routes/perfil'
+import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminDenunciasRouteImport } from './routes/admin.denuncias'
 import { Route as AdminOcorrenciasRouteImport } from './routes/admin.ocorrencias'
@@ -46,6 +48,11 @@ const BuscarRoute = BuscarRouteImport.update({
 const CadastroRoute = CadastroRouteImport.update({
   id: '/cadastro',
   path: '/cadastro',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComoFuncionaRoute = ComoFuncionaRouteImport.update({
+  id: '/como-funciona',
+  path: '/como-funciona',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardRoute = DashboardRouteImport.update({
@@ -93,6 +100,11 @@ const PerfilRoute = PerfilRouteImport.update({
   path: '/perfil',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SobreRoute = SobreRouteImport.update({
+  id: '/sobre',
+  path: '/sobre',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/admin/',
   path: '/admin/',
@@ -124,6 +136,7 @@ export interface FileRoutesByFullPath {
   '/animal-encontrado': typeof AnimalEncontradoRoute
   '/buscar': typeof BuscarRoute
   '/cadastro': typeof CadastroRoute
+  '/como-funciona': typeof ComoFuncionaRoute
   '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
   '/mapa': typeof MapaRoute
@@ -133,6 +146,7 @@ export interface FileRoutesByFullPath {
   '/nova-ocorrencia': typeof NovaOcorrenciaRoute
   '/novo-avistamento': typeof NovoAvistamentoRoute
   '/perfil': typeof PerfilRoute
+  '/sobre': typeof SobreRoute
   '/admin/denuncias': typeof AdminDenunciasRoute
   '/admin/ocorrencias': typeof AdminOcorrenciasRoute
   '/admin/usuarios': typeof AdminUsuariosRoute
@@ -144,6 +158,7 @@ export interface FileRoutesByTo {
   '/animal-encontrado': typeof AnimalEncontradoRoute
   '/buscar': typeof BuscarRoute
   '/cadastro': typeof CadastroRoute
+  '/como-funciona': typeof ComoFuncionaRoute
   '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
   '/mapa': typeof MapaRoute
@@ -153,6 +168,7 @@ export interface FileRoutesByTo {
   '/nova-ocorrencia': typeof NovaOcorrenciaRoute
   '/novo-avistamento': typeof NovoAvistamentoRoute
   '/perfil': typeof PerfilRoute
+  '/sobre': typeof SobreRoute
   '/admin/denuncias': typeof AdminDenunciasRoute
   '/admin/ocorrencias': typeof AdminOcorrenciasRoute
   '/admin/usuarios': typeof AdminUsuariosRoute
@@ -165,6 +181,7 @@ export interface FileRoutesById {
   '/animal-encontrado': typeof AnimalEncontradoRoute
   '/buscar': typeof BuscarRoute
   '/cadastro': typeof CadastroRoute
+  '/como-funciona': typeof ComoFuncionaRoute
   '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
   '/mapa': typeof MapaRoute
@@ -174,6 +191,7 @@ export interface FileRoutesById {
   '/nova-ocorrencia': typeof NovaOcorrenciaRoute
   '/novo-avistamento': typeof NovoAvistamentoRoute
   '/perfil': typeof PerfilRoute
+  '/sobre': typeof SobreRoute
   '/admin/denuncias': typeof AdminDenunciasRoute
   '/admin/ocorrencias': typeof AdminOcorrenciasRoute
   '/admin/usuarios': typeof AdminUsuariosRoute
@@ -187,6 +205,7 @@ export interface FileRouteTypes {
     | '/animal-encontrado'
     | '/buscar'
     | '/cadastro'
+    | '/como-funciona'
     | '/dashboard'
     | '/login'
     | '/mapa'
@@ -196,6 +215,7 @@ export interface FileRouteTypes {
     | '/nova-ocorrencia'
     | '/novo-avistamento'
     | '/perfil'
+    | '/sobre'
     | '/admin/denuncias'
     | '/admin/ocorrencias'
     | '/admin/usuarios'
@@ -207,6 +227,7 @@ export interface FileRouteTypes {
     | '/animal-encontrado'
     | '/buscar'
     | '/cadastro'
+    | '/como-funciona'
     | '/dashboard'
     | '/login'
     | '/mapa'
@@ -216,6 +237,7 @@ export interface FileRouteTypes {
     | '/nova-ocorrencia'
     | '/novo-avistamento'
     | '/perfil'
+    | '/sobre'
     | '/admin/denuncias'
     | '/admin/ocorrencias'
     | '/admin/usuarios'
@@ -227,6 +249,7 @@ export interface FileRouteTypes {
     | '/animal-encontrado'
     | '/buscar'
     | '/cadastro'
+    | '/como-funciona'
     | '/dashboard'
     | '/login'
     | '/mapa'
@@ -236,6 +259,7 @@ export interface FileRouteTypes {
     | '/nova-ocorrencia'
     | '/novo-avistamento'
     | '/perfil'
+    | '/sobre'
     | '/admin/denuncias'
     | '/admin/ocorrencias'
     | '/admin/usuarios'
@@ -248,6 +272,7 @@ export interface RootRouteChildren {
   AnimalEncontradoRoute: typeof AnimalEncontradoRoute
   BuscarRoute: typeof BuscarRoute
   CadastroRoute: typeof CadastroRoute
+  ComoFuncionaRoute: typeof ComoFuncionaRoute
   DashboardRoute: typeof DashboardRoute
   LoginRoute: typeof LoginRoute
   MapaRoute: typeof MapaRoute
@@ -257,6 +282,7 @@ export interface RootRouteChildren {
   NovaOcorrenciaRoute: typeof NovaOcorrenciaRoute
   NovoAvistamentoRoute: typeof NovoAvistamentoRoute
   PerfilRoute: typeof PerfilRoute
+  SobreRoute: typeof SobreRoute
   AdminDenunciasRoute: typeof AdminDenunciasRoute
   AdminOcorrenciasRoute: typeof AdminOcorrenciasRoute
   AdminUsuariosRoute: typeof AdminUsuariosRoute
@@ -292,6 +318,13 @@ declare module '@tanstack/react-router' {
       path: '/cadastro'
       fullPath: '/cadastro'
       preLoaderRoute: typeof CadastroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/como-funciona': {
+      id: '/como-funciona'
+      path: '/como-funciona'
+      fullPath: '/como-funciona'
+      preLoaderRoute: typeof ComoFuncionaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard': {
@@ -357,6 +390,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PerfilRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sobre': {
+      id: '/sobre'
+      path: '/sobre'
+      fullPath: '/sobre'
+      preLoaderRoute: typeof SobreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/': {
       id: '/admin/'
       path: '/admin'
@@ -400,6 +440,7 @@ const rootRouteChildren: RootRouteChildren = {
   AnimalEncontradoRoute: AnimalEncontradoRoute,
   BuscarRoute: BuscarRoute,
   CadastroRoute: CadastroRoute,
+  ComoFuncionaRoute: ComoFuncionaRoute,
   DashboardRoute: DashboardRoute,
   LoginRoute: LoginRoute,
   MapaRoute: MapaRoute,
@@ -409,6 +450,7 @@ const rootRouteChildren: RootRouteChildren = {
   NovaOcorrenciaRoute: NovaOcorrenciaRoute,
   NovoAvistamentoRoute: NovoAvistamentoRoute,
   PerfilRoute: PerfilRoute,
+  SobreRoute: SobreRoute,
   AdminDenunciasRoute: AdminDenunciasRoute,
   AdminOcorrenciasRoute: AdminOcorrenciasRoute,
   AdminUsuariosRoute: AdminUsuariosRoute,
