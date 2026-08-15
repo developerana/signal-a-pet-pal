@@ -53,11 +53,11 @@ function Landing() {
               <span className="h-2 w-2 bg-status-missing" /> Mural comunitário de busca
             </span>
             <h1 className="mt-4 text-[2.75rem] font-black uppercase leading-[0.9] sm:text-6xl">
-              Um animal
+              AJUDE UM&nbsp;
               <br />
-              perdido
+              ANIMAL PERDIDO
               <br />
-              <span className="bg-ink px-2 text-primary-foreground">volta pra casa</span>
+              <span className="bg-ink px-2 text-primary-foreground">A VOLTAR PRA CASA</span>
             </h1>
             <p className="mt-5 max-w-lg text-base text-foreground/80">
               O SinalizaPet transforma informação solta em pista útil: cada avistamento entra na linha
