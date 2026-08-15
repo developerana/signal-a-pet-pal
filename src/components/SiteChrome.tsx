@@ -23,7 +23,7 @@ export function SiteHeader() {
             <Link
               key={l.to}
               to={l.to}
-              className="overline hidden px-2 py-1 hover:bg-secondary md:block"
+              className="eyebrow hidden px-2 py-1 hover:bg-secondary md:block"
             >
               {l.label}
             </Link>
@@ -46,7 +46,7 @@ export function Marquee({ items }: { items: string[] }) {
     <div className="overflow-hidden border-b-2 border-ink bg-status-missing text-primary-foreground">
       <div className="marquee-track flex w-max gap-8 py-2">
         {row.map((t, i) => (
-          <span key={`${t}-${i}`} className="overline whitespace-nowrap">
+          <span key={`${t}-${i}`} className="eyebrow whitespace-nowrap">
             {t}
           </span>
         ))}
@@ -97,7 +97,7 @@ function FooterCol({
 }) {
   return (
     <div>
-      <p className="overline text-primary-foreground/60">{title}</p>
+      <p className="eyebrow text-primary-foreground/60">{title}</p>
       <ul className="mt-3 grid gap-2 text-sm">
         {items.map((i) => (
           <li key={i.to}>

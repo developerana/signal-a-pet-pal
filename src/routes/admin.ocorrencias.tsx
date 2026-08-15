@@ -34,7 +34,7 @@ function AdminOccurrences() {
           <thead className="border-b-2 border-ink bg-secondary">
             <tr className="text-left">
               {["Animal", "Status", "Região", "Data", "Avistamentos", ""].map((h) => (
-                <th key={h} className="overline px-4 py-3">
+                <th key={h} className="eyebrow px-4 py-3">
                   {h}
                 </th>
               ))}

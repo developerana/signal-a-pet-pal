@@ -49,7 +49,7 @@ function Landing() {
         <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
           <div className="absolute inset-0 sand-grid opacity-50" aria-hidden />
           <div className="relative max-w-2xl">
-            <span className="overline inline-flex items-center gap-2 border-2 border-ink bg-paper px-3 py-1.5">
+            <span className="eyebrow inline-flex items-center gap-2 border-2 border-ink bg-paper px-3 py-1.5">
               <span className="h-2 w-2 bg-status-missing" /> Mural comunitário de busca
             </span>
             <h1 className="mt-4 text-[2.75rem] font-black uppercase leading-[0.9] sm:text-6xl">
@@ -65,7 +65,7 @@ function Landing() {
             </p>
 
             <div className="mt-7 border-2 border-ink bg-paper p-4 shadow-soft">
-              <p className="overline">O que você precisa fazer?</p>
+              <p className="eyebrow">O que você precisa fazer?</p>
               <div className="mt-4 grid gap-3 sm:grid-cols-3">
               <Button
                 asChild
@@ -110,7 +110,7 @@ function Landing() {
 
           <div className="relative mx-auto w-full max-w-sm">
             <div className="poster p-8">
-              <p className="overline text-center">Procura-se</p>
+              <p className="eyebrow text-center">Procura-se</p>
               <BrandCat className="mx-auto mt-6 h-56 w-auto" />
               <p className="mt-6 text-center font-display text-lg font-extrabold uppercase leading-tight">
                 Juntos, um pet volta pra casa
@@ -134,7 +134,7 @@ function Landing() {
           ].map((s) => (
             <div key={s.label}>
               <p className="font-display text-4xl font-black leading-none">{s.value}</p>
-              <p className="overline mt-2 text-primary-foreground/60">{s.label}</p>
+              <p className="eyebrow mt-2 text-primary-foreground/60">{s.label}</p>
             </div>
           ))}
         </div>

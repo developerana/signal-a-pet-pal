@@ -47,7 +47,7 @@ function MyPets() {
             </div>
             <div className="p-4">
               <h2 className="text-lg font-extrabold uppercase leading-tight">{p.name}</h2>
-              <p className="overline mt-1 text-muted-foreground">
+              <p className="eyebrow mt-1 text-muted-foreground">
                 {p.species} · {p.breed ?? "SRD"} · {p.age ?? "—"}
               </p>
               <p className="mt-2 text-sm text-foreground/80">{p.traits}</p>

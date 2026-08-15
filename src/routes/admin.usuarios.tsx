@@ -39,7 +39,7 @@ function AdminUsers() {
           <thead className="border-b-2 border-ink bg-secondary">
             <tr className="text-left">
               {["Nome", "Cidade", "Sinalizações", "Situação", ""].map((h) => (
-                <th key={h} className="overline px-4 py-3">
+                <th key={h} className="eyebrow px-4 py-3">
                   {h}
                 </th>
               ))}
@@ -52,7 +52,7 @@ function AdminUsers() {
                 <td className="px-4 py-3">{u.city}</td>
                 <td className="px-4 py-3">{u.signals}</td>
                 <td className="px-4 py-3">
-                  <span className="overline border-2 border-ink bg-secondary px-2 py-0.5">{u.status}</span>
+                  <span className="eyebrow border-2 border-ink bg-secondary px-2 py-0.5">{u.status}</span>
                 </td>
                 <td className="px-4 py-3 text-right">
                   <Button variant="ghost" size="sm">

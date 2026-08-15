@@ -31,7 +31,7 @@ function About() {
       <section className="border-b-2 border-ink bg-ink text-primary-foreground">
         <div className="mx-auto grid max-w-6xl gap-8 px-4 py-14 sm:px-6 md:grid-cols-[1.2fr_0.8fr] md:items-center">
           <div>
-            <p className="overline text-primary-foreground/60">Sobre</p>
+            <p className="eyebrow text-primary-foreground/60">Sobre</p>
             <h1 className="mt-3 text-4xl font-black uppercase leading-[0.9] sm:text-6xl">
               Começou com um gato preto
             </h1>

@@ -45,7 +45,7 @@ export function Stepper({ steps, current }: { steps: readonly string[]; current:
           <li
             key={step}
             className={cn(
-              "overline flex items-center gap-2 border-2 border-ink px-2.5 py-1.5",
+              "eyebrow flex items-center gap-2 border-2 border-ink px-2.5 py-1.5",
               active && "bg-ink text-primary-foreground",
               done && "bg-status-reunited text-primary",
               !active && !done && "bg-paper text-muted-foreground",
@@ -73,7 +73,7 @@ export function Field({
 }) {
   return (
     <label className="grid gap-1.5">
-      <span className="overline">
+      <span className="eyebrow">
         {label} {required && <span className="text-status-missing">*</span>}
       </span>
       {children}
@@ -85,7 +85,7 @@ export function Field({
 export function PhotoPicker({ label = "Fotos do animal" }: { label?: string }) {
   return (
     <div className="grid gap-1.5">
-      <span className="overline">{label}</span>
+      <span className="eyebrow">{label}</span>
       <div className="grid place-items-center gap-2 border-2 border-dashed border-ink/50 bg-secondary px-4 py-8 text-center">
         <Camera className="h-6 w-6" />
         <p className="text-sm font-medium">Toque para adicionar fotos</p>
@@ -108,7 +108,7 @@ export function Stat({
 }) {
   return (
     <div className="poster p-4">
-      <p className="overline text-muted-foreground">{label}</p>
+      <p className="eyebrow text-muted-foreground">{label}</p>
       <p className={cn("mt-1 font-display text-3xl font-extrabold leading-none", tone)}>{value}</p>
     </div>
   );

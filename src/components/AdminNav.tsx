@@ -19,7 +19,7 @@ export function AdminNav() {
             key={item.to}
             to={item.to}
             className={cn(
-              "overline border-2 border-ink px-3 py-2",
+              "eyebrow border-2 border-ink px-3 py-2",
               active ? "bg-ink text-primary-foreground" : "bg-paper hover:bg-secondary",
             )}
           >

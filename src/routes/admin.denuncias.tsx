@@ -34,7 +34,7 @@ function AdminReports() {
             <div className="min-w-0">
               <p className="text-sm font-bold">{r.target}</p>
               <p className="mt-1 text-sm text-foreground/80">{r.reason}</p>
-              <p className="overline mt-2 text-muted-foreground">
+              <p className="eyebrow mt-2 text-muted-foreground">
                 {r.date} · {r.status}
               </p>
             </div>

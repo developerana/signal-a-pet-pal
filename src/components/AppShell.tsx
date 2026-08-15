@@ -187,7 +187,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             })}
             <div className="poster mt-4 p-4">
               <p className="font-display text-2xl font-extrabold leading-none">{demoUser.signals}</p>
-              <p className="overline mt-1">sinalizações suas</p>
+              <p className="eyebrow mt-1">sinalizações suas</p>
               <p className="mt-2 text-xs text-muted-foreground">
                 Suas informações já ajudaram outros tutores.
               </p>
