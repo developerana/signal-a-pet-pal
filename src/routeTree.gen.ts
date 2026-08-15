@@ -10,14 +10,24 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AnimalEncontradoRouteImport } from './routes/animal-encontrado'
 import { Route as BuscarRouteImport } from './routes/buscar'
 import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as MapaRouteImport } from './routes/mapa'
+import { Route as NovaOcorrenciaRouteImport } from './routes/nova-ocorrencia'
+import { Route as NovoAvistamentoRouteImport } from './routes/novo-avistamento'
 import { Route as SobreRouteImport } from './routes/sobre'
+import { Route as OcorrenciaIdRouteImport } from './routes/ocorrencia.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnimalEncontradoRoute = AnimalEncontradoRouteImport.update({
+  id: '/animal-encontrado',
+  path: '/animal-encontrado',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BuscarRoute = BuscarRouteImport.update({
@@ -30,9 +40,24 @@ const ComoFuncionaRoute = ComoFuncionaRouteImport.update({
   path: '/como-funciona',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MapaRoute = MapaRouteImport.update({
   id: '/mapa',
   path: '/mapa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NovaOcorrenciaRoute = NovaOcorrenciaRouteImport.update({
+  id: '/nova-ocorrencia',
+  path: '/nova-ocorrencia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NovoAvistamentoRoute = NovoAvistamentoRouteImport.update({
+  id: '/novo-avistamento',
+  path: '/novo-avistamento',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SobreRoute = SobreRouteImport.update({
@@ -40,43 +65,99 @@ const SobreRoute = SobreRouteImport.update({
   path: '/sobre',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OcorrenciaIdRoute = OcorrenciaIdRouteImport.update({
+  id: '/ocorrencia/$id',
+  path: '/ocorrencia/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/animal-encontrado': typeof AnimalEncontradoRoute
   '/buscar': typeof BuscarRoute
   '/como-funciona': typeof ComoFuncionaRoute
+  '/dashboard': typeof DashboardRoute
   '/mapa': typeof MapaRoute
+  '/nova-ocorrencia': typeof NovaOcorrenciaRoute
+  '/novo-avistamento': typeof NovoAvistamentoRoute
   '/sobre': typeof SobreRoute
+  '/ocorrencia/$id': typeof OcorrenciaIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/animal-encontrado': typeof AnimalEncontradoRoute
   '/buscar': typeof BuscarRoute
   '/como-funciona': typeof ComoFuncionaRoute
+  '/dashboard': typeof DashboardRoute
   '/mapa': typeof MapaRoute
+  '/nova-ocorrencia': typeof NovaOcorrenciaRoute
+  '/novo-avistamento': typeof NovoAvistamentoRoute
   '/sobre': typeof SobreRoute
+  '/ocorrencia/$id': typeof OcorrenciaIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/animal-encontrado': typeof AnimalEncontradoRoute
   '/buscar': typeof BuscarRoute
   '/como-funciona': typeof ComoFuncionaRoute
+  '/dashboard': typeof DashboardRoute
   '/mapa': typeof MapaRoute
+  '/nova-ocorrencia': typeof NovaOcorrenciaRoute
+  '/novo-avistamento': typeof NovoAvistamentoRoute
   '/sobre': typeof SobreRoute
+  '/ocorrencia/$id': typeof OcorrenciaIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/buscar' | '/como-funciona' | '/mapa' | '/sobre'
+  fullPaths:
+    | '/'
+    | '/animal-encontrado'
+    | '/buscar'
+    | '/como-funciona'
+    | '/dashboard'
+    | '/mapa'
+    | '/nova-ocorrencia'
+    | '/novo-avistamento'
+    | '/sobre'
+    | '/ocorrencia/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/buscar' | '/como-funciona' | '/mapa' | '/sobre'
-  id: '__root__' | '/' | '/buscar' | '/como-funciona' | '/mapa' | '/sobre'
+  to:
+    | '/'
+    | '/animal-encontrado'
+    | '/buscar'
+    | '/como-funciona'
+    | '/dashboard'
+    | '/mapa'
+    | '/nova-ocorrencia'
+    | '/novo-avistamento'
+    | '/sobre'
+    | '/ocorrencia/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/animal-encontrado'
+    | '/buscar'
+    | '/como-funciona'
+    | '/dashboard'
+    | '/mapa'
+    | '/nova-ocorrencia'
+    | '/novo-avistamento'
+    | '/sobre'
+    | '/ocorrencia/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AnimalEncontradoRoute: typeof AnimalEncontradoRoute
   BuscarRoute: typeof BuscarRoute
   ComoFuncionaRoute: typeof ComoFuncionaRoute
+  DashboardRoute: typeof DashboardRoute
   MapaRoute: typeof MapaRoute
+  NovaOcorrenciaRoute: typeof NovaOcorrenciaRoute
+  NovoAvistamentoRoute: typeof NovoAvistamentoRoute
   SobreRoute: typeof SobreRoute
+  OcorrenciaIdRoute: typeof OcorrenciaIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -86,6 +167,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/animal-encontrado': {
+      id: '/animal-encontrado'
+      path: '/animal-encontrado'
+      fullPath: '/animal-encontrado'
+      preLoaderRoute: typeof AnimalEncontradoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/buscar': {
@@ -102,11 +190,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ComoFuncionaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/mapa': {
       id: '/mapa'
       path: '/mapa'
       fullPath: '/mapa'
       preLoaderRoute: typeof MapaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nova-ocorrencia': {
+      id: '/nova-ocorrencia'
+      path: '/nova-ocorrencia'
+      fullPath: '/nova-ocorrencia'
+      preLoaderRoute: typeof NovaOcorrenciaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/novo-avistamento': {
+      id: '/novo-avistamento'
+      path: '/novo-avistamento'
+      fullPath: '/novo-avistamento'
+      preLoaderRoute: typeof NovoAvistamentoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sobre': {
@@ -116,15 +225,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SobreRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ocorrencia/$id': {
+      id: '/ocorrencia/$id'
+      path: '/ocorrencia/$id'
+      fullPath: '/ocorrencia/$id'
+      preLoaderRoute: typeof OcorrenciaIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AnimalEncontradoRoute: AnimalEncontradoRoute,
   BuscarRoute: BuscarRoute,
   ComoFuncionaRoute: ComoFuncionaRoute,
+  DashboardRoute: DashboardRoute,
   MapaRoute: MapaRoute,
+  NovaOcorrenciaRoute: NovaOcorrenciaRoute,
+  NovoAvistamentoRoute: NovoAvistamentoRoute,
   SobreRoute: SobreRoute,
+  OcorrenciaIdRoute: OcorrenciaIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
