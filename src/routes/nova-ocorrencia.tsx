@@ -22,7 +22,7 @@ export const Route = createFileRoute("/nova-ocorrencia")({
       { property: "og:description", content: "Formulário rápido para registrar um pet desaparecido." },
     ],
   }),
-  component: NovaOcorrencia;
+  component: NovaOcorrencia,
 });
 
 const steps = ["Animal", "Desaparecimento", "Contato", "Revisão"];
