@@ -31,7 +31,7 @@ export function OccurrenceCard({
       <div className="min-w-0">
         <div className="flex flex-wrap items-center gap-2">
           <StatusBadge status={o.status} />
-          <span className="overline text-muted-foreground">{o.date}</span>
+          <span className="eyebrow text-muted-foreground">{o.date}</span>
         </div>
         <h3 className="mt-2 truncate text-xl font-extrabold uppercase leading-none sm:text-2xl">
           {o.name}

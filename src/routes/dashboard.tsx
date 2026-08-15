@@ -100,7 +100,7 @@ function Dashboard() {
                 <li key={n.id} className="border-2 border-ink bg-secondary p-3">
                   <p className="text-sm font-bold">{n.title}</p>
                   <p className="mt-1 text-xs text-muted-foreground">{n.body}</p>
-                  <p className="overline mt-2 text-muted-foreground">{n.time}</p>
+                  <p className="eyebrow mt-2 text-muted-foreground">{n.time}</p>
                 </li>
               ))}
             </ul>

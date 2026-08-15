@@ -116,7 +116,7 @@ function SearchPage() {
         <DemoNote>Busca aplicada sobre dados de demonstração.</DemoNote>
       </div>
 
-      <p className="overline mb-3">
+      <p className="eyebrow mb-3">
         {results.length} {results.length === 1 ? "ocorrência" : "ocorrências"}
       </p>
 
@@ -141,7 +141,7 @@ function SearchPage() {
 function FilterRow({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="grid gap-2">
-      <span className="overline text-muted-foreground">{label}</span>
+      <span className="eyebrow text-muted-foreground">{label}</span>
       <div className="flex flex-wrap gap-2">{children}</div>
     </div>
   );

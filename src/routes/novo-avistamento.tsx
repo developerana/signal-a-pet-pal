@@ -70,7 +70,7 @@ function NewSighting() {
                   className="h-12 w-12 border-2 border-ink object-cover"
                 />
                 <div className="min-w-0">
-                  <p className="overline text-muted-foreground">Vinculado à ocorrência</p>
+                  <p className="eyebrow text-muted-foreground">Vinculado à ocorrência</p>
                   <p className="truncate text-sm font-bold">
                     {linked.name} — {linked.neighborhood}
                   </p>

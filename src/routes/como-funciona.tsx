@@ -68,7 +68,7 @@ function HowItWorks() {
     <SiteLayout>
       <section className="border-b-2 border-ink bg-accent/50">
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
-          <p className="overline">Passo a passo</p>
+          <p className="eyebrow">Passo a passo</p>
           <h1 className="mt-3 max-w-2xl text-4xl font-black uppercase leading-[0.9] sm:text-6xl">
             Como funciona o SinalizaPet
           </h1>
@@ -88,7 +88,7 @@ function HowItWorks() {
             <ol className="mt-4 grid flex-1 gap-3">
               {f.steps.map((s, i) => (
                 <li key={s} className="flex gap-3 text-sm">
-                  <span className="overline shrink-0 border-2 border-ink px-1.5 py-0.5 leading-none">
+                  <span className="eyebrow shrink-0 border-2 border-ink px-1.5 py-0.5 leading-none">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span className="text-foreground/80">{s}</span>

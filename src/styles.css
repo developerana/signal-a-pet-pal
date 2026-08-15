@@ -148,7 +148,7 @@
   box-shadow: 4px 4px 0 0 var(--ink);
 }
 
-@utility overline {
+@utility eyebrow {
   text-decoration-line: none;
   font-family: var(--font-display);
   font-weight: 700;

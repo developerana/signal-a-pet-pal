@@ -42,7 +42,7 @@ function ProfilePage() {
                 <h2 className="truncate text-xl font-extrabold uppercase leading-tight">
                   {demoUser.name}
                 </h2>
-                <p className="overline text-muted-foreground">
+                <p className="eyebrow text-muted-foreground">
                   {demoUser.city} · desde {demoUser.memberSince}
                 </p>
               </div>

@@ -43,7 +43,7 @@ function NotificationsPage() {
                 <p className="text-sm font-bold">{n.title}</p>
                 <p className="mt-1 text-sm text-foreground/80">{n.body}</p>
                 <div className="mt-2 flex items-center gap-3">
-                  <span className="overline text-muted-foreground">{n.time}</span>
+                  <span className="eyebrow text-muted-foreground">{n.time}</span>
                   {n.occurrenceId && (
                     <Button asChild variant="ghost" size="sm" className="h-auto px-2 py-1 text-xs">
                       <Link to="/ocorrencia/$id" params={{ id: n.occurrenceId }}>

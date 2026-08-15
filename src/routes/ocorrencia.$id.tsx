@@ -81,14 +81,14 @@ function OccurrenceDetail() {
               </div>
             </div>
             <div className="p-5 sm:p-6">
-              <p className="overline text-muted-foreground">Ocorrência #{o.id}</p>
+              <p className="eyebrow text-muted-foreground">Ocorrência #{o.id}</p>
               <h1 className="mt-2 text-3xl font-black uppercase leading-none sm:text-4xl">{o.name}</h1>
               <p className="mt-3 text-foreground/80">{o.description}</p>
 
               <dl className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
                 {facts.map((f) => (
                   <div key={f.label} className="border-2 border-ink bg-secondary px-3 py-2">
-                    <dt className="overline text-muted-foreground">{f.label}</dt>
+                    <dt className="eyebrow text-muted-foreground">{f.label}</dt>
                     <dd className="text-sm font-semibold capitalize">{f.value}</dd>
                   </div>
                 ))}
@@ -120,7 +120,7 @@ function OccurrenceDetail() {
                 {o.sightings.map((s) => (
                   <li key={s.id} className="border-2 border-ink bg-secondary p-4">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="overline border-2 border-ink bg-status-sighted px-2 py-0.5 text-primary">
+                      <span className="eyebrow border-2 border-ink bg-status-sighted px-2 py-0.5 text-primary">
                         {s.date} · {s.time}
                       </span>
                       <span className="text-sm font-semibold">{s.neighborhood}</span>
@@ -149,7 +149,7 @@ function OccurrenceDetail() {
                           : "bg-paper",
                     )}
                   />
-                  <p className="overline text-muted-foreground">
+                  <p className="eyebrow text-muted-foreground">
                     {t.date} · {t.time}
                   </p>
                   <p className="mt-1 text-sm">{t.text}</p>

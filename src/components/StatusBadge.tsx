@@ -35,7 +35,7 @@ export function StatusBadge({
   return (
     <span
       className={cn(
-        "overline inline-flex items-center gap-1.5 border-2 border-ink px-2 py-1 leading-none",
+        "eyebrow inline-flex items-center gap-1.5 border-2 border-ink px-2 py-1 leading-none",
         statusTone[status],
         className,
       )}
