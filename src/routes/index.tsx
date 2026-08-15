@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Eye, House, MapPin, Search, Siren } from "lucide-react";
-import { BrandMark } from "@/components/BrandMark";
+import { BrandCat } from "@/components/BrandCat";
 import { BRAND } from "@/lib/brand";
 import { Button } from "@/components/ui/button";
 import { OccurrenceCard } from "@/components/OccurrenceCard";
@@ -111,7 +111,7 @@ function Landing() {
           <div className="relative mx-auto w-full max-w-sm">
             <div className="poster p-8">
               <p className="overline border-b-2 border-ink pb-2 text-center">Procura-se</p>
-              <BrandMark className="mx-auto mt-6 h-40 w-40" />
+              <BrandCat className="mx-auto mt-6 h-56 w-auto" />
               <p className="mt-6 text-center font-display text-lg font-extrabold uppercase leading-tight">
                 Juntos, um pet volta pra casa
               </p>
