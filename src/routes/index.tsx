@@ -37,10 +37,10 @@ function Landing() {
     <SiteLayout>
       <Marquee
         items={[
-          "Projeto em construção",
-          "Viu? Sinaliza. Encontrou? Avisa.",
-          "Projeto em construção",
-          "Viu? Sinaliza. Encontrou? Avisa.",
+          "PROJETO EM CONSTRUÇÃO",
+          "PROJETO EM CONSTRUÇÃO",
+          "PROJETO EM CONSTRUÇÃO",
+          "PROJETO EM CONSTRUÇÃO",
         ]}
       />
 
