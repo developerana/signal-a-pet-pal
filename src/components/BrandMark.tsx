@@ -20,9 +20,9 @@ export function BrandMark({ className }: { className?: string }) {
 /** Mark + wordmark lockup. */
 export function BrandWordmark({ className }: { className?: string }) {
   return (
-    <span className={cn("inline-flex items-center gap-[0.45em] leading-none text-ink", className)}>
-      <BrandCat className="h-[1.05em] w-auto" />
-      <span className="font-display text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tight leading-none">
+    <span className={cn("inline-flex items-center gap-2 text-ink", className)}>
+      <BrandCat className="h-9 w-auto" />
+      <span className="font-display text-xl font-black uppercase tracking-tight leading-none">
         SinalizaPet
       </span>
     </span>
