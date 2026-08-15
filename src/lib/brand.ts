@@ -1,4 +1,4 @@
-import logoAsset from "@/assets/logo.png.asset.json";
+import logoAsset from "@/assets/logo-wordmark.png.asset.json";
 import iconAsset from "@/assets/icon.png.asset.json";
 
 /** Official brand assets — do not redraw or replace. */
