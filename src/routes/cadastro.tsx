@@ -1,9 +1,12 @@
+import { useState } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { DemoNote, Field } from "@/components/FormKit";
+import { UsernameField } from "@/components/UsernameField";
 import { AuthLayout } from "@/routes/login";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { demoTakenUsernames } from "@/data/demo";
 
 export const Route = createFileRoute("/cadastro")({
   head: () => ({
@@ -25,12 +28,21 @@ export const Route = createFileRoute("/cadastro")({
 
 function SignupPage() {
   const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+  const [usernameValid, setUsernameValid] = useState(false);
   return (
     <AuthLayout title="Criar conta" subtitle="Leva menos de um minuto.">
       <div className="grid gap-4">
         <Field label="Nome" required>
           <Input placeholder="Seu nome" />
         </Field>
+        <UsernameField
+          taken={demoTakenUsernames}
+          onChange={(value, valid) => {
+            setUsername(value);
+            setUsernameValid(valid);
+          }}
+        />
         <Field label="E-mail" required>
           <Input type="email" placeholder="voce@email.com" />
         </Field>
@@ -45,7 +57,13 @@ function SignupPage() {
           size="lg"
           className="border-2 border-ink"
           onClick={() => {
-            toast.success("Conta criada", { description: "Bem-vinda ao SinalizaPet." });
+            if (!usernameValid) {
+              toast.error("Escolha um username válido", {
+                description: "Ele precisa ser único e não pode ser reservado pelo sistema.",
+              });
+              return;
+            }
+            toast.success("Conta criada", { description: `Bem-vinda ao SinalizaPet, @${username}.` });
             void navigate({ to: "/dashboard" });
           }}
         >
