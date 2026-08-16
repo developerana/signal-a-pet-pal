@@ -72,7 +72,7 @@ function ProfilePage() {
 
         <div className="grid gap-4">
           <Panel title="Dados pessoais">
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-5">
               <Field label="Nome">
                 <Input defaultValue={demoUser.name} />
               </Field>
