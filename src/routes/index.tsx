@@ -46,7 +46,8 @@ function Landing() {
 
       {/* HERO */}
       <section className="border-b-2 border-ink bg-accent/50">
-        <div className="relative mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
+        <div className="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
+
           <div className="absolute inset-0 sand-grid opacity-50" aria-hidden />
           <div className="relative flex flex-col gap-6">
             <div>
