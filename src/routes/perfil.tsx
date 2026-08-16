@@ -31,46 +31,30 @@ function ProfilePage() {
     <AppShell>
       <PageHeader title="Perfil" description="Seus dados e preferências de alerta." />
 
-      <div className="grid gap-6 lg:grid-cols-[1fr_1.2fr] lg:items-start">
-        <div className="grid gap-4">
-          <Panel>
-            <div className="flex items-center gap-4">
-              <span className="grid h-16 w-16 place-items-center border-2 border-ink bg-accent">
-                <BrandMark className="h-9 w-9" />
-              </span>
-              <div className="min-w-0">
-                <h2 className="truncate text-xl font-extrabold uppercase leading-tight">
-                  {demoUser.name}
-                </h2>
-                <p className="eyebrow text-muted-foreground">
-                  {demoUser.city} · desde {demoUser.memberSince}
-                </p>
-              </div>
-            </div>
-            <div className="mt-5 grid grid-cols-2 gap-3">
-              <Stat label="Sinalizações" value={demoUser.signals} />
-              <Stat label="Reencontros" value={2} tone="text-status-reunited" />
-            </div>
-          </Panel>
+      <div className="grid gap-6">
+        <Panel className="flex flex-col items-start gap-5 sm:flex-row sm:items-center">
+          <span className="grid h-20 w-20 place-items-center border-2 border-ink bg-accent">
+            <BrandMark className="h-11 w-11" />
+          </span>
+          <div className="min-w-0">
+            <p className="eyebrow text-muted-foreground">{BRAND.name}</p>
+            <h2 className="truncate text-2xl font-extrabold uppercase leading-tight sm:text-3xl">
+              {demoUser.name}
+            </h2>
+            <p className="text-sm text-muted-foreground">
+              {demoUser.city} · desde {demoUser.memberSince}
+            </p>
+          </div>
+        </Panel>
 
-          <Panel title="Atalhos">
-            <div className="grid gap-2">
-              <Button asChild variant="outline" className="justify-start border-2 border-ink">
-                <Link to="/minhas-ocorrencias">Minhas ocorrências</Link>
-              </Button>
-              <Button asChild variant="outline" className="justify-start border-2 border-ink">
-                <Link to="/meus-animais">Meus animais</Link>
-              </Button>
-              <Button asChild variant="ghost" className="justify-start text-muted-foreground">
-                <Link to="/">
-                  <LogOut className="h-4 w-4" /> Sair
-                </Link>
-              </Button>
-            </div>
-          </Panel>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <Stat label="Sinalizações" value={demoUser.signals} />
+          <Stat label="Reencontros" value={2} tone="text-status-reunited" />
+          <Stat label="Ocorrências" value={3} />
+          <Stat label="Animais" value={2} />
         </div>
 
-        <div className="grid gap-4">
+        <div className="grid gap-6 lg:grid-cols-[1fr_1fr] lg:items-start">
           <Panel title="Dados pessoais">
             <div className="grid gap-5">
               <Field label="Nome">
@@ -107,6 +91,22 @@ function ProfilePage() {
             </div>
           </Panel>
         </div>
+
+        <Panel title="Atalhos">
+          <div className="grid gap-3 sm:grid-cols-3">
+            <Button asChild variant="outline" className="justify-start border-2 border-ink">
+              <Link to="/minhas-ocorrencias">Minhas ocorrências</Link>
+            </Button>
+            <Button asChild variant="outline" className="justify-start border-2 border-ink">
+              <Link to="/meus-animais">Meus animais</Link>
+            </Button>
+            <Button asChild variant="ghost" className="justify-start text-muted-foreground">
+              <Link to="/">
+                <LogOut className="h-4 w-4" /> Sair
+              </Link>
+            </Button>
+          </div>
+        </Panel>
       </div>
     </AppShell>
   );
