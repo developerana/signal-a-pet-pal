@@ -49,7 +49,7 @@ function Landing() {
         <div className="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
 
           <div className="absolute inset-0 sand-grid opacity-50" aria-hidden />
-          <div className="relative flex flex-col gap-6">
+          <div className="relative grid items-start gap-8 lg:grid-cols-2">
             <div>
               <span className="eyebrow inline-flex items-center gap-2 border-2 border-ink bg-paper px-3 py-1.5 text-xs">
                 <span className="h-2 w-2 bg-status-missing" /> Mural comunitário de busca
@@ -67,7 +67,8 @@ function Landing() {
               </p>
             </div>
 
-            <div className="grid gap-4">
+            <div className="grid gap-4 lg:pt-10">
+
               <Button
                 asChild
                 size="lg"
