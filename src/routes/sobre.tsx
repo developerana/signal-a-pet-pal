@@ -42,7 +42,11 @@ function About() {
             </p>
           </div>
           <div className="mx-auto w-full max-w-xs border-2 border-ink bg-paper p-6">
-            <BrandMark className="mx-auto h-36 w-36" />
+            <img
+              src={loganSobre.url}
+              alt="Logan, o gato preto que inspirou o SinalizaPet"
+              className="mx-auto aspect-square w-full object-cover"
+            />
             <p className="mt-4 text-center text-sm font-semibold text-ink">
               Em homenagem ao Logan
             </p>
