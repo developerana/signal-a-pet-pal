@@ -9,6 +9,14 @@ import thor from "@/assets/pet-thor.jpg";
 import mel from "@/assets/pet-mel.jpg";
 import nina from "@/assets/pet-nina.jpg";
 import type { AppNotification, Occurrence, Pet } from "@/types";
+import { OWNER_USERNAME, SYSTEM_USERNAME } from "@/lib/username";
+
+/** Conta oficial do sistema — usada em avisos automáticos, nunca por pessoas. */
+export const systemAccount = {
+  name: "SinalizaPet",
+  username: SYSTEM_USERNAME,
+  role: "sistema" as const,
+};
 
 export const DEMO_PHOTOS = { logan, thor, mel, nina };
 
@@ -225,11 +233,22 @@ export const demoNotifications: AppNotification[] = [
 
 export const demoUser = {
   name: "Ana Helouise",
+  username: OWNER_USERNAME,
+  role: "admin" as const,
   city: "Belo Horizonte",
   memberSince: "Maio de 2026",
   signals: 8,
   photoUrl: "",
 };
+
+/** Usernames já ocupados na demo (inclui a conta do sistema). */
+export const demoTakenUsernames = [
+  SYSTEM_USERNAME.toLowerCase(),
+  OWNER_USERNAME,
+  "rvieira",
+  "camila.souza",
+  "pedrolima",
+];
 
 export const demoAdminStats = {
   activeOccurrences: 34,

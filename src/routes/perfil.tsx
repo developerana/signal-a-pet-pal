@@ -7,7 +7,9 @@ import { BRAND } from "@/lib/brand";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
-import { demoUser } from "@/data/demo";
+import { UsernameField } from "@/components/UsernameField";
+import { demoTakenUsernames, demoUser, systemAccount } from "@/data/demo";
+import { formatUsername } from "@/lib/username";
 
 export const Route = createFileRoute("/perfil")({
   head: () => ({
@@ -41,10 +43,14 @@ function ProfilePage() {
             <h2 className="truncate text-2xl font-extrabold uppercase leading-tight sm:text-3xl">
               {demoUser.name}
             </h2>
+            <p className="text-sm font-bold">{formatUsername(demoUser.username)}</p>
             <p className="text-sm text-muted-foreground">
               {demoUser.city} · desde {demoUser.memberSince}
             </p>
           </div>
+          <span className="eyebrow border-2 border-ink bg-accent px-2 py-0.5 sm:ml-auto">
+            administradora
+          </span>
         </Panel>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -60,6 +66,11 @@ function ProfilePage() {
               <Field label="Nome">
                 <Input defaultValue={demoUser.name} />
               </Field>
+              <UsernameField
+                defaultValue={demoUser.username}
+                taken={demoTakenUsernames.filter((u) => u !== demoUser.username)}
+                hint={`Único na rede. ${formatUsername(systemAccount.username)} é reservado para a conta oficial do sistema.`}
+              />
               <Field label="Cidade">
                 <Input defaultValue={demoUser.city} />
               </Field>
