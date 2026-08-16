@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Eye, House, MapPin, Search, Siren } from "lucide-react";
-import { BrandCat } from "@/components/BrandCat";
+
 import { BRAND } from "@/lib/brand";
 import { Button } from "@/components/ui/button";
 import { OccurrenceCard } from "@/components/OccurrenceCard";
