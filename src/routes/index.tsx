@@ -46,7 +46,7 @@ function Landing() {
 
       {/* HERO */}
       <section className="border-b-2 border-ink bg-accent/50">
-        <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-14">
+        <div className="relative mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
           <div className="absolute inset-0 sand-grid opacity-50" aria-hidden />
           <div className="relative flex flex-col gap-6">
             <div>
@@ -119,21 +119,9 @@ function Landing() {
               </Link>
             </div>
           </div>
-
-          <div className="relative mx-auto w-full max-w-sm lg:max-w-md">
-            <div className="poster p-8">
-              <p className="eyebrow text-center text-xs">Procura-se</p>
-              <BrandCat className="mx-auto mt-6 h-56 w-auto lg:h-64" />
-              <p className="mt-6 text-center font-display text-lg font-extrabold uppercase leading-tight">
-                Juntos, um pet volta pra casa
-              </p>
-              <p className="mt-2 text-center text-sm text-muted-foreground">
-                O gato preto é uma homenagem ao Logan, origem deste projeto.
-              </p>
-            </div>
-          </div>
         </div>
       </section>
+
 
 
       {/* NÚMEROS */}
