@@ -3,6 +3,8 @@ import { AppShell, PageHeader } from "@/components/AppShell";
 import { AdminNav } from "@/components/AdminNav";
 import { DemoNote } from "@/components/FormKit";
 import { Button } from "@/components/ui/button";
+import { systemAccount } from "@/data/demo";
+import { formatUsername, RESERVED_USERNAMES } from "@/lib/username";
 
 export const Route = createFileRoute("/admin/usuarios")({
   head: () => ({
@@ -23,10 +25,10 @@ export const Route = createFileRoute("/admin/usuarios")({
 });
 
 const users = [
-  { id: "u1", name: "Ana Helouise", city: "Belo Horizonte", signals: 8, status: "ativa" },
-  { id: "u2", name: "Rafael Vieira", city: "Belo Horizonte", signals: 3, status: "em análise" },
-  { id: "u3", name: "Camila Souza", city: "Contagem", signals: 12, status: "ativa" },
-  { id: "u4", name: "Pedro Lima", city: "Belo Horizonte", signals: 1, status: "suspensa" },
+  { id: "u1", name: "Ana Helouise", username: "anahelouise", city: "Belo Horizonte", signals: 8, status: "ativa" },
+  { id: "u2", name: "Rafael Vieira", username: "rvieira", city: "Belo Horizonte", signals: 3, status: "em análise" },
+  { id: "u3", name: "Camila Souza", username: "camila.souza", city: "Contagem", signals: 12, status: "ativa" },
+  { id: "u4", name: "Pedro Lima", username: "pedrolima", city: "Belo Horizonte", signals: 1, status: "suspensa" },
 ];
 
 function AdminUsers() {
@@ -34,11 +36,23 @@ function AdminUsers() {
     <AppShell>
       <PageHeader title="Usuários" description="Pessoas cadastradas na rede." />
       <AdminNav />
+      <div className="mt-6 grid gap-3 border-2 border-ink bg-secondary p-4 sm:flex sm:items-center sm:justify-between">
+        <div>
+          <p className="eyebrow text-muted-foreground">Conta oficial do sistema</p>
+          <p className="text-lg font-extrabold">{formatUsername(systemAccount.username)}</p>
+          <p className="text-xs text-muted-foreground">
+            Reservada para avisos automáticos — nenhuma pessoa pode usá-la.
+          </p>
+        </div>
+        <p className="max-w-sm text-xs text-muted-foreground">
+          Usernames reservados: {RESERVED_USERNAMES.map((u) => `@${u}`).join(", ")}.
+        </p>
+      </div>
       <div className="mt-6 overflow-x-auto border-2 border-ink bg-paper">
         <table className="w-full min-w-[640px] text-sm">
           <thead className="border-b-2 border-ink bg-secondary">
             <tr className="text-left">
-              {["Nome", "Cidade", "Sinalizações", "Situação", ""].map((h) => (
+              {["Nome", "Username", "Cidade", "Sinalizações", "Situação", ""].map((h) => (
                 <th key={h} className="eyebrow px-4 py-3">
                   {h}
                 </th>
@@ -49,6 +63,7 @@ function AdminUsers() {
             {users.map((u) => (
               <tr key={u.id} className="border-b border-ink/15 last:border-0">
                 <td className="px-4 py-3 font-semibold">{u.name}</td>
+                <td className="px-4 py-3 font-mono text-xs">{formatUsername(u.username)}</td>
                 <td className="px-4 py-3">{u.city}</td>
                 <td className="px-4 py-3">{u.signals}</td>
                 <td className="px-4 py-3">
