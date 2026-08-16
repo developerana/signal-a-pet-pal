@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { BrandMark } from "@/components/BrandMark";
+import loganSobre from "@/assets/logan-sobre.jpg.asset.json";
 import { BRAND } from "@/lib/brand";
 import { SiteLayout } from "@/components/SiteChrome";
 import { Button } from "@/components/ui/button";
