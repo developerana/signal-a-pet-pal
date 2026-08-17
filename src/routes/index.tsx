@@ -54,12 +54,12 @@ function Landing() {
               <span className="eyebrow inline-flex items-center gap-2 border-2 border-ink bg-paper px-3 py-1.5 text-xs">
                 <span className="h-2 w-2 bg-status-missing" /> Mural comunitário de busca
               </span>
-              <h1 className="mt-4 text-4xl font-black uppercase leading-[0.9] sm:text-5xl">
+              <h1 className="mt-6 text-4xl font-black uppercase leading-[1.05] sm:text-5xl lg:text-6xl">
                 Ajude um
                 <br />
                 animal perdido
                 <br />
-                <span className="bg-ink px-2 text-primary-foreground">a voltar pra casa</span>
+                <span className="mt-1 inline-block bg-ink px-3 py-0.5 text-primary-foreground">a voltar pra casa</span>
               </h1>
               <p className="mt-5 max-w-md text-base text-foreground/80">
                 O SinalizaPet transforma informação solta em pista útil: cada avistamento entra na
