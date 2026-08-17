@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Eye, House, MapPin, Search, Siren } from "lucide-react";
 
 import { BRAND } from "@/lib/brand";
+import { BrandCat } from "@/components/BrandCat";
 import { Button } from "@/components/ui/button";
 import { OccurrenceCard } from "@/components/OccurrenceCard";
 import { MapCanvas, MapLegend } from "@/components/MapCanvas";
@@ -47,77 +48,76 @@ function Landing() {
       {/* HERO */}
       <section className="border-b-2 border-ink bg-accent/50">
         <div className="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
-
           <div className="absolute inset-0 sand-grid opacity-50" aria-hidden />
-          <div className="relative flex flex-col gap-6">
+          <div className="relative grid items-start gap-10 lg:grid-cols-[1.15fr_0.85fr]">
             <div>
               <span className="eyebrow inline-flex items-center gap-2 border-2 border-ink bg-paper px-3 py-1.5 text-xs">
                 <span className="h-2 w-2 bg-status-missing" /> Mural comunitário de busca
               </span>
-              <h1 className="mt-4 text-4xl font-black uppercase leading-[0.9] sm:text-5xl lg:text-6xl">
-                AJUDE UM ANIMAL
+              <h1 className="mt-4 text-4xl font-black uppercase leading-[0.9] sm:text-5xl">
+                Ajude um
                 <br />
-                PERDIDO A
+                animal perdido
                 <br />
-                <span className="bg-ink px-2 text-primary-foreground">VOLTAR PRA CASA</span>
+                <span className="bg-ink px-2 text-primary-foreground">a voltar pra casa</span>
               </h1>
-              <p className="mt-5 max-w-xl text-lg text-foreground/80">
+              <p className="mt-5 max-w-md text-base text-foreground/80">
                 O SinalizaPet transforma informação solta em pista útil: cada avistamento entra na
                 linha do tempo da ocorrência e avisa o tutor na hora.
               </p>
+
+              <div className="poster mt-8 p-4 shadow-lift">
+                <p className="eyebrow">O que você precisa fazer?</p>
+                <div className="mt-3 grid gap-3 sm:grid-cols-3">
+                  <Button
+                    asChild
+                    className="h-auto flex-col items-start gap-1 whitespace-normal border-2 border-ink bg-status-missing px-3 py-3 text-left leading-tight text-primary-foreground hover:bg-status-missing/90"
+                  >
+                    <Link to="/nova-ocorrencia">
+                      <Siren className="h-4 w-4 shrink-0" />
+                      <span className="text-sm font-bold">Meu pet desapareceu</span>
+                    </Link>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="h-auto flex-col items-start gap-1 whitespace-normal border-2 border-ink bg-status-sighted px-3 py-3 text-left leading-tight text-primary hover:bg-status-sighted/80"
+                  >
+                    <Link to="/novo-avistamento" search={{ ocorrencia: undefined }}>
+                      <Eye className="h-4 w-4 shrink-0" />
+                      <span className="text-sm font-bold">Eu vi um animal</span>
+                    </Link>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="h-auto flex-col items-start gap-1 whitespace-normal border-2 border-ink bg-status-found px-3 py-3 text-left leading-tight text-primary-foreground hover:bg-status-found/90"
+                  >
+                    <Link to="/animal-encontrado">
+                      <House className="h-4 w-4 shrink-0" />
+                      <span className="text-sm font-bold">Encontrei um animal</span>
+                    </Link>
+                  </Button>
+                </div>
+                <Link
+                  to="/buscar"
+                  className="mt-3 flex items-center gap-3 border-2 border-ink bg-paper px-4 py-3 text-sm text-muted-foreground transition-colors hover:bg-secondary"
+                >
+                  <Search className="h-4 w-4 shrink-0" />
+                  <span className="truncate">Procure por um animal, bairro ou região...</span>
+                </Link>
+              </div>
             </div>
 
-            <div className="grid gap-4">
-              <Button
-                asChild
-                size="lg"
-                className="h-auto min-h-[4.5rem] flex-col items-start justify-center gap-1.5 whitespace-normal border-2 border-ink bg-status-missing px-5 py-4 text-left text-lg leading-tight text-primary-foreground shadow-soft hover:bg-status-missing/90"
-              >
-                <Link to="/nova-ocorrencia">
-                  <span className="flex items-center gap-2">
-                    <Siren className="h-5 w-5 shrink-0" />
-                    <span className="font-black uppercase">Meu pet desapareceu</span>
-                  </span>
-                  <span className="text-sm font-normal opacity-90">Abrir uma ocorrência agora</span>
-                </Link>
-              </Button>
-
-              <div className="grid gap-3 sm:grid-cols-2">
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="h-auto min-h-[3.75rem] flex-col items-start justify-center gap-1 whitespace-normal border-2 border-ink bg-status-sighted px-4 py-3 text-left leading-tight text-primary hover:bg-status-sighted/80"
-                >
-                  <Link to="/novo-avistamento" search={{ ocorrencia: undefined }}>
-                    <span className="flex items-center gap-2 font-bold">
-                      <Eye className="h-4 w-4 shrink-0" /> Eu vi um animal
-                    </span>
-                    <span className="text-xs font-normal opacity-80">Sinalizar avistamento</span>
-                  </Link>
-                </Button>
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="h-auto min-h-[3.75rem] flex-col items-start justify-center gap-1 whitespace-normal border-2 border-ink bg-status-found px-4 py-3 text-left leading-tight text-primary-foreground hover:bg-status-found/90"
-                >
-                  <Link to="/animal-encontrado">
-                    <span className="flex items-center gap-2 font-bold">
-                      <House className="h-4 w-4 shrink-0" /> Encontrei um animal
-                    </span>
-                    <span className="text-xs font-normal opacity-80">Informar resgate</span>
-                  </Link>
-                </Button>
-              </div>
-
-              <Link
-                to="/buscar"
-                className="flex items-center gap-3 border-2 border-ink bg-paper px-4 py-3 text-sm text-muted-foreground transition-colors hover:bg-secondary"
-              >
-                <Search className="h-4 w-4 shrink-0" />
-                <span className="truncate">Procure por um animal, bairro ou região...</span>
-              </Link>
+            <div className="poster p-6 text-center shadow-lift">
+              <p className="eyebrow">Procura-se</p>
+              <BrandCat className="mx-auto my-6 w-40 text-ink sm:w-48" />
+              <p className="text-lg font-extrabold uppercase leading-tight">
+                Juntos, um pet volta pra casa
+              </p>
+              <p className="mt-2 text-sm text-muted-foreground">
+                O gato preto é uma homenagem ao Logan, origem deste projeto.
+              </p>
             </div>
           </div>
         </div>
