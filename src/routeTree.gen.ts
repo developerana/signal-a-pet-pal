@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as CadastroRouteImport } from './routes/cadastro'
 import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
 import { Route as LoginRouteImport } from './routes/login'
@@ -35,6 +36,10 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CadastroRoute = CadastroRouteImport.update({
   id: '/cadastro',
   path: '/cadastro',
@@ -57,88 +62,88 @@ const SobreRoute = SobreRouteImport.update({
 } as any)
 const AuthenticatedAnimalEncontradoRoute =
   AuthenticatedAnimalEncontradoRouteImport.update({
-    id: '/_authenticated/animal-encontrado',
+    id: '/animal-encontrado',
     path: '/animal-encontrado',
-    getParentRoute: () => rootRouteImport,
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedBuscarRoute = AuthenticatedBuscarRouteImport.update({
-  id: '/_authenticated/buscar',
+  id: '/buscar',
   path: '/buscar',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
-  id: '/_authenticated/dashboard',
+  id: '/dashboard',
   path: '/dashboard',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedMapaRoute = AuthenticatedMapaRouteImport.update({
-  id: '/_authenticated/mapa',
+  id: '/mapa',
   path: '/mapa',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedMeusAnimaisRoute =
   AuthenticatedMeusAnimaisRouteImport.update({
-    id: '/_authenticated/meus-animais',
+    id: '/meus-animais',
     path: '/meus-animais',
-    getParentRoute: () => rootRouteImport,
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedMinhasOcorrenciasRoute =
   AuthenticatedMinhasOcorrenciasRouteImport.update({
-    id: '/_authenticated/minhas-ocorrencias',
+    id: '/minhas-ocorrencias',
     path: '/minhas-ocorrencias',
-    getParentRoute: () => rootRouteImport,
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedNotificacoesRoute =
   AuthenticatedNotificacoesRouteImport.update({
-    id: '/_authenticated/notificacoes',
+    id: '/notificacoes',
     path: '/notificacoes',
-    getParentRoute: () => rootRouteImport,
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedNovaOcorrenciaRoute =
   AuthenticatedNovaOcorrenciaRouteImport.update({
-    id: '/_authenticated/nova-ocorrencia',
+    id: '/nova-ocorrencia',
     path: '/nova-ocorrencia',
-    getParentRoute: () => rootRouteImport,
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedNovoAvistamentoRoute =
   AuthenticatedNovoAvistamentoRouteImport.update({
-    id: '/_authenticated/novo-avistamento',
+    id: '/novo-avistamento',
     path: '/novo-avistamento',
-    getParentRoute: () => rootRouteImport,
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedPerfilRoute = AuthenticatedPerfilRouteImport.update({
-  id: '/_authenticated/perfil',
+  id: '/perfil',
   path: '/perfil',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
-  id: '/_authenticated/admin/',
+  id: '/admin/',
   path: '/admin/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedAdminDenunciasRoute =
   AuthenticatedAdminDenunciasRouteImport.update({
-    id: '/_authenticated/admin/denuncias',
+    id: '/admin/denuncias',
     path: '/admin/denuncias',
-    getParentRoute: () => rootRouteImport,
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedAdminOcorrenciasRoute =
   AuthenticatedAdminOcorrenciasRouteImport.update({
-    id: '/_authenticated/admin/ocorrencias',
+    id: '/admin/ocorrencias',
     path: '/admin/ocorrencias',
-    getParentRoute: () => rootRouteImport,
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedAdminUsuariosRoute =
   AuthenticatedAdminUsuariosRouteImport.update({
-    id: '/_authenticated/admin/usuarios',
+    id: '/admin/usuarios',
     path: '/admin/usuarios',
-    getParentRoute: () => rootRouteImport,
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedOcorrenciaIdRoute =
   AuthenticatedOcorrenciaIdRouteImport.update({
-    id: '/_authenticated/ocorrencia/$id',
+    id: '/ocorrencia/$id',
     path: '/ocorrencia/$id',
-    getParentRoute: () => rootRouteImport,
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
@@ -188,6 +193,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/cadastro': typeof CadastroRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/login': typeof LoginRoute
@@ -256,6 +262,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
     | '/cadastro'
     | '/como-funciona'
     | '/login'
@@ -279,25 +286,11 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   CadastroRoute: typeof CadastroRoute
   ComoFuncionaRoute: typeof ComoFuncionaRoute
   LoginRoute: typeof LoginRoute
   SobreRoute: typeof SobreRoute
-  AuthenticatedAnimalEncontradoRoute: typeof AuthenticatedAnimalEncontradoRoute
-  AuthenticatedBuscarRoute: typeof AuthenticatedBuscarRoute
-  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
-  AuthenticatedMapaRoute: typeof AuthenticatedMapaRoute
-  AuthenticatedMeusAnimaisRoute: typeof AuthenticatedMeusAnimaisRoute
-  AuthenticatedMinhasOcorrenciasRoute: typeof AuthenticatedMinhasOcorrenciasRoute
-  AuthenticatedNotificacoesRoute: typeof AuthenticatedNotificacoesRoute
-  AuthenticatedNovaOcorrenciaRoute: typeof AuthenticatedNovaOcorrenciaRoute
-  AuthenticatedNovoAvistamentoRoute: typeof AuthenticatedNovoAvistamentoRoute
-  AuthenticatedPerfilRoute: typeof AuthenticatedPerfilRoute
-  AuthenticatedAdminDenunciasRoute: typeof AuthenticatedAdminDenunciasRoute
-  AuthenticatedAdminOcorrenciasRoute: typeof AuthenticatedAdminOcorrenciasRoute
-  AuthenticatedAdminUsuariosRoute: typeof AuthenticatedAdminUsuariosRoute
-  AuthenticatedOcorrenciaIdRoute: typeof AuthenticatedOcorrenciaIdRoute
-  AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -307,6 +300,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cadastro': {
@@ -342,115 +342,128 @@ declare module '@tanstack/react-router' {
       path: '/animal-encontrado'
       fullPath: '/animal-encontrado'
       preLoaderRoute: typeof AuthenticatedAnimalEncontradoRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/buscar': {
       id: '/_authenticated/buscar'
       path: '/buscar'
       fullPath: '/buscar'
       preLoaderRoute: typeof AuthenticatedBuscarRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/dashboard': {
       id: '/_authenticated/dashboard'
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/mapa': {
       id: '/_authenticated/mapa'
       path: '/mapa'
       fullPath: '/mapa'
       preLoaderRoute: typeof AuthenticatedMapaRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/meus-animais': {
       id: '/_authenticated/meus-animais'
       path: '/meus-animais'
       fullPath: '/meus-animais'
       preLoaderRoute: typeof AuthenticatedMeusAnimaisRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/minhas-ocorrencias': {
       id: '/_authenticated/minhas-ocorrencias'
       path: '/minhas-ocorrencias'
       fullPath: '/minhas-ocorrencias'
       preLoaderRoute: typeof AuthenticatedMinhasOcorrenciasRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/notificacoes': {
       id: '/_authenticated/notificacoes'
       path: '/notificacoes'
       fullPath: '/notificacoes'
       preLoaderRoute: typeof AuthenticatedNotificacoesRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/nova-ocorrencia': {
       id: '/_authenticated/nova-ocorrencia'
       path: '/nova-ocorrencia'
       fullPath: '/nova-ocorrencia'
       preLoaderRoute: typeof AuthenticatedNovaOcorrenciaRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/novo-avistamento': {
       id: '/_authenticated/novo-avistamento'
       path: '/novo-avistamento'
       fullPath: '/novo-avistamento'
       preLoaderRoute: typeof AuthenticatedNovoAvistamentoRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/perfil': {
       id: '/_authenticated/perfil'
       path: '/perfil'
       fullPath: '/perfil'
       preLoaderRoute: typeof AuthenticatedPerfilRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/admin/': {
       id: '/_authenticated/admin/'
       path: '/admin'
       fullPath: '/admin/'
       preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/admin/denuncias': {
       id: '/_authenticated/admin/denuncias'
       path: '/admin/denuncias'
       fullPath: '/admin/denuncias'
       preLoaderRoute: typeof AuthenticatedAdminDenunciasRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/admin/ocorrencias': {
       id: '/_authenticated/admin/ocorrencias'
       path: '/admin/ocorrencias'
       fullPath: '/admin/ocorrencias'
       preLoaderRoute: typeof AuthenticatedAdminOcorrenciasRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/admin/usuarios': {
       id: '/_authenticated/admin/usuarios'
       path: '/admin/usuarios'
       fullPath: '/admin/usuarios'
       preLoaderRoute: typeof AuthenticatedAdminUsuariosRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/ocorrencia/$id': {
       id: '/_authenticated/ocorrencia/$id'
       path: '/ocorrencia/$id'
       fullPath: '/ocorrencia/$id'
       preLoaderRoute: typeof AuthenticatedOcorrenciaIdRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
   }
 }
 
-const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  CadastroRoute: CadastroRoute,
-  ComoFuncionaRoute: ComoFuncionaRoute,
-  LoginRoute: LoginRoute,
-  SobreRoute: SobreRoute,
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAnimalEncontradoRoute: typeof AuthenticatedAnimalEncontradoRoute
+  AuthenticatedBuscarRoute: typeof AuthenticatedBuscarRoute
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedMapaRoute: typeof AuthenticatedMapaRoute
+  AuthenticatedMeusAnimaisRoute: typeof AuthenticatedMeusAnimaisRoute
+  AuthenticatedMinhasOcorrenciasRoute: typeof AuthenticatedMinhasOcorrenciasRoute
+  AuthenticatedNotificacoesRoute: typeof AuthenticatedNotificacoesRoute
+  AuthenticatedNovaOcorrenciaRoute: typeof AuthenticatedNovaOcorrenciaRoute
+  AuthenticatedNovoAvistamentoRoute: typeof AuthenticatedNovoAvistamentoRoute
+  AuthenticatedPerfilRoute: typeof AuthenticatedPerfilRoute
+  AuthenticatedAdminDenunciasRoute: typeof AuthenticatedAdminDenunciasRoute
+  AuthenticatedAdminOcorrenciasRoute: typeof AuthenticatedAdminOcorrenciasRoute
+  AuthenticatedAdminUsuariosRoute: typeof AuthenticatedAdminUsuariosRoute
+  AuthenticatedOcorrenciaIdRoute: typeof AuthenticatedOcorrenciaIdRoute
+  AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAnimalEncontradoRoute: AuthenticatedAnimalEncontradoRoute,
   AuthenticatedBuscarRoute: AuthenticatedBuscarRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
@@ -466,6 +479,18 @@ const rootRouteChildren: RootRouteChildren = {
   AuthenticatedAdminUsuariosRoute: AuthenticatedAdminUsuariosRoute,
   AuthenticatedOcorrenciaIdRoute: AuthenticatedOcorrenciaIdRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
+const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  CadastroRoute: CadastroRoute,
+  ComoFuncionaRoute: ComoFuncionaRoute,
+  LoginRoute: LoginRoute,
+  SobreRoute: SobreRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
