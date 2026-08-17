@@ -5,7 +5,7 @@ import { DemoNote } from "@/components/FormKit";
 import { Button } from "@/components/ui/button";
 import { demoPets } from "@/data/demo";
 
-export const Route = createFileRoute("/meus-animais")({
+export const Route = createFileRoute("/_authenticated/meus-animais")({
   head: () => ({
     meta: [
       { title: "Meus animais — SinalizaPet" },

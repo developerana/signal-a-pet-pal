@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { demoOccurrences } from "@/data/demo";
 import { cn } from "@/lib/utils";
 
-export const Route = createFileRoute("/ocorrencia/$id")({
+export const Route = createFileRoute("/_authenticated/ocorrencia/$id")({
   loader: ({ params }) => {
     const occurrence = demoOccurrences.find((o) => o.id === params.id);
     if (!occurrence) throw notFound();

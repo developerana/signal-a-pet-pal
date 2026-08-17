@@ -10,39 +10,35 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AnimalEncontradoRouteImport } from './routes/animal-encontrado'
-import { Route as BuscarRouteImport } from './routes/buscar'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as CadastroRouteImport } from './routes/cadastro'
 import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
-import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as LoginRouteImport } from './routes/login'
-import { Route as MapaRouteImport } from './routes/mapa'
-import { Route as MeusAnimaisRouteImport } from './routes/meus-animais'
-import { Route as MinhasOcorrenciasRouteImport } from './routes/minhas-ocorrencias'
-import { Route as NotificacoesRouteImport } from './routes/notificacoes'
-import { Route as NovaOcorrenciaRouteImport } from './routes/nova-ocorrencia'
-import { Route as NovoAvistamentoRouteImport } from './routes/novo-avistamento'
-import { Route as PerfilRouteImport } from './routes/perfil'
 import { Route as SobreRouteImport } from './routes/sobre'
-import { Route as AdminIndexRouteImport } from './routes/admin.index'
-import { Route as AdminDenunciasRouteImport } from './routes/admin.denuncias'
-import { Route as AdminOcorrenciasRouteImport } from './routes/admin.ocorrencias'
-import { Route as AdminUsuariosRouteImport } from './routes/admin.usuarios'
-import { Route as OcorrenciaIdRouteImport } from './routes/ocorrencia.$id'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
+import { Route as AuthenticatedAnimalEncontradoRouteImport } from './routes/_authenticated/animal-encontrado'
+import { Route as AuthenticatedBuscarRouteImport } from './routes/_authenticated/buscar'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedMapaRouteImport } from './routes/_authenticated/mapa'
+import { Route as AuthenticatedMeusAnimaisRouteImport } from './routes/_authenticated/meus-animais'
+import { Route as AuthenticatedMinhasOcorrenciasRouteImport } from './routes/_authenticated/minhas-ocorrencias'
+import { Route as AuthenticatedNotificacoesRouteImport } from './routes/_authenticated/notificacoes'
+import { Route as AuthenticatedNovaOcorrenciaRouteImport } from './routes/_authenticated/nova-ocorrencia'
+import { Route as AuthenticatedNovoAvistamentoRouteImport } from './routes/_authenticated/novo-avistamento'
+import { Route as AuthenticatedPerfilRouteImport } from './routes/_authenticated/perfil'
+import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
+import { Route as AuthenticatedAdminDenunciasRouteImport } from './routes/_authenticated/admin.denuncias'
+import { Route as AuthenticatedAdminOcorrenciasRouteImport } from './routes/_authenticated/admin.ocorrencias'
+import { Route as AuthenticatedAdminUsuariosRouteImport } from './routes/_authenticated/admin.usuarios'
+import { Route as AuthenticatedOcorrenciaIdRouteImport } from './routes/_authenticated/ocorrencia.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AnimalEncontradoRoute = AnimalEncontradoRouteImport.update({
-  id: '/animal-encontrado',
-  path: '/animal-encontrado',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BuscarRoute = BuscarRouteImport.update({
-  id: '/buscar',
-  path: '/buscar',
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CadastroRoute = CadastroRouteImport.update({
@@ -55,49 +51,9 @@ const ComoFuncionaRoute = ComoFuncionaRouteImport.update({
   path: '/como-funciona',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DashboardRoute = DashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MapaRoute = MapaRouteImport.update({
-  id: '/mapa',
-  path: '/mapa',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MeusAnimaisRoute = MeusAnimaisRouteImport.update({
-  id: '/meus-animais',
-  path: '/meus-animais',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MinhasOcorrenciasRoute = MinhasOcorrenciasRouteImport.update({
-  id: '/minhas-ocorrencias',
-  path: '/minhas-ocorrencias',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const NotificacoesRoute = NotificacoesRouteImport.update({
-  id: '/notificacoes',
-  path: '/notificacoes',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const NovaOcorrenciaRoute = NovaOcorrenciaRouteImport.update({
-  id: '/nova-ocorrencia',
-  path: '/nova-ocorrencia',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const NovoAvistamentoRoute = NovoAvistamentoRouteImport.update({
-  id: '/novo-avistamento',
-  path: '/novo-avistamento',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PerfilRoute = PerfilRouteImport.update({
-  id: '/perfil',
-  path: '/perfil',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SobreRoute = SobreRouteImport.update({
@@ -105,109 +61,179 @@ const SobreRoute = SobreRouteImport.update({
   path: '/sobre',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AdminIndexRoute = AdminIndexRouteImport.update({
-  id: '/admin/',
-  path: '/admin/',
-  getParentRoute: () => rootRouteImport,
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const AdminDenunciasRoute = AdminDenunciasRouteImport.update({
-  id: '/admin/denuncias',
-  path: '/admin/denuncias',
-  getParentRoute: () => rootRouteImport,
+const AuthenticatedAnimalEncontradoRoute =
+  AuthenticatedAnimalEncontradoRouteImport.update({
+    id: '/animal-encontrado',
+    path: '/animal-encontrado',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedBuscarRoute = AuthenticatedBuscarRouteImport.update({
+  id: '/buscar',
+  path: '/buscar',
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const AdminOcorrenciasRoute = AdminOcorrenciasRouteImport.update({
-  id: '/admin/ocorrencias',
-  path: '/admin/ocorrencias',
-  getParentRoute: () => rootRouteImport,
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const AdminUsuariosRoute = AdminUsuariosRouteImport.update({
-  id: '/admin/usuarios',
-  path: '/admin/usuarios',
-  getParentRoute: () => rootRouteImport,
+const AuthenticatedMapaRoute = AuthenticatedMapaRouteImport.update({
+  id: '/mapa',
+  path: '/mapa',
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const OcorrenciaIdRoute = OcorrenciaIdRouteImport.update({
-  id: '/ocorrencia/$id',
-  path: '/ocorrencia/$id',
-  getParentRoute: () => rootRouteImport,
+const AuthenticatedMeusAnimaisRoute =
+  AuthenticatedMeusAnimaisRouteImport.update({
+    id: '/meus-animais',
+    path: '/meus-animais',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedMinhasOcorrenciasRoute =
+  AuthenticatedMinhasOcorrenciasRouteImport.update({
+    id: '/minhas-ocorrencias',
+    path: '/minhas-ocorrencias',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedNotificacoesRoute =
+  AuthenticatedNotificacoesRouteImport.update({
+    id: '/notificacoes',
+    path: '/notificacoes',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedNovaOcorrenciaRoute =
+  AuthenticatedNovaOcorrenciaRouteImport.update({
+    id: '/nova-ocorrencia',
+    path: '/nova-ocorrencia',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedNovoAvistamentoRoute =
+  AuthenticatedNovoAvistamentoRouteImport.update({
+    id: '/novo-avistamento',
+    path: '/novo-avistamento',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedPerfilRoute = AuthenticatedPerfilRouteImport.update({
+  id: '/perfil',
+  path: '/perfil',
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
+const AuthenticatedAdminDenunciasRoute =
+  AuthenticatedAdminDenunciasRouteImport.update({
+    id: '/denuncias',
+    path: '/denuncias',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminOcorrenciasRoute =
+  AuthenticatedAdminOcorrenciasRouteImport.update({
+    id: '/ocorrencias',
+    path: '/ocorrencias',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminUsuariosRoute =
+  AuthenticatedAdminUsuariosRouteImport.update({
+    id: '/usuarios',
+    path: '/usuarios',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedOcorrenciaIdRoute =
+  AuthenticatedOcorrenciaIdRouteImport.update({
+    id: '/ocorrencia/$id',
+    path: '/ocorrencia/$id',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/animal-encontrado': typeof AnimalEncontradoRoute
-  '/buscar': typeof BuscarRoute
   '/cadastro': typeof CadastroRoute
   '/como-funciona': typeof ComoFuncionaRoute
-  '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
-  '/mapa': typeof MapaRoute
-  '/meus-animais': typeof MeusAnimaisRoute
-  '/minhas-ocorrencias': typeof MinhasOcorrenciasRoute
-  '/notificacoes': typeof NotificacoesRoute
-  '/nova-ocorrencia': typeof NovaOcorrenciaRoute
-  '/novo-avistamento': typeof NovoAvistamentoRoute
-  '/perfil': typeof PerfilRoute
   '/sobre': typeof SobreRoute
-  '/admin/denuncias': typeof AdminDenunciasRoute
-  '/admin/ocorrencias': typeof AdminOcorrenciasRoute
-  '/admin/usuarios': typeof AdminUsuariosRoute
-  '/ocorrencia/$id': typeof OcorrenciaIdRoute
-  '/admin/': typeof AdminIndexRoute
+  '/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/animal-encontrado': typeof AuthenticatedAnimalEncontradoRoute
+  '/buscar': typeof AuthenticatedBuscarRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/mapa': typeof AuthenticatedMapaRoute
+  '/meus-animais': typeof AuthenticatedMeusAnimaisRoute
+  '/minhas-ocorrencias': typeof AuthenticatedMinhasOcorrenciasRoute
+  '/notificacoes': typeof AuthenticatedNotificacoesRoute
+  '/nova-ocorrencia': typeof AuthenticatedNovaOcorrenciaRoute
+  '/novo-avistamento': typeof AuthenticatedNovoAvistamentoRoute
+  '/perfil': typeof AuthenticatedPerfilRoute
+  '/admin/denuncias': typeof AuthenticatedAdminDenunciasRoute
+  '/admin/ocorrencias': typeof AuthenticatedAdminOcorrenciasRoute
+  '/admin/usuarios': typeof AuthenticatedAdminUsuariosRoute
+  '/ocorrencia/$id': typeof AuthenticatedOcorrenciaIdRoute
+  '/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/animal-encontrado': typeof AnimalEncontradoRoute
-  '/buscar': typeof BuscarRoute
   '/cadastro': typeof CadastroRoute
   '/como-funciona': typeof ComoFuncionaRoute
-  '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
-  '/mapa': typeof MapaRoute
-  '/meus-animais': typeof MeusAnimaisRoute
-  '/minhas-ocorrencias': typeof MinhasOcorrenciasRoute
-  '/notificacoes': typeof NotificacoesRoute
-  '/nova-ocorrencia': typeof NovaOcorrenciaRoute
-  '/novo-avistamento': typeof NovoAvistamentoRoute
-  '/perfil': typeof PerfilRoute
   '/sobre': typeof SobreRoute
-  '/admin/denuncias': typeof AdminDenunciasRoute
-  '/admin/ocorrencias': typeof AdminOcorrenciasRoute
-  '/admin/usuarios': typeof AdminUsuariosRoute
-  '/ocorrencia/$id': typeof OcorrenciaIdRoute
-  '/admin': typeof AdminIndexRoute
+  '/animal-encontrado': typeof AuthenticatedAnimalEncontradoRoute
+  '/buscar': typeof AuthenticatedBuscarRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/mapa': typeof AuthenticatedMapaRoute
+  '/meus-animais': typeof AuthenticatedMeusAnimaisRoute
+  '/minhas-ocorrencias': typeof AuthenticatedMinhasOcorrenciasRoute
+  '/notificacoes': typeof AuthenticatedNotificacoesRoute
+  '/nova-ocorrencia': typeof AuthenticatedNovaOcorrenciaRoute
+  '/novo-avistamento': typeof AuthenticatedNovoAvistamentoRoute
+  '/perfil': typeof AuthenticatedPerfilRoute
+  '/admin/denuncias': typeof AuthenticatedAdminDenunciasRoute
+  '/admin/ocorrencias': typeof AuthenticatedAdminOcorrenciasRoute
+  '/admin/usuarios': typeof AuthenticatedAdminUsuariosRoute
+  '/ocorrencia/$id': typeof AuthenticatedOcorrenciaIdRoute
+  '/admin': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/animal-encontrado': typeof AnimalEncontradoRoute
-  '/buscar': typeof BuscarRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/cadastro': typeof CadastroRoute
   '/como-funciona': typeof ComoFuncionaRoute
-  '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
-  '/mapa': typeof MapaRoute
-  '/meus-animais': typeof MeusAnimaisRoute
-  '/minhas-ocorrencias': typeof MinhasOcorrenciasRoute
-  '/notificacoes': typeof NotificacoesRoute
-  '/nova-ocorrencia': typeof NovaOcorrenciaRoute
-  '/novo-avistamento': typeof NovoAvistamentoRoute
-  '/perfil': typeof PerfilRoute
   '/sobre': typeof SobreRoute
-  '/admin/denuncias': typeof AdminDenunciasRoute
-  '/admin/ocorrencias': typeof AdminOcorrenciasRoute
-  '/admin/usuarios': typeof AdminUsuariosRoute
-  '/ocorrencia/$id': typeof OcorrenciaIdRoute
-  '/admin/': typeof AdminIndexRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/_authenticated/animal-encontrado': typeof AuthenticatedAnimalEncontradoRoute
+  '/_authenticated/buscar': typeof AuthenticatedBuscarRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/mapa': typeof AuthenticatedMapaRoute
+  '/_authenticated/meus-animais': typeof AuthenticatedMeusAnimaisRoute
+  '/_authenticated/minhas-ocorrencias': typeof AuthenticatedMinhasOcorrenciasRoute
+  '/_authenticated/notificacoes': typeof AuthenticatedNotificacoesRoute
+  '/_authenticated/nova-ocorrencia': typeof AuthenticatedNovaOcorrenciaRoute
+  '/_authenticated/novo-avistamento': typeof AuthenticatedNovoAvistamentoRoute
+  '/_authenticated/perfil': typeof AuthenticatedPerfilRoute
+  '/_authenticated/admin/denuncias': typeof AuthenticatedAdminDenunciasRoute
+  '/_authenticated/admin/ocorrencias': typeof AuthenticatedAdminOcorrenciasRoute
+  '/_authenticated/admin/usuarios': typeof AuthenticatedAdminUsuariosRoute
+  '/_authenticated/ocorrencia/$id': typeof AuthenticatedOcorrenciaIdRoute
+  '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/animal-encontrado'
-    | '/buscar'
     | '/cadastro'
     | '/como-funciona'
-    | '/dashboard'
     | '/login'
+    | '/sobre'
+    | '/admin'
+    | '/animal-encontrado'
+    | '/buscar'
+    | '/dashboard'
     | '/mapa'
     | '/meus-animais'
     | '/minhas-ocorrencias'
@@ -215,7 +241,6 @@ export interface FileRouteTypes {
     | '/nova-ocorrencia'
     | '/novo-avistamento'
     | '/perfil'
-    | '/sobre'
     | '/admin/denuncias'
     | '/admin/ocorrencias'
     | '/admin/usuarios'
@@ -224,12 +249,13 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/animal-encontrado'
-    | '/buscar'
     | '/cadastro'
     | '/como-funciona'
-    | '/dashboard'
     | '/login'
+    | '/sobre'
+    | '/animal-encontrado'
+    | '/buscar'
+    | '/dashboard'
     | '/mapa'
     | '/meus-animais'
     | '/minhas-ocorrencias'
@@ -237,7 +263,6 @@ export interface FileRouteTypes {
     | '/nova-ocorrencia'
     | '/novo-avistamento'
     | '/perfil'
-    | '/sobre'
     | '/admin/denuncias'
     | '/admin/ocorrencias'
     | '/admin/usuarios'
@@ -246,48 +271,36 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/animal-encontrado'
-    | '/buscar'
+    | '/_authenticated'
     | '/cadastro'
     | '/como-funciona'
-    | '/dashboard'
     | '/login'
-    | '/mapa'
-    | '/meus-animais'
-    | '/minhas-ocorrencias'
-    | '/notificacoes'
-    | '/nova-ocorrencia'
-    | '/novo-avistamento'
-    | '/perfil'
     | '/sobre'
-    | '/admin/denuncias'
-    | '/admin/ocorrencias'
-    | '/admin/usuarios'
-    | '/ocorrencia/$id'
-    | '/admin/'
+    | '/_authenticated/admin'
+    | '/_authenticated/animal-encontrado'
+    | '/_authenticated/buscar'
+    | '/_authenticated/dashboard'
+    | '/_authenticated/mapa'
+    | '/_authenticated/meus-animais'
+    | '/_authenticated/minhas-ocorrencias'
+    | '/_authenticated/notificacoes'
+    | '/_authenticated/nova-ocorrencia'
+    | '/_authenticated/novo-avistamento'
+    | '/_authenticated/perfil'
+    | '/_authenticated/admin/denuncias'
+    | '/_authenticated/admin/ocorrencias'
+    | '/_authenticated/admin/usuarios'
+    | '/_authenticated/ocorrencia/$id'
+    | '/_authenticated/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AnimalEncontradoRoute: typeof AnimalEncontradoRoute
-  BuscarRoute: typeof BuscarRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   CadastroRoute: typeof CadastroRoute
   ComoFuncionaRoute: typeof ComoFuncionaRoute
-  DashboardRoute: typeof DashboardRoute
   LoginRoute: typeof LoginRoute
-  MapaRoute: typeof MapaRoute
-  MeusAnimaisRoute: typeof MeusAnimaisRoute
-  MinhasOcorrenciasRoute: typeof MinhasOcorrenciasRoute
-  NotificacoesRoute: typeof NotificacoesRoute
-  NovaOcorrenciaRoute: typeof NovaOcorrenciaRoute
-  NovoAvistamentoRoute: typeof NovoAvistamentoRoute
-  PerfilRoute: typeof PerfilRoute
   SobreRoute: typeof SobreRoute
-  AdminDenunciasRoute: typeof AdminDenunciasRoute
-  AdminOcorrenciasRoute: typeof AdminOcorrenciasRoute
-  AdminUsuariosRoute: typeof AdminUsuariosRoute
-  OcorrenciaIdRoute: typeof OcorrenciaIdRoute
-  AdminIndexRoute: typeof AdminIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -299,18 +312,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/animal-encontrado': {
-      id: '/animal-encontrado'
-      path: '/animal-encontrado'
-      fullPath: '/animal-encontrado'
-      preLoaderRoute: typeof AnimalEncontradoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/buscar': {
-      id: '/buscar'
-      path: '/buscar'
-      fullPath: '/buscar'
-      preLoaderRoute: typeof BuscarRouteImport
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cadastro': {
@@ -327,67 +333,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ComoFuncionaRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/dashboard': {
-      id: '/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/login': {
       id: '/login'
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/mapa': {
-      id: '/mapa'
-      path: '/mapa'
-      fullPath: '/mapa'
-      preLoaderRoute: typeof MapaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/meus-animais': {
-      id: '/meus-animais'
-      path: '/meus-animais'
-      fullPath: '/meus-animais'
-      preLoaderRoute: typeof MeusAnimaisRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/minhas-ocorrencias': {
-      id: '/minhas-ocorrencias'
-      path: '/minhas-ocorrencias'
-      fullPath: '/minhas-ocorrencias'
-      preLoaderRoute: typeof MinhasOcorrenciasRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/notificacoes': {
-      id: '/notificacoes'
-      path: '/notificacoes'
-      fullPath: '/notificacoes'
-      preLoaderRoute: typeof NotificacoesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/nova-ocorrencia': {
-      id: '/nova-ocorrencia'
-      path: '/nova-ocorrencia'
-      fullPath: '/nova-ocorrencia'
-      preLoaderRoute: typeof NovaOcorrenciaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/novo-avistamento': {
-      id: '/novo-avistamento'
-      path: '/novo-avistamento'
-      fullPath: '/novo-avistamento'
-      preLoaderRoute: typeof NovoAvistamentoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/perfil': {
-      id: '/perfil'
-      path: '/perfil'
-      fullPath: '/perfil'
-      preLoaderRoute: typeof PerfilRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sobre': {
@@ -397,65 +347,178 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SobreRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/admin/': {
-      id: '/admin/'
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
       path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/animal-encontrado': {
+      id: '/_authenticated/animal-encontrado'
+      path: '/animal-encontrado'
+      fullPath: '/animal-encontrado'
+      preLoaderRoute: typeof AuthenticatedAnimalEncontradoRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/buscar': {
+      id: '/_authenticated/buscar'
+      path: '/buscar'
+      fullPath: '/buscar'
+      preLoaderRoute: typeof AuthenticatedBuscarRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/mapa': {
+      id: '/_authenticated/mapa'
+      path: '/mapa'
+      fullPath: '/mapa'
+      preLoaderRoute: typeof AuthenticatedMapaRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/meus-animais': {
+      id: '/_authenticated/meus-animais'
+      path: '/meus-animais'
+      fullPath: '/meus-animais'
+      preLoaderRoute: typeof AuthenticatedMeusAnimaisRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/minhas-ocorrencias': {
+      id: '/_authenticated/minhas-ocorrencias'
+      path: '/minhas-ocorrencias'
+      fullPath: '/minhas-ocorrencias'
+      preLoaderRoute: typeof AuthenticatedMinhasOcorrenciasRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/notificacoes': {
+      id: '/_authenticated/notificacoes'
+      path: '/notificacoes'
+      fullPath: '/notificacoes'
+      preLoaderRoute: typeof AuthenticatedNotificacoesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/nova-ocorrencia': {
+      id: '/_authenticated/nova-ocorrencia'
+      path: '/nova-ocorrencia'
+      fullPath: '/nova-ocorrencia'
+      preLoaderRoute: typeof AuthenticatedNovaOcorrenciaRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/novo-avistamento': {
+      id: '/_authenticated/novo-avistamento'
+      path: '/novo-avistamento'
+      fullPath: '/novo-avistamento'
+      preLoaderRoute: typeof AuthenticatedNovoAvistamentoRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/perfil': {
+      id: '/_authenticated/perfil'
+      path: '/perfil'
+      fullPath: '/perfil'
+      preLoaderRoute: typeof AuthenticatedPerfilRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin/': {
+      id: '/_authenticated/admin/'
+      path: '/'
       fullPath: '/admin/'
-      preLoaderRoute: typeof AdminIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
     }
-    '/admin/denuncias': {
-      id: '/admin/denuncias'
-      path: '/admin/denuncias'
+    '/_authenticated/admin/denuncias': {
+      id: '/_authenticated/admin/denuncias'
+      path: '/denuncias'
       fullPath: '/admin/denuncias'
-      preLoaderRoute: typeof AdminDenunciasRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedAdminDenunciasRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
     }
-    '/admin/ocorrencias': {
-      id: '/admin/ocorrencias'
-      path: '/admin/ocorrencias'
+    '/_authenticated/admin/ocorrencias': {
+      id: '/_authenticated/admin/ocorrencias'
+      path: '/ocorrencias'
       fullPath: '/admin/ocorrencias'
-      preLoaderRoute: typeof AdminOcorrenciasRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedAdminOcorrenciasRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
     }
-    '/admin/usuarios': {
-      id: '/admin/usuarios'
-      path: '/admin/usuarios'
+    '/_authenticated/admin/usuarios': {
+      id: '/_authenticated/admin/usuarios'
+      path: '/usuarios'
       fullPath: '/admin/usuarios'
-      preLoaderRoute: typeof AdminUsuariosRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedAdminUsuariosRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
     }
-    '/ocorrencia/$id': {
-      id: '/ocorrencia/$id'
+    '/_authenticated/ocorrencia/$id': {
+      id: '/_authenticated/ocorrencia/$id'
       path: '/ocorrencia/$id'
       fullPath: '/ocorrencia/$id'
-      preLoaderRoute: typeof OcorrenciaIdRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedOcorrenciaIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
   }
 }
 
+interface AuthenticatedAdminRouteChildren {
+  AuthenticatedAdminDenunciasRoute: typeof AuthenticatedAdminDenunciasRoute
+  AuthenticatedAdminOcorrenciasRoute: typeof AuthenticatedAdminOcorrenciasRoute
+  AuthenticatedAdminUsuariosRoute: typeof AuthenticatedAdminUsuariosRoute
+  AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
+}
+
+const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
+  AuthenticatedAdminDenunciasRoute: AuthenticatedAdminDenunciasRoute,
+  AuthenticatedAdminOcorrenciasRoute: AuthenticatedAdminOcorrenciasRoute,
+  AuthenticatedAdminUsuariosRoute: AuthenticatedAdminUsuariosRoute,
+  AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
+}
+
+const AuthenticatedAdminRouteWithChildren =
+  AuthenticatedAdminRoute._addFileChildren(AuthenticatedAdminRouteChildren)
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRouteWithChildren
+  AuthenticatedAnimalEncontradoRoute: typeof AuthenticatedAnimalEncontradoRoute
+  AuthenticatedBuscarRoute: typeof AuthenticatedBuscarRoute
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedMapaRoute: typeof AuthenticatedMapaRoute
+  AuthenticatedMeusAnimaisRoute: typeof AuthenticatedMeusAnimaisRoute
+  AuthenticatedMinhasOcorrenciasRoute: typeof AuthenticatedMinhasOcorrenciasRoute
+  AuthenticatedNotificacoesRoute: typeof AuthenticatedNotificacoesRoute
+  AuthenticatedNovaOcorrenciaRoute: typeof AuthenticatedNovaOcorrenciaRoute
+  AuthenticatedNovoAvistamentoRoute: typeof AuthenticatedNovoAvistamentoRoute
+  AuthenticatedPerfilRoute: typeof AuthenticatedPerfilRoute
+  AuthenticatedOcorrenciaIdRoute: typeof AuthenticatedOcorrenciaIdRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRouteWithChildren,
+  AuthenticatedAnimalEncontradoRoute: AuthenticatedAnimalEncontradoRoute,
+  AuthenticatedBuscarRoute: AuthenticatedBuscarRoute,
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedMapaRoute: AuthenticatedMapaRoute,
+  AuthenticatedMeusAnimaisRoute: AuthenticatedMeusAnimaisRoute,
+  AuthenticatedMinhasOcorrenciasRoute: AuthenticatedMinhasOcorrenciasRoute,
+  AuthenticatedNotificacoesRoute: AuthenticatedNotificacoesRoute,
+  AuthenticatedNovaOcorrenciaRoute: AuthenticatedNovaOcorrenciaRoute,
+  AuthenticatedNovoAvistamentoRoute: AuthenticatedNovoAvistamentoRoute,
+  AuthenticatedPerfilRoute: AuthenticatedPerfilRoute,
+  AuthenticatedOcorrenciaIdRoute: AuthenticatedOcorrenciaIdRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AnimalEncontradoRoute: AnimalEncontradoRoute,
-  BuscarRoute: BuscarRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   CadastroRoute: CadastroRoute,
   ComoFuncionaRoute: ComoFuncionaRoute,
-  DashboardRoute: DashboardRoute,
   LoginRoute: LoginRoute,
-  MapaRoute: MapaRoute,
-  MeusAnimaisRoute: MeusAnimaisRoute,
-  MinhasOcorrenciasRoute: MinhasOcorrenciasRoute,
-  NotificacoesRoute: NotificacoesRoute,
-  NovaOcorrenciaRoute: NovaOcorrenciaRoute,
-  NovoAvistamentoRoute: NovoAvistamentoRoute,
-  PerfilRoute: PerfilRoute,
   SobreRoute: SobreRoute,
-  AdminDenunciasRoute: AdminDenunciasRoute,
-  AdminOcorrenciasRoute: AdminOcorrenciasRoute,
-  AdminUsuariosRoute: AdminUsuariosRoute,
-  OcorrenciaIdRoute: OcorrenciaIdRoute,
-  AdminIndexRoute: AdminIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

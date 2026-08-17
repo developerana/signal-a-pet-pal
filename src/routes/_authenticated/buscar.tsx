@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 import { demoOccurrences } from "@/data/demo";
 import type { OccurrenceStatus, Species } from "@/types";
 
-export const Route = createFileRoute("/buscar")({
+export const Route = createFileRoute("/_authenticated/buscar")({
   head: () => ({
     meta: [
       { title: "Buscar animais — SinalizaPet" },

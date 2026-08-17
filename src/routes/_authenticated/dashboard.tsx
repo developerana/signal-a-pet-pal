@@ -7,7 +7,7 @@ import { Panel, Stat } from "@/components/FormKit";
 import { Button } from "@/components/ui/button";
 import { demoNotifications, demoOccurrences, demoUser } from "@/data/demo";
 
-export const Route = createFileRoute("/dashboard")({
+export const Route = createFileRoute("/_authenticated/dashboard")({
   head: () => ({
     meta: [
       { title: "Início — SinalizaPet" },

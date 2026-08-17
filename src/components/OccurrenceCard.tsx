@@ -7,19 +7,21 @@ import { cn } from "@/lib/utils";
 export function OccurrenceCard({
   occurrence: o,
   className,
+  preview = false,
 }: {
   occurrence: Occurrence;
   className?: string;
+  /** Modo demonstração: mostra o cartão sem levar para a ocorrência interna. */
+  preview?: boolean;
 }) {
-  return (
-    <Link
-      to="/ocorrencia/$id"
-      params={{ id: o.id }}
-      className={cn(
-        "poster group grid grid-cols-[104px_minmax(0,1fr)] gap-4 p-3 transition-transform hover:-translate-x-0.5 hover:-translate-y-0.5 sm:grid-cols-[140px_minmax(0,1fr)] sm:p-4",
-        className,
-      )}
-    >
+  const shell = cn(
+    "poster group grid grid-cols-[104px_minmax(0,1fr)] gap-4 p-3 sm:grid-cols-[140px_minmax(0,1fr)] sm:p-4",
+    !preview && "transition-transform hover:-translate-x-0.5 hover:-translate-y-0.5",
+    className,
+  );
+
+  const body = (
+    <>
       <div className="relative aspect-square overflow-hidden border-2 border-ink bg-secondary">
         <img
           src={o.photoUrl}
@@ -46,6 +48,20 @@ export function OccurrenceCard({
           </span>
         </div>
       </div>
+    </>
+  );
+
+  if (preview) {
+    return (
+      <div className={shell} aria-label={`Exemplo demonstrativo: ${o.name}`}>
+        {body}
+      </div>
+    );
+  }
+
+  return (
+    <Link to="/ocorrencia/$id" params={{ id: o.id }} className={shell}>
+      {body}
     </Link>
   );
 }

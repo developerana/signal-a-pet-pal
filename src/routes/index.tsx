@@ -67,45 +67,33 @@ function Landing() {
               </p>
 
               <div className="poster mt-8 p-4 shadow-lift">
-                <p className="eyebrow">O que você precisa fazer?</p>
+                <p className="eyebrow">O que a plataforma faz</p>
                 <div className="mt-3 grid gap-3 sm:grid-cols-3">
-                  <Button
-                    asChild
-                    className="h-auto flex-col items-start gap-1 whitespace-normal border-2 border-ink bg-status-missing px-3 py-3 text-left leading-tight text-primary-foreground hover:bg-status-missing/90"
-                  >
-                    <Link to="/nova-ocorrencia">
-                      <Siren className="h-4 w-4 shrink-0" />
-                      <span className="text-sm font-bold">Meu pet desapareceu</span>
-                    </Link>
-                  </Button>
-                  <Button
-                    asChild
-                    variant="outline"
-                    className="h-auto flex-col items-start gap-1 whitespace-normal border-2 border-ink bg-status-sighted px-3 py-3 text-left leading-tight text-primary hover:bg-status-sighted/80"
-                  >
-                    <Link to="/novo-avistamento" search={{ ocorrencia: undefined }}>
-                      <Eye className="h-4 w-4 shrink-0" />
-                      <span className="text-sm font-bold">Eu vi um animal</span>
-                    </Link>
-                  </Button>
-                  <Button
-                    asChild
-                    variant="outline"
-                    className="h-auto flex-col items-start gap-1 whitespace-normal border-2 border-ink bg-status-found px-3 py-3 text-left leading-tight text-primary-foreground hover:bg-status-found/90"
-                  >
-                    <Link to="/animal-encontrado">
-                      <House className="h-4 w-4 shrink-0" />
-                      <span className="text-sm font-bold">Encontrei um animal</span>
-                    </Link>
-                  </Button>
+                  <div className="flex flex-col items-start gap-1 border-2 border-ink bg-status-missing px-3 py-3 leading-tight text-primary-foreground">
+                    <Siren className="h-4 w-4 shrink-0" />
+                    <span className="text-sm font-bold">Meu pet desapareceu</span>
+                  </div>
+                  <div className="flex flex-col items-start gap-1 border-2 border-ink bg-status-sighted px-3 py-3 leading-tight text-primary">
+                    <Eye className="h-4 w-4 shrink-0" />
+                    <span className="text-sm font-bold">Eu vi um animal</span>
+                  </div>
+                  <div className="flex flex-col items-start gap-1 border-2 border-ink bg-status-found px-3 py-3 leading-tight text-primary-foreground">
+                    <House className="h-4 w-4 shrink-0" />
+                    <span className="text-sm font-bold">Encontrei um animal</span>
+                  </div>
                 </div>
-                <Link
-                  to="/buscar"
-                  className="mt-3 flex items-center gap-3 border-2 border-ink bg-paper px-4 py-3 text-sm text-muted-foreground transition-colors hover:bg-secondary"
-                >
+                <div className="mt-3 flex items-center gap-3 border-2 border-ink bg-paper px-4 py-3 text-sm text-muted-foreground">
                   <Search className="h-4 w-4 shrink-0" />
                   <span className="truncate">Procure por um animal, bairro ou região...</span>
-                </Link>
+                </div>
+                <div className="mt-3 grid gap-2 sm:grid-cols-[auto_minmax(0,1fr)] sm:items-center">
+                  <Button asChild size="lg" className="border-2 border-ink">
+                    <Link to="/login">Entrar na plataforma</Link>
+                  </Button>
+                  <p className="text-xs text-muted-foreground">
+                    Prévia demonstrativa. Os recursos ficam disponíveis após entrar na conta.
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -192,17 +180,22 @@ function Landing() {
             <h2 className="truncate text-3xl font-extrabold uppercase leading-none sm:text-4xl">
               Mural recente
             </h2>
-            <Button asChild variant="outline" size="sm" className="gap-1 border-2 border-ink">
-              <Link to="/buscar">
-                Ver todas <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
+            <span className="eyebrow border-2 border-ink bg-paper px-2 py-1 text-[10px]">
+              Exemplos demonstrativos
+            </span>
           </div>
           <div className="grid gap-4 md:grid-cols-2">
             {highlights.map((o) => (
-              <OccurrenceCard key={o.id} occurrence={o} />
+              <OccurrenceCard key={o.id} occurrence={o} preview />
             ))}
           </div>
+          <p className="mt-4 text-sm text-muted-foreground">
+            Estes cartazes são apenas uma prévia do sistema.{" "}
+            <Link to="/login" className="font-semibold text-ink underline">
+              Entre na plataforma
+            </Link>{" "}
+            para acessar o mural real.
+          </p>
         </div>
       </section>
 
@@ -215,7 +208,7 @@ function Landing() {
           Marcadores por status, sempre em localização aproximada.
         </p>
         <div className="mt-6">
-          <MapCanvas occurrences={demoOccurrences} className="h-[380px]" />
+          <MapCanvas occurrences={demoOccurrences} className="h-[380px]" preview />
           <div className="mt-4">
             <MapLegend />
           </div>
@@ -234,9 +227,7 @@ function Landing() {
             </p>
           </div>
           <Button asChild size="lg" className="border-2 border-ink bg-paper text-ink hover:bg-paper/90">
-            <Link to="/novo-avistamento" search={{ ocorrencia: undefined }}>
-              Sinalizar agora
-            </Link>
+            <Link to="/login">Entrar para sinalizar</Link>
           </Button>
         </div>
       </section>

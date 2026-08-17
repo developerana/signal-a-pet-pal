@@ -6,7 +6,7 @@ import { Stat } from "@/components/FormKit";
 import { Button } from "@/components/ui/button";
 import { demoOccurrences } from "@/data/demo";
 
-export const Route = createFileRoute("/minhas-ocorrencias")({
+export const Route = createFileRoute("/_authenticated/minhas-ocorrencias")({
   head: () => ({
     meta: [
       { title: "Minhas ocorrências — SinalizaPet" },
