@@ -180,17 +180,22 @@ function Landing() {
             <h2 className="truncate text-3xl font-extrabold uppercase leading-none sm:text-4xl">
               Mural recente
             </h2>
-            <Button asChild variant="outline" size="sm" className="gap-1 border-2 border-ink">
-              <Link to="/buscar">
-                Ver todas <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
+            <span className="eyebrow border-2 border-ink bg-paper px-2 py-1 text-[10px]">
+              Exemplos demonstrativos
+            </span>
           </div>
           <div className="grid gap-4 md:grid-cols-2">
             {highlights.map((o) => (
-              <OccurrenceCard key={o.id} occurrence={o} />
+              <OccurrenceCard key={o.id} occurrence={o} preview />
             ))}
           </div>
+          <p className="mt-4 text-sm text-muted-foreground">
+            Estes cartazes são apenas uma prévia do sistema.{" "}
+            <Link to="/login" className="font-semibold text-ink underline">
+              Entre na plataforma
+            </Link>{" "}
+            para acessar o mural real.
+          </p>
         </div>
       </section>
 
@@ -222,9 +227,7 @@ function Landing() {
             </p>
           </div>
           <Button asChild size="lg" className="border-2 border-ink bg-paper text-ink hover:bg-paper/90">
-            <Link to="/novo-avistamento" search={{ ocorrencia: undefined }}>
-              Sinalizar agora
-            </Link>
+            <Link to="/login">Entrar para sinalizar</Link>
           </Button>
         </div>
       </section>
