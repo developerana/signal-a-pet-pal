@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Eye, House, MapPin, Search, Siren } from "lucide-react";
 
 import { BRAND } from "@/lib/brand";
+import { BrandCat } from "@/components/BrandCat";
 import { Button } from "@/components/ui/button";
 import { OccurrenceCard } from "@/components/OccurrenceCard";
 import { MapCanvas, MapLegend } from "@/components/MapCanvas";
