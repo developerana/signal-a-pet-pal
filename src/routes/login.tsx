@@ -1,10 +1,13 @@
+import { useState } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { BrandMark, BrandWordmark } from "@/components/BrandMark";
 import { BRAND } from "@/lib/brand";
-import { DemoNote, Field } from "@/components/FormKit";
+import { Field } from "@/components/FormKit";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { supabase } from "@/integrations/supabase/client";
+import { PUBLIC_SIGNUP_ENABLED } from "@/config/launch";
 
 export const Route = createFileRoute("/login")({
   head: () => ({
@@ -25,33 +28,69 @@ export const Route = createFileRoute("/login")({
 
 function LoginPage() {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  async function handleSignIn() {
+    if (!email || !password) {
+      toast.error("Informe e-mail e senha.");
+      return;
+    }
+    setLoading(true);
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    setLoading(false);
+    if (error) {
+      toast.error("Não foi possível entrar", { description: "Verifique seu e-mail e senha." });
+      return;
+    }
+    toast.success("Bem-vinda de volta!");
+    void navigate({ to: "/dashboard" });
+  }
+
   return (
     <AuthLayout title="Entrar" subtitle="Bem-vinda de volta à rede.">
-      <div className="grid gap-4">
+      <form
+        className="grid gap-4"
+        onSubmit={(e) => {
+          e.preventDefault();
+          void handleSignIn();
+        }}
+      >
         <Field label="E-mail" required>
-          <Input type="email" placeholder="voce@email.com" />
+          <Input
+            type="email"
+            autoComplete="email"
+            placeholder="voce@email.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </Field>
         <Field label="Senha" required>
-          <Input type="password" placeholder="••••••••" />
+          <Input
+            type="password"
+            autoComplete="current-password"
+            placeholder="••••••••"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </Field>
-        <DemoNote>Login de demonstração: qualquer dado entra no painel.</DemoNote>
-        <Button
-          size="lg"
-          className="border-2 border-ink"
-          onClick={() => {
-            toast.success("Bem-vinda de volta!");
-            void navigate({ to: "/dashboard" });
-          }}
-        >
-          Entrar
+        <Button type="submit" size="lg" className="border-2 border-ink" disabled={loading}>
+          {loading ? "Entrando..." : "Entrar"}
         </Button>
-        <p className="text-center text-sm text-muted-foreground">
-          Não tem conta?{" "}
-          <Link to="/cadastro" className="font-semibold text-ink underline">
-            Criar conta
-          </Link>
-        </p>
-      </div>
+        {PUBLIC_SIGNUP_ENABLED ? (
+          <p className="text-center text-sm text-muted-foreground">
+            Não tem conta?{" "}
+            <Link to="/cadastro" className="font-semibold text-ink underline">
+              Criar conta
+            </Link>
+          </p>
+        ) : (
+          <p className="text-center text-sm text-muted-foreground">
+            Os cadastros estão temporariamente fechados durante a fase de desenvolvimento.
+          </p>
+        )}
+      </form>
     </AuthLayout>
   );
 }
