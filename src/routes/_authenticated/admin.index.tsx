@@ -4,7 +4,7 @@ import { AdminNav } from "@/components/AdminNav";
 import { DemoNote, Panel, Stat } from "@/components/FormKit";
 import { demoAdminStats, demoBySpecies, demoByNeighborhood } from "@/data/demo";
 
-export const Route = createFileRoute("/admin/")({
+export const Route = createFileRoute("/_authenticated/admin/")({
   head: () => ({
     meta: [
       { title: "Painel administrativo — SinalizaPet" },

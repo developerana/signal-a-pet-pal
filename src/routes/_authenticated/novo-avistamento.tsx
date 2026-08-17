@@ -17,7 +17,7 @@ import { demoOccurrences } from "@/data/demo";
 
 const searchSchema = z.object({ ocorrencia: z.string().optional() });
 
-export const Route = createFileRoute("/novo-avistamento")({
+export const Route = createFileRoute("/_authenticated/novo-avistamento")({
   validateSearch: searchSchema,
   head: () => ({
     meta: [

@@ -14,7 +14,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export const Route = createFileRoute("/nova-ocorrencia")({
+export const Route = createFileRoute("/_authenticated/nova-ocorrencia")({
   head: () => ({
     meta: [
       { title: "Cadastrar desaparecimento — SinalizaPet" },

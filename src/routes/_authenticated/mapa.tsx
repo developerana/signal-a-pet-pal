@@ -4,7 +4,7 @@ import { MapCanvas, MapLegend } from "@/components/MapCanvas";
 import { DemoNote, Panel } from "@/components/FormKit";
 import { demoByNeighborhood, demoOccurrences } from "@/data/demo";
 
-export const Route = createFileRoute("/mapa")({
+export const Route = createFileRoute("/_authenticated/mapa")({
   head: () => ({
     meta: [
       { title: "Mapa de ocorrências — SinalizaPet" },
