@@ -208,7 +208,7 @@ function Landing() {
           Marcadores por status, sempre em localização aproximada.
         </p>
         <div className="mt-6">
-          <MapCanvas occurrences={demoOccurrences} className="h-[380px]" />
+          <MapCanvas occurrences={demoOccurrences} className="h-[380px]" preview />
           <div className="mt-4">
             <MapLegend />
           </div>
