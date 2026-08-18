@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { demoNotifications } from "@/data/demo";
 
-export const Route = createFileRoute("/_authenticated/notificacoes")({
+export const Route = createFileRoute("/notificacoes")({
   head: () => ({
     meta: [
       { title: "Notificações — SinalizaPet" },

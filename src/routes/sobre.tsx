@@ -82,7 +82,7 @@ function About() {
             {BRAND.slogan}
           </p>
           <Button asChild size="lg" className="border-2 border-ink">
-            <Link to="/login">Entrar na rede</Link>
+            <Link to="/cadastro">Entrar na rede</Link>
           </Button>
         </div>
       </section>

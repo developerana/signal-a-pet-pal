@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { systemAccount } from "@/data/demo";
 import { formatUsername, RESERVED_USERNAMES } from "@/lib/username";
 
-export const Route = createFileRoute("/_authenticated/admin/usuarios")({
+export const Route = createFileRoute("/admin/usuarios")({
   head: () => ({
     meta: [
       { title: "Usuários — SinalizaPet" },

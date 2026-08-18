@@ -13,7 +13,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export const Route = createFileRoute("/_authenticated/animal-encontrado")({
+export const Route = createFileRoute("/animal-encontrado")({
   head: () => ({
     meta: [
       { title: "Encontrei um animal — SinalizaPet" },

@@ -3,17 +3,15 @@ import { Link } from "@tanstack/react-router";
 import { BrandWordmark } from "@/components/BrandMark";
 import { BRAND } from "@/lib/brand";
 import { Button } from "@/components/ui/button";
-import { PUBLIC_SIGNUP_ENABLED } from "@/config/launch";
-import { useSession } from "@/hooks/useSession";
 
-// Navegação pública: apenas páginas de apresentação, nunca telas internas.
 const links = [
+  { to: "/buscar", label: "Buscar" },
+  { to: "/mapa", label: "Mapa" },
   { to: "/como-funciona", label: "Como funciona" },
   { to: "/sobre", label: "Sobre" },
 ] as const;
 
 export function SiteHeader() {
-  const { user } = useSession();
   return (
     <header className="sticky top-0 z-40 border-b-2 border-ink bg-paper">
       <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 py-3 sm:px-6">
@@ -30,22 +28,12 @@ export function SiteHeader() {
               {l.label}
             </Link>
           ))}
-          {user ? (
-            <Button asChild size="sm">
-              <Link to="/dashboard">Meu painel</Link>
-            </Button>
-          ) : (
-            <>
-              <Button asChild variant={PUBLIC_SIGNUP_ENABLED ? "ghost" : "default"} size="sm">
-                <Link to="/login">Entrar</Link>
-              </Button>
-              {PUBLIC_SIGNUP_ENABLED ? (
-                <Button asChild size="sm">
-                  <Link to="/cadastro">Criar conta</Link>
-                </Button>
-              ) : null}
-            </>
-          )}
+          <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
+            <Link to="/login">Entrar</Link>
+          </Button>
+          <Button asChild size="sm">
+            <Link to="/cadastro">Criar conta</Link>
+          </Button>
         </nav>
       </div>
     </header>
@@ -82,14 +70,17 @@ export function SiteFooter() {
         <FooterCol
           title="Plataforma"
           items={[
+            { to: "/buscar", label: "Buscar animais" },
+            { to: "/mapa", label: "Mapa de ocorrências" },
             { to: "/como-funciona", label: "Como funciona" },
-            { to: "/sobre", label: "Sobre o projeto" },
           ]}
         />
         <FooterCol
-          title="Acesso"
+          title="Sinalizar"
           items={[
-            { to: "/login", label: "Entrar na plataforma" },
+            { to: "/nova-ocorrencia", label: "Meu pet desapareceu" },
+            { to: "/novo-avistamento", label: "Eu vi um animal" },
+            { to: "/animal-encontrado", label: "Encontrei um animal" },
           ]}
         />
       </div>
