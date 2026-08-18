@@ -56,7 +56,7 @@ function About() {
 
       <section className="border-b-2 border-ink bg-paper">
         <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-          <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl">Título</h2>
+          <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl">Sobre o Sinaliza Pet</h2>
           <div className="mt-5 grid gap-4 text-base leading-relaxed text-foreground/85">
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mauris iaculis, porta
