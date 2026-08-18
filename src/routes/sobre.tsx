@@ -59,22 +59,32 @@ function About() {
           <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl">Sobre o Sinaliza Pet</h2>
           <div className="mt-5 grid gap-4 text-base leading-relaxed text-foreground/85">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mauris iaculis, porta
-              felis sed, blandit nulla. Sed lacus erat, placerat at erat ultrices, ultricies suscipit
-              dui. Curabitur iaculis diam quis massa tristique, rutrum mollis ante cursus. Integer
-              cursus, lacus id mattis tristique, purus sapien hendrerit urna, eget accumsan purus
-              felis in quam. Nam a eros ligula. Nulla tincidunt ex vel felis ullamcorper, ac
-              facilisis lectus dictum. Vestibulum ante maiesuada nisl. Integer auctor augue vel odio
-              tempus rutrum. Duis aliquet nisl ut arcu iaculis, ac tempus ligula dapibus.
+              O Sinaliza Pet nasceu de uma história que começou com a perda de um companheiro muito
+              especial. No dia 19 de maio de 2025, o Logan, um gatinho preto que fazia parte da nossa
+              família desde março de 2021, desapareceu. Durante sete dias, fizemos o que estava ao nosso
+              alcance para encontrá-lo: procuramos, publicamos nas redes sociais, compartilhamos sua foto,
+              pedimos ajuda e tentamos alcançar o maior número possível de pessoas. No dia 26 de maio,
+              finalmente encontramos o Logan, mas infelizmente já sem vida. Essa experiência deixou não
+              apenas a dor da perda, mas também uma reflexão sobre como poderia ser mais fácil organizar
+              e ampliar uma busca quando um animal desaparece.
             </p>
             <p>
-              Sed tortor nisi, dignissim iaculis pulvinar nec, suscipit venenatis felis. Donec ac
-              erat non libero suscipit mollis. In viverra non quam ut eleifend. Aenean sed porttitor
-              orci. Praesent gravida velit sit amet elit congue pulvinar. Donec tempor tempus ipsum,
-              sit amet malesuada nisl suscipit vitae. Cras quam lorem, pharetra vel pulvinar gravida,
-              facilisis in felis. Proin sed dapibus turpis. Aenean maximus vulputate nisl, a finibus
-              massa molestie sed. Donec lobortis mollis nisl sit amet posuere. Ut varius diam et
-              auctor luctus.
+              As informações acabam espalhadas entre redes sociais, grupos de mensagens e publicações
+              individuais, enquanto muitas pessoas podem ter visto o animal sem sequer saber que alguém
+              está procurando por ele. Foi dessa experiência que nasceu o Sinaliza Pet: uma iniciativa
+              criada para transformar essa sensação de impotência em uma ferramenta de ajuda. O projeto
+              busca reunir pessoas em torno de uma mesma causa, criando um espaço onde animais desaparecidos
+              possam ser divulgados, avistamentos possam ser sinalizados e informações possam alcançar quem
+              realmente pode fazer a diferença. O gatinho preto presente na identidade do Sinaliza Pet
+              representa o Logan e carrega consigo a origem de tudo isso.
+            </p>
+            <p>
+              Mais do que um símbolo, ele representa a memória de um animal que foi muito amado e a
+              inspiração para criar algo que possa ajudar outras famílias a terem uma história diferente
+              da nossa. O Sinaliza Pet nasce, portanto, de uma experiência pessoal, mas não pertence
+              apenas a ela. Ele é pensado para todos aqueles que já perderam, encontraram, procuraram ou
+              simplesmente pararam para ajudar um animal. Porque, quando um pet desaparece, cada pessoa
+              que sinaliza, compartilha ou presta atenção pode fazer parte do caminho de volta para casa.
             </p>
           </div>
         </div>
