@@ -136,7 +136,7 @@ function Landing() {
         <h2 className="text-3xl font-extrabold uppercase leading-none sm:text-4xl">
           Três passos, nada de burocracia
         </h2>
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-3">
           {[
             {
               n: "01",
@@ -157,7 +157,7 @@ function Landing() {
               text: "Cada avistamento entra na linha do tempo e notifica o tutor na hora.",
             },
           ].map((f) => (
-            <div key={f.title} className="poster p-5">
+            <div key={f.title} className="poster border-0 border-ink p-5 md:border-2 md:first:border-r-0 md:last:border-l-0">
               <div className="flex items-center justify-between">
                 <f.icon className="h-6 w-6" />
                 <span className="font-display text-3xl font-black text-ink/15">{f.n}</span>
