@@ -54,6 +54,32 @@ function About() {
         </div>
       </section>
 
+      <section className="border-b-2 border-ink bg-paper">
+        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+          <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl">Título</h2>
+          <div className="mt-5 grid gap-4 text-base leading-relaxed text-foreground/85">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mauris iaculis, porta
+              felis sed, blandit nulla. Sed lacus erat, placerat at erat ultrices, ultricies suscipit
+              dui. Curabitur iaculis diam quis massa tristique, rutrum mollis ante cursus. Integer
+              cursus, lacus id mattis tristique, purus sapien hendrerit urna, eget accumsan purus
+              felis in quam. Nam a eros ligula. Nulla tincidunt ex vel felis ullamcorper, ac
+              facilisis lectus dictum. Vestibulum ante maiesuada nisl. Integer auctor augue vel odio
+              tempus rutrum. Duis aliquet nisl ut arcu iaculis, ac tempus ligula dapibus.
+            </p>
+            <p>
+              Sed tortor nisi, dignissim iaculis pulvinar nec, suscipit venenatis felis. Donec ac
+              erat non libero suscipit mollis. In viverra non quam ut eleifend. Aenean sed porttitor
+              orci. Praesent gravida velit sit amet elit congue pulvinar. Donec tempor tempus ipsum,
+              sit amet malesuada nisl suscipit vitae. Cras quam lorem, pharetra vel pulvinar gravida,
+              facilisis in felis. Proin sed dapibus turpis. Aenean maximus vulputate nisl, a finibus
+              massa molestie sed. Donec lobortis mollis nisl sit amet posuere. Ut varius diam et
+              auctor luctus.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
         <div className="grid gap-4 md:grid-cols-3">
           {[
