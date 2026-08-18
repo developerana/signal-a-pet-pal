@@ -49,8 +49,8 @@ function Landing() {
       <section className="border-b-2 border-ink bg-accent/50">
         <div className="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
           <div className="absolute inset-0 sand-grid opacity-50" aria-hidden />
-          <div className="relative grid items-start gap-10 lg:grid-cols-[1.15fr_0.85fr]">
-            <div>
+          <div className="relative">
+            <div className="mx-auto max-w-3xl text-center">
               <span className="eyebrow inline-flex items-center gap-2 border-2 border-ink bg-paper px-3 py-1.5 text-xs">
                 <span className="h-2 w-2 bg-status-missing" /> Mural comunitário de busca
               </span>
@@ -61,7 +61,7 @@ function Landing() {
                 <br />
                 <span className="mt-1 inline-block bg-ink px-3 py-0.5 text-primary-foreground">a voltar pra casa</span>
               </h1>
-              <p className="mt-5 max-w-md text-base text-foreground/80">
+              <p className="mx-auto mt-5 max-w-md text-base text-foreground/80">
                 O SinalizaPet transforma informação solta em pista útil: cada avistamento entra na
                 linha do tempo da ocorrência e avisa o tutor na hora.
               </p>
@@ -107,17 +107,6 @@ function Landing() {
                   <span className="truncate">Procure por um animal, bairro ou região...</span>
                 </Link>
               </div>
-            </div>
-
-            <div className="poster p-6 text-center shadow-lift">
-              <p className="eyebrow">Procura-se</p>
-              <BrandCat className="mx-auto my-6 w-40 text-ink sm:w-48" />
-              <p className="text-lg font-extrabold uppercase leading-tight">
-                Juntos, um pet volta pra casa
-              </p>
-              <p className="mt-2 text-sm text-muted-foreground">
-                O gato preto é uma homenagem ao Logan, origem deste projeto.
-              </p>
             </div>
           </div>
         </div>
