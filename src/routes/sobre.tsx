@@ -36,9 +36,15 @@ function About() {
               Tudo começou<br />com o Logan
             </h1>
             <p className="mt-5 max-w-xl text-primary-foreground/80">
-              O SinalizaPet nasceu da experiência de procurar um animal perdido e perceber o quanto a
-              informação se perde: prints em grupos, comentários soltos, avistamentos que ninguém
-              consegue confirmar. A ideia é simples — organizar essa informação em um só lugar.
+              Antes de existir um sistema, uma marca ou uma ideia de projeto, existia apenas um
+              gatinho preto chamado Logan e uma história que mudou a forma como enxergamos a busca por
+              um animal perdido. Foi a partir dessa história, da dor e da sensação de impotência
+              diante de uma situação em que tudo o que podíamos fazer parecia pouco, que surgiu a
+              vontade de transformar essa experiência em uma ferramenta de ajuda para outras
+              pessoas.
+              <br />
+              <br />
+              Foi assim que nasceu o Sinaliza Pet.
             </p>
           </div>
           <div className="mx-auto w-full max-w-xs border-2 border-ink bg-paper p-6">
