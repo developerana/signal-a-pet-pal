@@ -33,7 +33,7 @@ function About() {
           <div>
             <p className="eyebrow text-primary-foreground/60">Sobre</p>
             <h1 className="mt-3 text-4xl font-black uppercase leading-[0.9] sm:text-6xl">
-              Começou com um gato preto
+              Tudo começou<br />com o Logan
             </h1>
             <p className="mt-5 max-w-xl text-primary-foreground/80">
               O SinalizaPet nasceu da experiência de procurar um animal perdido e perceber o quanto a
