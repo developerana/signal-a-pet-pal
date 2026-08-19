@@ -52,7 +52,7 @@ function Landing() {
           <div className="relative">
             <div className="mx-auto max-w-3xl text-center">
               <span className="eyebrow inline-flex items-center gap-2 border-2 border-ink bg-paper px-3 py-1.5 text-xs">
-                <span className="h-2 w-2 bg-status-missing" /> Mural comunitário de busca
+                <span className="h-2 w-2 bg-status-missing" /> REDE COMUNITÁRIA DE DIVULGAÇÃO E BUSCA
               </span>
               <h1 className="mt-6 text-4xl font-black uppercase leading-[1.05] sm:text-5xl lg:text-6xl">
                 Ajude um
