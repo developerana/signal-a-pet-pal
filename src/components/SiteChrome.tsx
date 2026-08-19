@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
-import { Instagram } from "lucide-react";
+import { Facebook, Instagram, Twitter } from "lucide-react";
 import { BrandWordmark } from "@/components/BrandMark";
 import { BRAND } from "@/lib/brand";
 import { Button } from "@/components/ui/button";
