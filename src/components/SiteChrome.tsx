@@ -99,6 +99,42 @@ export function SiteFooter() {
                 Instagram
               </a>
             </li>
+            <li>
+              <a
+                href="https://www.threads.com/@sinalizapet?xmt=AQG00g4SjtxGvTH3iWnecHaM346N7pQuwdv6FcW7FYVbvNE"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 hover:underline"
+                aria-label="Threads do SinalizaPet"
+              >
+                <ThreadsIcon className="h-4 w-4" />
+                Threads
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.facebook.com/SinalizaPet?locale=pt_BR"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 hover:underline"
+                aria-label="Facebook do SinalizaPet"
+              >
+                <Facebook className="h-4 w-4" />
+                Facebook
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://x.com/SinalizaPet"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 hover:underline"
+                aria-label="X do SinalizaPet"
+              >
+                <Twitter className="h-4 w-4" />
+                X (Twitter)
+              </a>
+            </li>
           </ul>
         </div>
       </div>
