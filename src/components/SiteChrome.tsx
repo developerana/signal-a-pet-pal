@@ -59,7 +59,7 @@ export function Marquee({ items }: { items: string[] }) {
 export function SiteFooter() {
   return (
     <footer className="border-t-2 border-ink bg-ink text-primary-foreground">
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-[1.2fr_1fr_1fr]">
+      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-[1.2fr_1fr_1fr_1fr]">
         <div>
           <p className="font-display text-2xl font-extrabold uppercase leading-none">{BRAND.name}</p>
           <p className="mt-2 text-sm text-primary-foreground/70">{BRAND.slogan}</p>
@@ -84,6 +84,23 @@ export function SiteFooter() {
             { to: "/animal-encontrado", label: "Encontrei um animal" },
           ]}
         />
+        <div>
+          <p className="eyebrow text-primary-foreground/60">Redes sociais</p>
+          <ul className="mt-3 grid gap-2 text-sm">
+            <li>
+              <a
+                href="https://www.instagram.com/sinalizapet/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 hover:underline"
+                aria-label="Instagram do SinalizaPet"
+              >
+                <Instagram className="h-4 w-4" />
+                Instagram
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </footer>
   );
