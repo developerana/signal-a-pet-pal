@@ -117,20 +117,22 @@ export function SiteFooter() {
         </div>
         <FooterCol
           title="Plataforma"
+          gated
           items={[
             { to: "/buscar", label: "Buscar animais" },
             { to: "/mapa", label: "Mapa de ocorrências" },
-            { to: "/como-funciona", label: "Como funciona" },
           ]}
         />
         <FooterCol
           title="Sinalizar"
+          gated
           items={[
             { to: "/nova-ocorrencia", label: "Meu pet desapareceu" },
             { to: "/novo-avistamento", label: "Eu vi um animal" },
             { to: "/animal-encontrado", label: "Encontrei um animal" },
           ]}
         />
+
         <div>
           <p className="eyebrow text-primary-foreground/60">Redes sociais</p>
           <ul className="mt-3 grid gap-2 text-sm">
