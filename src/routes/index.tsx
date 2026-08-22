@@ -32,10 +32,20 @@ export const Route = createFileRoute("/")({
 });
 
 function Landing() {
+  return (
+    <SiteLayout>
+      <LandingContent />
+    </SiteLayout>
+  );
+}
+
+function LandingContent() {
+  const { go, isAuthenticated } = useAuthGate();
   const highlights = demoOccurrences.filter((o) => o.status !== "obito").slice(0, 4);
 
   return (
-    <SiteLayout>
+    <>
+
       <Marquee
         items={[
           "PROJETO EM CONSTRUÇÃO",
