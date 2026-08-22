@@ -1,13 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Eye, House, MapPin, Search, Siren } from "lucide-react";
+import { ArrowRight, Eye, House, LockKeyhole, MapPin, Search, Siren } from "lucide-react";
 
 import { BRAND } from "@/lib/brand";
 
 import { Button } from "@/components/ui/button";
+import { GatedArea, useAuthGate } from "@/components/AuthGate";
 import { OccurrenceCard } from "@/components/OccurrenceCard";
 import { MapCanvas, MapLegend } from "@/components/MapCanvas";
 import { Marquee, SiteLayout } from "@/components/SiteChrome";
 import { demoAdminStats, demoOccurrences } from "@/data/demo";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,10 +34,20 @@ export const Route = createFileRoute("/")({
 });
 
 function Landing() {
+  return (
+    <SiteLayout>
+      <LandingContent />
+    </SiteLayout>
+  );
+}
+
+function LandingContent() {
+  const { go, isAuthenticated } = useAuthGate();
   const highlights = demoOccurrences.filter((o) => o.status !== "obito").slice(0, 4);
 
   return (
-    <SiteLayout>
+    <>
+
       <Marquee
         items={[
           "PROJETO EM CONSTRUÇÃO",
@@ -70,43 +82,45 @@ function Landing() {
                 <p className="eyebrow">O que você precisa fazer?</p>
                 <div className="mt-3 grid gap-3 sm:grid-cols-3">
                   <Button
-                    asChild
+                    onClick={() => go("/nova-ocorrencia")}
                     className="h-auto flex-col items-start gap-1 whitespace-normal border-2 border-ink bg-status-missing px-3 py-3 text-left leading-tight text-primary-foreground hover:bg-status-missing/90"
                   >
-                    <Link to="/nova-ocorrencia">
-                      <Siren className="h-4 w-4 shrink-0" />
-                      <span className="text-sm font-bold">Meu pet desapareceu</span>
-                    </Link>
+                    <Siren className="h-4 w-4 shrink-0" />
+                    <span className="text-sm font-bold">Meu pet desapareceu</span>
                   </Button>
                   <Button
-                    asChild
                     variant="outline"
+                    onClick={() => go("/novo-avistamento")}
                     className="h-auto flex-col items-start gap-1 whitespace-normal border-2 border-ink bg-status-sighted px-3 py-3 text-left leading-tight text-primary hover:bg-status-sighted/80"
                   >
-                    <Link to="/novo-avistamento" search={{ ocorrencia: undefined }}>
-                      <Eye className="h-4 w-4 shrink-0" />
-                      <span className="text-sm font-bold">Eu vi um animal</span>
-                    </Link>
+                    <Eye className="h-4 w-4 shrink-0" />
+                    <span className="text-sm font-bold">Eu vi um animal</span>
                   </Button>
                   <Button
-                    asChild
                     variant="outline"
+                    onClick={() => go("/animal-encontrado")}
                     className="h-auto flex-col items-start gap-1 whitespace-normal border-2 border-ink bg-status-found px-3 py-3 text-left leading-tight text-primary-foreground hover:bg-status-found/90"
                   >
-                    <Link to="/animal-encontrado">
-                      <House className="h-4 w-4 shrink-0" />
-                      <span className="text-sm font-bold">Encontrei um animal</span>
-                    </Link>
+                    <House className="h-4 w-4 shrink-0" />
+                    <span className="text-sm font-bold">Encontrei um animal</span>
                   </Button>
                 </div>
-                <Link
-                  to="/buscar"
-                  className="mt-3 flex items-center gap-3 border-2 border-ink bg-paper px-4 py-3 text-sm text-muted-foreground transition-colors hover:bg-secondary"
+                <button
+                  type="button"
+                  onClick={() => go("/buscar")}
+                  className="mt-3 flex w-full items-center gap-3 border-2 border-ink bg-paper px-4 py-3 text-left text-sm text-muted-foreground transition-colors hover:bg-secondary"
                 >
                   <Search className="h-4 w-4 shrink-0" />
                   <span className="truncate">Procure por um animal, bairro ou região...</span>
-                </Link>
+                </button>
+                {!isAuthenticated && (
+                  <p className="mt-3 flex items-center gap-2 text-xs text-muted-foreground">
+                    <LockKeyhole className="h-3.5 w-3.5 shrink-0" />
+                    Para sinalizar ou ver o mural completo, entre ou crie sua conta gratuita.
+                  </p>
+                )}
               </div>
+
             </div>
           </div>
         </div>
@@ -181,17 +195,26 @@ function Landing() {
             <h2 className="truncate text-3xl font-extrabold uppercase leading-none sm:text-4xl">
               Mural recente
             </h2>
-            <Button asChild variant="outline" size="sm" className="gap-1 border-2 border-ink">
-              <Link to="/buscar">
-                Ver todas <ArrowRight className="h-4 w-4" />
-              </Link>
+            <Button
+              variant="outline"
+              size="sm"
+              className="gap-1 border-2 border-ink"
+              onClick={() => go("/buscar")}
+            >
+              Ver todas <ArrowRight className="h-4 w-4" />
             </Button>
           </div>
-          <div className="grid gap-4 md:grid-cols-2">
+          <GatedArea to="/buscar" className="grid gap-4 md:grid-cols-2">
             {highlights.map((o) => (
               <OccurrenceCard key={o.id} occurrence={o} />
             ))}
-          </div>
+          </GatedArea>
+          {!isAuthenticated && (
+            <p className="mt-4 flex items-center gap-2 text-sm text-muted-foreground">
+              <LockKeyhole className="h-4 w-4 shrink-0" />
+              Entre para abrir cada ocorrência, falar com o tutor e sinalizar avistamentos.
+            </p>
+          )}
         </div>
       </section>
 
@@ -203,12 +226,12 @@ function Landing() {
         <p className="mt-2 text-sm text-muted-foreground">
           Marcadores por status, sempre em localização aproximada.
         </p>
-        <div className="mt-6">
+        <GatedArea to="/mapa" className="mt-6">
           <MapCanvas occurrences={demoOccurrences} className="h-[380px]" />
           <div className="mt-4">
             <MapLegend />
           </div>
-        </div>
+        </GatedArea>
       </section>
 
       {/* CTA */}
@@ -222,13 +245,16 @@ function Landing() {
               Leva menos de dois minutos e pode encerrar uma busca de semanas.
             </p>
           </div>
-          <Button asChild size="lg" className="border-2 border-ink bg-paper text-ink hover:bg-paper/90">
-            <Link to="/novo-avistamento" search={{ ocorrencia: undefined }}>
-              Sinalizar agora
-            </Link>
+          <Button
+            size="lg"
+            className="border-2 border-ink bg-paper text-ink hover:bg-paper/90"
+            onClick={() => go("/novo-avistamento")}
+          >
+            Sinalizar agora
           </Button>
         </div>
       </section>
-    </SiteLayout>
+    </>
   );
+
 }

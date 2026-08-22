@@ -2,8 +2,11 @@ import type { ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Twitter } from "lucide-react";
 import { BrandWordmark } from "@/components/BrandMark";
+import { AuthGateProvider, useAuthGate } from "@/components/AuthGate";
+import { useDemoSession } from "@/lib/demo-session";
 import { BRAND } from "@/lib/brand";
 import { Button } from "@/components/ui/button";
+
 
 function ThreadsIcon({ className }: { className?: string }) {
   return (
@@ -19,14 +22,20 @@ function ThreadsIcon({ className }: { className?: string }) {
   );
 }
 
-const links = [
-  { to: "/buscar", label: "Buscar" },
-  { to: "/mapa", label: "Mapa" },
+const publicLinks = [
   { to: "/como-funciona", label: "Como funciona" },
   { to: "/sobre", label: "Sobre" },
 ] as const;
 
+const gatedLinks = [
+  { to: "/buscar", label: "Buscar" },
+  { to: "/mapa", label: "Mapa" },
+] as const;
+
 export function SiteHeader() {
+  const { go, isAuthenticated } = useAuthGate();
+  const { session, signOut } = useDemoSession();
+
   return (
     <header className="sticky top-0 z-40 border-b-2 border-ink bg-paper">
       <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 py-3 sm:px-6">
@@ -34,7 +43,17 @@ export function SiteHeader() {
           <BrandWordmark />
         </Link>
         <nav className="flex shrink-0 items-center gap-1 sm:gap-3">
-          {links.map((l) => (
+          {gatedLinks.map((l) => (
+            <button
+              key={l.to}
+              type="button"
+              onClick={() => go(l.to)}
+              className="eyebrow hidden px-2 py-1 hover:bg-secondary md:block"
+            >
+              {l.label}
+            </button>
+          ))}
+          {publicLinks.map((l) => (
             <Link
               key={l.to}
               to={l.to}
@@ -43,17 +62,31 @@ export function SiteHeader() {
               {l.label}
             </Link>
           ))}
-          <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
-            <Link to="/login">Entrar</Link>
-          </Button>
-          <Button asChild size="sm">
-            <Link to="/cadastro">Criar conta</Link>
-          </Button>
+          {isAuthenticated ? (
+            <>
+              <Button variant="ghost" size="sm" onClick={() => go("/dashboard")}>
+                {session?.username ? `@${session.username}` : "Painel"}
+              </Button>
+              <Button size="sm" variant="outline" className="border-2 border-ink" onClick={signOut}>
+                Sair
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
+                <Link to="/login">Entrar</Link>
+              </Button>
+              <Button asChild size="sm">
+                <Link to="/cadastro">Criar conta</Link>
+              </Button>
+            </>
+          )}
         </nav>
       </div>
     </header>
   );
 }
+
 
 export function Marquee({ items }: { items: string[] }) {
   const row = [...items, ...items];
@@ -84,20 +117,22 @@ export function SiteFooter() {
         </div>
         <FooterCol
           title="Plataforma"
+          gated
           items={[
             { to: "/buscar", label: "Buscar animais" },
             { to: "/mapa", label: "Mapa de ocorrências" },
-            { to: "/como-funciona", label: "Como funciona" },
           ]}
         />
         <FooterCol
           title="Sinalizar"
+          gated
           items={[
             { to: "/nova-ocorrencia", label: "Meu pet desapareceu" },
             { to: "/novo-avistamento", label: "Eu vi um animal" },
             { to: "/animal-encontrado", label: "Encontrei um animal" },
           ]}
         />
+
         <div>
           <p className="eyebrow text-primary-foreground/60">Redes sociais</p>
           <ul className="mt-3 grid gap-2 text-sm">
@@ -159,19 +194,28 @@ export function SiteFooter() {
 function FooterCol({
   title,
   items,
+  gated,
 }: {
   title: string;
   items: { to: string; label: string }[];
+  gated?: boolean;
 }) {
+  const { go } = useAuthGate();
   return (
     <div>
       <p className="eyebrow text-primary-foreground/60">{title}</p>
       <ul className="mt-3 grid gap-2 text-sm">
         {items.map((i) => (
           <li key={i.to}>
-            <Link to={i.to} className="hover:underline">
-              {i.label}
-            </Link>
+            {gated ? (
+              <button type="button" onClick={() => go(i.to)} className="hover:underline">
+                {i.label}
+              </button>
+            ) : (
+              <Link to={i.to} className="hover:underline">
+                {i.label}
+              </Link>
+            )}
           </li>
         ))}
       </ul>
@@ -181,10 +225,13 @@ function FooterCol({
 
 export function SiteLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-screen bg-background paper-grain">
-      <SiteHeader />
-      <main>{children}</main>
-      <SiteFooter />
-    </div>
+    <AuthGateProvider>
+      <div className="min-h-screen bg-background paper-grain">
+        <SiteHeader />
+        <main>{children}</main>
+        <SiteFooter />
+      </div>
+    </AuthGateProvider>
   );
+
 }

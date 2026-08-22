@@ -7,6 +7,8 @@ import { AuthLayout } from "@/routes/login";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { demoTakenUsernames } from "@/data/demo";
+import { signInDemo, takePendingRedirect } from "@/lib/demo-session";
+
 
 export const Route = createFileRoute("/cadastro")({
   head: () => ({
@@ -63,12 +65,14 @@ function SignupPage() {
               });
               return;
             }
+            signInDemo({ username });
             toast.success("Conta criada", { description: `Bem-vinda ao SinalizaPet, @${username}.` });
-            void navigate({ to: "/dashboard" });
+            void navigate({ to: takePendingRedirect() ?? "/dashboard" });
           }}
         >
           Criar conta
         </Button>
+
         <p className="text-center text-sm text-muted-foreground">
           Já tem conta?{" "}
           <Link to="/login" className="font-semibold text-ink underline">
