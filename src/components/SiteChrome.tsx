@@ -192,19 +192,28 @@ export function SiteFooter() {
 function FooterCol({
   title,
   items,
+  gated,
 }: {
   title: string;
   items: { to: string; label: string }[];
+  gated?: boolean;
 }) {
+  const { go } = useAuthGate();
   return (
     <div>
       <p className="eyebrow text-primary-foreground/60">{title}</p>
       <ul className="mt-3 grid gap-2 text-sm">
         {items.map((i) => (
           <li key={i.to}>
-            <Link to={i.to} className="hover:underline">
-              {i.label}
-            </Link>
+            {gated ? (
+              <button type="button" onClick={() => go(i.to)} className="hover:underline">
+                {i.label}
+              </button>
+            ) : (
+              <Link to={i.to} className="hover:underline">
+                {i.label}
+              </Link>
+            )}
           </li>
         ))}
       </ul>
@@ -214,10 +223,13 @@ function FooterCol({
 
 export function SiteLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-screen bg-background paper-grain">
-      <SiteHeader />
-      <main>{children}</main>
-      <SiteFooter />
-    </div>
+    <AuthGateProvider>
+      <div className="min-h-screen bg-background paper-grain">
+        <SiteHeader />
+        <main>{children}</main>
+        <SiteFooter />
+      </div>
+    </AuthGateProvider>
   );
+
 }
