@@ -25,11 +25,17 @@ export const Route = createFileRoute("/login")({
 
 function LoginPage() {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
   return (
     <AuthLayout title="Entrar" subtitle="Bem-vinda de volta à rede.">
       <div className="grid gap-4">
         <Field label="E-mail" required>
-          <Input type="email" placeholder="voce@email.com" />
+          <Input
+            type="email"
+            placeholder="voce@email.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </Field>
         <Field label="Senha" required>
           <Input type="password" placeholder="••••••••" />
@@ -39,8 +45,10 @@ function LoginPage() {
           size="lg"
           className="border-2 border-ink"
           onClick={() => {
+            const username = normalizeUsername(email.split("@")[0] || "tutor");
+            signInDemo({ username });
             toast.success("Bem-vinda de volta!");
-            void navigate({ to: "/dashboard" });
+            void navigate({ to: takePendingRedirect() ?? "/dashboard" });
           }}
         >
           Entrar
@@ -55,6 +63,7 @@ function LoginPage() {
     </AuthLayout>
   );
 }
+
 
 export function AuthLayout({
   title,
