@@ -70,43 +70,45 @@ function Landing() {
                 <p className="eyebrow">O que você precisa fazer?</p>
                 <div className="mt-3 grid gap-3 sm:grid-cols-3">
                   <Button
-                    asChild
+                    onClick={() => go("/nova-ocorrencia")}
                     className="h-auto flex-col items-start gap-1 whitespace-normal border-2 border-ink bg-status-missing px-3 py-3 text-left leading-tight text-primary-foreground hover:bg-status-missing/90"
                   >
-                    <Link to="/nova-ocorrencia">
-                      <Siren className="h-4 w-4 shrink-0" />
-                      <span className="text-sm font-bold">Meu pet desapareceu</span>
-                    </Link>
+                    <Siren className="h-4 w-4 shrink-0" />
+                    <span className="text-sm font-bold">Meu pet desapareceu</span>
                   </Button>
                   <Button
-                    asChild
                     variant="outline"
+                    onClick={() => go("/novo-avistamento")}
                     className="h-auto flex-col items-start gap-1 whitespace-normal border-2 border-ink bg-status-sighted px-3 py-3 text-left leading-tight text-primary hover:bg-status-sighted/80"
                   >
-                    <Link to="/novo-avistamento" search={{ ocorrencia: undefined }}>
-                      <Eye className="h-4 w-4 shrink-0" />
-                      <span className="text-sm font-bold">Eu vi um animal</span>
-                    </Link>
+                    <Eye className="h-4 w-4 shrink-0" />
+                    <span className="text-sm font-bold">Eu vi um animal</span>
                   </Button>
                   <Button
-                    asChild
                     variant="outline"
+                    onClick={() => go("/animal-encontrado")}
                     className="h-auto flex-col items-start gap-1 whitespace-normal border-2 border-ink bg-status-found px-3 py-3 text-left leading-tight text-primary-foreground hover:bg-status-found/90"
                   >
-                    <Link to="/animal-encontrado">
-                      <House className="h-4 w-4 shrink-0" />
-                      <span className="text-sm font-bold">Encontrei um animal</span>
-                    </Link>
+                    <House className="h-4 w-4 shrink-0" />
+                    <span className="text-sm font-bold">Encontrei um animal</span>
                   </Button>
                 </div>
-                <Link
-                  to="/buscar"
-                  className="mt-3 flex items-center gap-3 border-2 border-ink bg-paper px-4 py-3 text-sm text-muted-foreground transition-colors hover:bg-secondary"
+                <button
+                  type="button"
+                  onClick={() => go("/buscar")}
+                  className="mt-3 flex w-full items-center gap-3 border-2 border-ink bg-paper px-4 py-3 text-left text-sm text-muted-foreground transition-colors hover:bg-secondary"
                 >
                   <Search className="h-4 w-4 shrink-0" />
                   <span className="truncate">Procure por um animal, bairro ou região...</span>
-                </Link>
+                </button>
+                {!isAuthenticated && (
+                  <p className="mt-3 flex items-center gap-2 text-xs text-muted-foreground">
+                    <LockKeyhole className="h-3.5 w-3.5 shrink-0" />
+                    Para sinalizar ou ver o mural completo, entre ou crie sua conta gratuita.
+                  </p>
+                )}
               </div>
+
             </div>
           </div>
         </div>
