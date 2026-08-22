@@ -63,12 +63,14 @@ function SignupPage() {
               });
               return;
             }
+            signInDemo({ username });
             toast.success("Conta criada", { description: `Bem-vinda ao SinalizaPet, @${username}.` });
-            void navigate({ to: "/dashboard" });
+            void navigate({ to: takePendingRedirect() ?? "/dashboard" });
           }}
         >
           Criar conta
         </Button>
+
         <p className="text-center text-sm text-muted-foreground">
           Já tem conta?{" "}
           <Link to="/login" className="font-semibold text-ink underline">
