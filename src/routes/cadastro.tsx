@@ -7,6 +7,8 @@ import { AuthLayout } from "@/routes/login";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { demoTakenUsernames } from "@/data/demo";
+import { signInDemo, takePendingRedirect } from "@/lib/demo-session";
+
 
 export const Route = createFileRoute("/cadastro")({
   head: () => ({
