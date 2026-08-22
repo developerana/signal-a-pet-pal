@@ -2,8 +2,11 @@ import type { ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Twitter } from "lucide-react";
 import { BrandWordmark } from "@/components/BrandMark";
+import { AuthGateProvider, useAuthGate } from "@/components/AuthGate";
+import { useDemoSession } from "@/lib/demo-session";
 import { BRAND } from "@/lib/brand";
 import { Button } from "@/components/ui/button";
+
 
 function ThreadsIcon({ className }: { className?: string }) {
   return (
