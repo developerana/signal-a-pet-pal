@@ -1,10 +1,14 @@
+import { useState } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { BrandMark, BrandWordmark } from "@/components/BrandMark";
 import { BRAND } from "@/lib/brand";
 import { DemoNote, Field } from "@/components/FormKit";
+import { signInDemo, takePendingRedirect } from "@/lib/demo-session";
+import { normalizeUsername } from "@/lib/username";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+
 
 export const Route = createFileRoute("/login")({
   head: () => ({
