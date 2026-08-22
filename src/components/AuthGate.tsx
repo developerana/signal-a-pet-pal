@@ -77,3 +77,32 @@ export function useAuthGate(): GateContext {
   if (!ctx) throw new Error("useAuthGate precisa estar dentro de AuthGateProvider.");
   return ctx;
 }
+
+/**
+ * Área pública apenas para leitura: qualquer clique dentro dela pede login
+ * quando não há sessão ativa.
+ */
+export function GatedArea({
+  to,
+  children,
+  className,
+}: {
+  to: string;
+  children: ReactNode;
+  className?: string;
+}) {
+  const { isAuthenticated, go } = useAuthGate();
+  return (
+    <div
+      className={className}
+      onClickCapture={(event) => {
+        if (isAuthenticated) return;
+        event.preventDefault();
+        event.stopPropagation();
+        go(to);
+      }}
+    >
+      {children}
+    </div>
+  );
+}
