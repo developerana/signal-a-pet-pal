@@ -193,17 +193,26 @@ function LandingContent() {
             <h2 className="truncate text-3xl font-extrabold uppercase leading-none sm:text-4xl">
               Mural recente
             </h2>
-            <Button asChild variant="outline" size="sm" className="gap-1 border-2 border-ink">
-              <Link to="/buscar">
-                Ver todas <ArrowRight className="h-4 w-4" />
-              </Link>
+            <Button
+              variant="outline"
+              size="sm"
+              className="gap-1 border-2 border-ink"
+              onClick={() => go("/buscar")}
+            >
+              Ver todas <ArrowRight className="h-4 w-4" />
             </Button>
           </div>
-          <div className="grid gap-4 md:grid-cols-2">
+          <GatedArea to="/buscar" className="grid gap-4 md:grid-cols-2">
             {highlights.map((o) => (
               <OccurrenceCard key={o.id} occurrence={o} />
             ))}
-          </div>
+          </GatedArea>
+          {!isAuthenticated && (
+            <p className="mt-4 flex items-center gap-2 text-sm text-muted-foreground">
+              <LockKeyhole className="h-4 w-4 shrink-0" />
+              Entre para abrir cada ocorrência, falar com o tutor e sinalizar avistamentos.
+            </p>
+          )}
         </div>
       </section>
 
@@ -215,12 +224,12 @@ function LandingContent() {
         <p className="mt-2 text-sm text-muted-foreground">
           Marcadores por status, sempre em localização aproximada.
         </p>
-        <div className="mt-6">
+        <GatedArea to="/mapa" className="mt-6">
           <MapCanvas occurrences={demoOccurrences} className="h-[380px]" />
           <div className="mt-4">
             <MapLegend />
           </div>
-        </div>
+        </GatedArea>
       </section>
 
       {/* CTA */}
@@ -234,13 +243,16 @@ function LandingContent() {
               Leva menos de dois minutos e pode encerrar uma busca de semanas.
             </p>
           </div>
-          <Button asChild size="lg" className="border-2 border-ink bg-paper text-ink hover:bg-paper/90">
-            <Link to="/novo-avistamento" search={{ ocorrencia: undefined }}>
-              Sinalizar agora
-            </Link>
+          <Button
+            size="lg"
+            className="border-2 border-ink bg-paper text-ink hover:bg-paper/90"
+            onClick={() => go("/novo-avistamento")}
+          >
+            Sinalizar agora
           </Button>
         </div>
       </section>
-    </SiteLayout>
+    </>
   );
+
 }
