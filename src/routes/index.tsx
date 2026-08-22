@@ -1,13 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Eye, House, MapPin, Search, Siren } from "lucide-react";
+import { ArrowRight, Eye, House, LockKeyhole, MapPin, Search, Siren } from "lucide-react";
 
 import { BRAND } from "@/lib/brand";
 
 import { Button } from "@/components/ui/button";
+import { GatedArea, useAuthGate } from "@/components/AuthGate";
 import { OccurrenceCard } from "@/components/OccurrenceCard";
 import { MapCanvas, MapLegend } from "@/components/MapCanvas";
 import { Marquee, SiteLayout } from "@/components/SiteChrome";
 import { demoAdminStats, demoOccurrences } from "@/data/demo";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
